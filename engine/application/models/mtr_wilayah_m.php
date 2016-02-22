@@ -31,6 +31,23 @@ class Mtr_wilayah_m extends MY_Model {
         )
     ); 
     
+    public function save($data, $id = NULL) {
+        //check if username exists
+        if (isset($data['wilayah'])){
+            if ($id){
+                if ($this->get_count(array('wilayah'=>$data['wilayah'], 'id!='=>$id))){
+                    $this->_last_message = 'Nama wilayah "'.$data['wilayah'].'" sudah ada di database';
+                    return FALSE;
+                }
+            }else{
+                if ($this->get_count(array('wilayah'=>$data['wilayah']))){
+                    $this->_last_message = 'Nama wilayah "'.$data['wilayah'].'" sudah ada di database';
+                    return FALSE;
+                }
+            }
+        }
+        return parent::save($data, $id);
+    }
 }
 
 /*
