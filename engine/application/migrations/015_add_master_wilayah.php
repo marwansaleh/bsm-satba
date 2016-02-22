@@ -45,6 +45,53 @@ class Migration_add_master_wilayah extends MY_Migration {
             'default' => 0
         )
     );
+    
+    public function up(){
+        parent::up();
+        //Need seeding ?
+        $this->_seed(array(
+            array(
+                //'id'            => 1,
+                'wilayah'       => 'Jakarta',
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
+            ),
+            array(
+                //'id'            => 1,
+                'wilayah'       => 'Semarang',
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
+            ),
+            array(
+                //'id'            => 1,
+                'wilayah'       => 'Bandung',
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
+            ),
+            array(
+                //'id'            => 1,
+                'wilayah'       => 'Makassar',
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
+            ),
+            array(
+                //'id'            => 1,
+                'wilayah'       => 'Medan',
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
+            )
+        ));
+    }
 }
 
 /*
