@@ -5,12 +5,10 @@ class Sumberbisnis extends Admin_Controller {
 
     function __construct() {
         parent::__construct();
-        
-        $this->data['page_title'] = 'Sumber Bisnis';
-        
         if (!$this->has_access($this->get_roleid_by_url())){
             redirect('error/unauthorize');
         }
+        $this->data['page_title'] = 'Sumber Bisnis';
     }
     
     public function index()
