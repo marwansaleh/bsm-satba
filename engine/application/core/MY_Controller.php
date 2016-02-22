@@ -64,7 +64,7 @@ class Admin_Controller extends MY_Controller {
         $this->data['breadcumb'] = array();
         //set mainmenu
         $this->data['mainmenus'] = $this->get_user_menu();
-        //echo json_encode($this->data['mainmenus']);exit;
+        var_dump($this->data['mainmenus']);exit;
     }
     
     protected function get_active_module_by_url(){
@@ -90,6 +90,42 @@ class Admin_Controller extends MY_Controller {
             return $url_array[0];
         }
         return module_name(CT_MODULE_OTHER);
+    }
+    
+    protected function get_roleid_by_url(){
+        $url_array = explode('/', uri_string());
+        
+        $menu_link = NULL;
+        //find modul id from url array
+        if (count($url_array)>2){
+            $temp_arr = array();
+            for ($i=0; $i<2; $i++){
+                $temp_arr[] = $url_array[$i];
+            }
+            $menu_link = implode('/', $temp_arr);
+        }else{
+            $menu_link = implode('/', $url_array);
+        }
+        if (!isset($this->mainmenu_m)){
+            $this->load->model('mainmenu_m');
+        }
+        $this->db->like('link',$menu_link);
+        $menuitem = $this->mainmenu_m->get_select_where('id',NULL,TRUE);
+        if ($menuitem){
+            return $menuitem->id;
+        }else{
+            return NULL;
+        }
+    }
+    
+    protected function has_access($role_menu_id){
+        $all_roles = $this->userlib->get_user_menu();
+        if ( isset($all_roles[$role_menu_id]) ){
+            $role = $all_roles[$role_menu_id];
+            return $role->granted;
+        }else{
+            return FALSE;
+        }
     }
     
     protected function get_user_menu(){
