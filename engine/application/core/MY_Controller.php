@@ -64,7 +64,6 @@ class Admin_Controller extends MY_Controller {
         $this->data['breadcumb'] = array();
         //set mainmenu
         $this->data['mainmenus'] = $this->get_user_menu();
-        var_dump($this->data['mainmenus']);exit;
     }
     
     protected function get_active_module_by_url(){
