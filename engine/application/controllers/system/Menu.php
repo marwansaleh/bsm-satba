@@ -5,7 +5,6 @@ class Menu extends Admin_Controller {
 
     function __construct() {
         parent::__construct();
-        
         $this->data['page_title'] = 'Manajemen Menu';
     }
     
@@ -79,6 +78,11 @@ class Menu extends Admin_Controller {
             }else{
                 $data['modified_by'] = $this->userlib->get_userid();
             }
+            
+            if ($data['link']){
+                $data['link'] = rtrim($data['link'],'/');
+            }
+                
             
             if ($this->mainmenu_m->save($data, $id)){
                 $this->session->set_flashdata('message', 'Menu '.($id?'dengan id:'.$id:'baru').' berhasil disimpan di database');

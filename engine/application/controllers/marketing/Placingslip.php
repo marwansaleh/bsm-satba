@@ -6,7 +6,6 @@ class Placingslip extends Admin_Controller {
     function __construct() {
         parent::__construct();
         $this->data['page_title'] = 'Placing Slip';
-        //$this->data['module_active'] = 'marketing';
     }
     
     public function index()

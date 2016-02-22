@@ -66,7 +66,7 @@ class Migration_add_groups extends MY_Migration {
             ),
             array(
                 'id'            => 2,
-                'name'          => 'Marketing',
+                'name'          => 'General Insurance',
                 'removable'     => 0,
                 'created'       => time(),
                 'created_by'    => 1,
@@ -75,7 +75,7 @@ class Migration_add_groups extends MY_Migration {
             ),
             array(
                 'id'            => 3,
-                'name'          => 'Keuangan',
+                'name'          => 'Life Insurance',
                 'removable'     => 0,
                 'created'       => time(),
                 'created_by'    => 1,
@@ -84,7 +84,34 @@ class Migration_add_groups extends MY_Migration {
             ),
             array(
                 'id'            => 4,
-                'name'          => 'SDM',
+                'name'          => 'Finance',
+                'removable'     => 0,
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
+            ),
+            array(
+                'id'            => 5,
+                'name'          => 'Human Resource',
+                'removable'     => 0,
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
+            ),
+            array(
+                'id'            => 6,
+                'name'          => 'General Affair',
+                'removable'     => 0,
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
+            ),
+            array(
+                'id'            => 7,
+                'name'          => 'Administration',
                 'removable'     => 0,
                 'created'       => time(),
                 'created_by'    => 1,

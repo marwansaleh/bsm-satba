@@ -5,7 +5,6 @@ class Group extends Admin_Controller {
 
     function __construct() {
         parent::__construct();
-        
         $this->data['page_title'] = 'Manajemen Grup User';
     }
     
