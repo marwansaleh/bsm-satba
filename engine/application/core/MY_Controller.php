@@ -46,9 +46,11 @@ class Admin_Controller extends MY_Controller {
     function __construct() {
         parent::__construct();
         
+        $class_name = $this->router->fetch_class();
         if (!$this->userlib->isLoggedin()){
             redirect(get_action_url('auth'));
-            exit;
+        }else if ($class_name != 'error' && !$this->has_access($this->get_roleid_by_url())){
+            redirect('error/unauthorize');
         }
         
         //load neccessary models
