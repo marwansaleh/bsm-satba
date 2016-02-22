@@ -55,7 +55,7 @@ date_default_timezone_set('Asia/Jakarta');
  * NOTE: If you change these, also change the error_reporting() code below
  */
 //exit(dirname(__FILE__));
-$production_path = '/home/k2338048/public_html/competition';
+$production_path = '/home/k2338048/public_html/satba';
 
 switch (dirname(__FILE__)){
     case $production_path:
