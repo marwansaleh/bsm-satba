@@ -5,7 +5,9 @@ class Group extends Admin_Controller {
 
     function __construct() {
         parent::__construct();
-        
+        if (!$this->has_access($this->get_roleid_by_url())){
+            redirect('error/unauthorize');
+        }
         $this->data['page_title'] = 'Manajemen Grup User';
     }
     
