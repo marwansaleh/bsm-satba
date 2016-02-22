@@ -18,7 +18,7 @@ class Migration_add_master_wilayah extends MY_Migration {
         'wilayah'    => array (
             'type'  => 'VARCHAR',
             'constraint' => 50,
-            'default' => 0
+            'null' => FALSE
         ),
         'created'   => array(
             'type'  => 'INT',
@@ -51,7 +51,7 @@ class Migration_add_master_wilayah extends MY_Migration {
         //Need seeding ?
         $this->_seed(array(
             array(
-                //'id'            => 1,
+                'id'            => 1,
                 'wilayah'       => 'Jakarta',
                 'created'       => time(),
                 'created_by'    => 1,
@@ -59,7 +59,7 @@ class Migration_add_master_wilayah extends MY_Migration {
                 'modified_by'   => 1
             ),
             array(
-                //'id'            => 1,
+                'id'            => 2,
                 'wilayah'       => 'Semarang',
                 'created'       => time(),
                 'created_by'    => 1,
@@ -67,7 +67,7 @@ class Migration_add_master_wilayah extends MY_Migration {
                 'modified_by'   => 1
             ),
             array(
-                //'id'            => 1,
+                'id'            => 3,
                 'wilayah'       => 'Bandung',
                 'created'       => time(),
                 'created_by'    => 1,
@@ -75,7 +75,7 @@ class Migration_add_master_wilayah extends MY_Migration {
                 'modified_by'   => 1
             ),
             array(
-                //'id'            => 1,
+                'id'            => 4,
                 'wilayah'       => 'Makassar',
                 'created'       => time(),
                 'created_by'    => 1,
@@ -83,7 +83,7 @@ class Migration_add_master_wilayah extends MY_Migration {
                 'modified_by'   => 1
             ),
             array(
-                //'id'            => 1,
+                'id'            => 5,
                 'wilayah'       => 'Medan',
                 'created'       => time(),
                 'created_by'    => 1,
