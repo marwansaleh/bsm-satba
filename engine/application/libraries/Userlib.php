@@ -281,8 +281,6 @@ class Userlib extends Library {
             return FALSE;
         }
         
-        $user_privileges = array();
-        
         $group_access = array();
         $user_access = array();
         if (!$this->is_admin($group_id)){
@@ -299,6 +297,8 @@ class Userlib extends Library {
             }
         }
         
+        $user_privileges = array();
+        
         //start looping for making user access
         //get all roles
         $all_roles = $this->_get_all_roles();
@@ -310,7 +310,7 @@ class Userlib extends Library {
                 $role->granted = isset($user_access[$role->id]) ? $user_access[$role->id] : (isset($group_access[$role->id]) ? $group_access[$role->id] : FALSE);
             }
             
-            $user_privileges [] = $role;
+            $user_privileges [$role->id] = $role;
         }
         
         return $user_privileges;
