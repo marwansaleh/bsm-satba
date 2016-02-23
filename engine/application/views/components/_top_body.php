@@ -202,7 +202,7 @@
                                     </a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li>
-                                            <a href="#">
+                                            <a href="<?php echo get_action_url('usermgt/profile'); ?>">
                                                 <i class="fa fa-user"></i>
                                                 <span class="text">Profile</span>
                                             </a>
