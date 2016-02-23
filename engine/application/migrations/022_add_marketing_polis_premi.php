@@ -8,7 +8,7 @@
 class Migration_add_marketing_polis_premi extends MY_Migration {
     protected $_table_name = 'rel_marketing_polis_premi';
     protected $_primary_key = 'id';
-    protected $_index_keys = array('nomor_polis');
+    protected $_index_keys = array('tipe_premi');
     protected $_fields = array(
         'id'    => array (
             'type'  => 'INT',
@@ -29,8 +29,7 @@ class Migration_add_marketing_polis_premi extends MY_Migration {
         'suku_premi'    => array (
             'type'  => 'NUMERIC',
             'constraint' => '6,3',
-            'default' => 0.000,
-            'null' => FALSE
+            'default' => 0.000
         ),
         'tipe_premi' => array(
             'type' => 'ENUM("prosen","promil")',
@@ -40,14 +39,12 @@ class Migration_add_marketing_polis_premi extends MY_Migration {
         'premi_dasar' => array (
             'type'  => 'NUMERIC',
             'constraint' => '15,2',
-            'default' => 0.00,
-            'null' => FALSE
+            'default' => 0.00
         ),
         'premi_dasar_idr' => array (
             'type'  => 'NUMERIC',
             'constraint' => '15,2',
-            'default' => 0.00,
-            'null' => FALSE
+            'default' => 0.00
         ),
         'created'   => array(
             'type'  => 'INT',
