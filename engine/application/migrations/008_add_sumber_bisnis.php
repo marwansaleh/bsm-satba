@@ -13,6 +13,11 @@ class Migration_add_sumber_bisnis extends MY_Migration {
             'type'  => 'VARCHAR',
             'constraint' => 7
         ),
+        'kode'    => array(
+            'type' => 'VARCHAR',
+            'constraint' => 7,
+            'null' => FALSE
+        ),
         'nama'    => array(
             'type' => 'VARCHAR',
             'constraint' => '50',
