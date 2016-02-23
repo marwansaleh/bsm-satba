@@ -150,6 +150,27 @@ if (!function_exists('draw_menus')){
     }
 }
 
+if (!function_exists('draw_manual_tree')){
+    function draw_manual_tree($manuals, $active_id=0){
+        $str = '<ul>';
+        foreach ($manuals as $manual){
+            $str.= '<li'.($manual->id==$active_id?' data-jstree=\'{"opened":true,"selected":true}\'':'').'>';
+            if ($manual->content){
+                $str.= '<a href="'.get_action_url('manual/usermanual/detail/'.$manual->id).'">'.$manual->caption.'</a>';
+            }else{
+                $str.= '$manual->caption';
+            }
+            if ($manual->children){
+                $str.= draw_manual_tree($manual->children, $active_id);
+            }
+            $str.= '</li>';
+        }
+        $str.= '</ul>';
+        
+        return $str;
+    }
+}
+
 if (!function_exists('module_name')){
     function module_name($module_id){
         $module_name = 'dashboard';

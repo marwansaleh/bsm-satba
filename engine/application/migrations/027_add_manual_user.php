@@ -61,6 +61,45 @@ class Migration_add_manual_user extends MY_Migration {
         )
     );
     
+    public function up(){
+        parent::up();
+        //Need seeding ?
+        $this->_seed(array(
+            array(
+                'id'            => 1,
+                'parent'        => 0,
+                'caption'       => 'INTRODUCTION',
+                'title'         => 'Introduction',
+                'content'       => '<p>Aplikasi ini adalah core system PT. BSM untuk membantu aktifitas produksi dan penyusunan neraca keuangan</p>',
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
+            ),
+            array(
+                'id'            => 2,
+                'parent'        => 0,
+                'caption'       => 'MODUL MARKETING',
+                'title'         => 'Modul Marketing',
+                'content'       => '<p>Modul marketing berisikan sub modul antara lain</p>',
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
+            ),
+            array(
+                'id'            => 3,
+                'parent'        => 0,
+                'caption'       => 'MODUL KEUANGAN',
+                'title'         => 'Modul Keuangan',
+                'content'       => '<p>Modul keuangan berisikan sub modul antara lain</p>',
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
+            ),
+        ));
+    }
 }
 
 /*
