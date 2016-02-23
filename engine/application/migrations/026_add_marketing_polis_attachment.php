@@ -1,14 +1,14 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Description of Migration_add_sales_marketing
+ * Description of Migration_add_marketing_polis_attachment
  *
  * @author marwansaleh
  */
-class Migration_add_sales_marketing extends MY_Migration {
-    protected $_table_name = 'ref_sales_marketing';
+class Migration_add_marketing_polis_attachment extends MY_Migration {
+    protected $_table_name = 'rel_polis_attachment';
     protected $_primary_key = 'id';
-    protected $_index_keys = array('nama');
+    //protected $_index_keys = array();
     protected $_fields = array(
         'id'    => array (
             'type'  => 'INT',
@@ -16,15 +16,20 @@ class Migration_add_sales_marketing extends MY_Migration {
             'unsigned' => TRUE,
             'auto_increment' => TRUE
         ),
-        'nama'   => array(
-            'type'  => 'VARCHAR',
-            'constraint' => 50,
-            'null' => FALSE
-        ),
-        'marketing_group_id'   => array(
+        'polis'    => array (
             'type'  => 'INT',
             'constraint' => 11,
-            'default' => 0
+            'null' => FALSE
+        ),
+        'nama_file'    => array (
+            'type'  => 'VARCHAR',
+            'constraint' => 254,
+            'null' => FALSE
+        ),
+        'deskripsi'    => array (
+            'type'  => 'VARCHAR',
+            'constraint' => 254,
+            'null' => TRUE
         ),
         'created'   => array(
             'type'  => 'INT',
@@ -55,6 +60,6 @@ class Migration_add_sales_marketing extends MY_Migration {
 }
 
 /*
- * filename : 012_add_sales_marketing.php
- * location : /application/migrations/012_add_sales_marketing.php
+ * filename : 026_add_marketing_polis_attachment.php
+ * location : /application/migrations/026_add_marketing_polis_attachment.php
  */

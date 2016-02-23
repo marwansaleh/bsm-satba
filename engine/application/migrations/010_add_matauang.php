@@ -21,7 +21,7 @@ class Migration_add_matauang extends MY_Migration {
         'is_active'   => array(
             'type'  => 'TINYINT',
             'constraint' => 1,
-            'default' => 0
+            'default' => 1
         ),
         'created'   => array(
             'type'  => 'INT',
@@ -49,6 +49,39 @@ class Migration_add_matauang extends MY_Migration {
         )
     );
     
+    public function up(){
+        parent::up();
+        //Need seeding ?
+        $this->_seed(array(
+            array(
+                'id'            => 'IDR',
+                'nama'          => 'Rupiah',
+                'is_active'     => 1,
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
+            ),
+            array(
+                'id'            => 'USD',
+                'nama'          => 'US Dollar',
+                'is_active'     => 1,
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
+            ),
+            array(
+                'id'            => 'HKD',
+                'nama'          => 'Hongkong Dollar',
+                'is_active'     => 1,
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
+            )
+        ));
+    }
 }
 
 /*

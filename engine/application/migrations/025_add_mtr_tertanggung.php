@@ -8,7 +8,7 @@
 class Migration_add_mtr_tertanggung extends MY_Migration {
     protected $_table_name = 'ref_tertanggung';
     protected $_primary_key = 'id';
-    protected $_index_keys = array('nama_lengkap','nama_depan');
+    //protected $_index_keys = array('nama_lengkap','nama_depan');
     protected $_fields = array(
         'id'    => array (
             'type'  => 'INT',
@@ -34,7 +34,7 @@ class Migration_add_mtr_tertanggung extends MY_Migration {
         'nama_belakang'    => array (
             'type'  => 'VARCHAR',
             'constraint' => 30,
-            'null' => FALSE
+            'null' => TRUE
         ),
         'alamat'    => array (
             'type'  => 'VARCHAR',
@@ -52,7 +52,7 @@ class Migration_add_mtr_tertanggung extends MY_Migration {
             'default' => 0
         ),
         'kode_pos'    => array (
-            'type'  => 'VACRHAR',
+            'type'  => 'VARCHAR',
             'constraint' => 7,
             'null' => TRUE
         ),

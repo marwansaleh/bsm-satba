@@ -36,14 +36,20 @@ class Migration_add_marketing_polis extends MY_Migration {
             'constraint' => 15,
             'null' => FALSE
         ),
+        'nomor_polis_lama'    => array (
+            'type'  => 'INT',
+            'constraint' => 11,
+            'default' => 0,
+            'null' => TRUE
+        ),
         'tertanggung'    => array (
             'type'  => 'INT',
             'constraint' => 11,
             'null' => FALSE
         ),
         'okupasi'    => array (
-            'type'  => 'INT',
-            'constraint' => 11,
+            'type'  => 'VARCHAR',
+            'constraint' => 30,
             'null' => FALSE
         ),
         'jenis_asuransi'    => array (
