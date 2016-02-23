@@ -16,6 +16,16 @@ class Migration_add_marketing_polis extends MY_Migration {
             'unsigned' => TRUE,
             'auto_increment' => TRUE
         ),
+        'bulan_laporan' => array(
+            'type' => 'INT',
+            'constraint' => 2,
+            'null' => FALSE
+        ),
+        'tahun_laporan' => array(
+            'type' => 'INT',
+            'constraint' => 4,
+            'null' => FALSE
+        ),
         'sumber_bisnis' => array (
             'type'  => 'INT',
             'constraint' => 11,
@@ -52,41 +62,6 @@ class Migration_add_marketing_polis extends MY_Migration {
         'mata_uang'    => array (
             'type'  => 'INT',
             'constraint' => 11,
-            'null' => FALSE
-        ),
-        'jumlah_pertanggungan' => array (
-            'type'  => 'NUMERIC',
-            'constraint' => '15,2',
-            'default' => 0.00,
-            'null' => FALSE
-        ),
-        'jumlah_pertanggungan_idr' => array (
-            'type'  => 'NUMERIC',
-            'constraint' => '15,2',
-            'default' => 0.00,
-            'null' => FALSE
-        ),
-        'suku_premi'    => array (
-            'type'  => 'NUMERIC',
-            'constraint' => '6,3',
-            'default' => 0.000,
-            'null' => FALSE
-        ),
-        'tipe_premi' => array(
-            'type' => 'ENUM("prosen","promil")',
-            'default' => 'prosen',
-            'null' => FALSE
-        ),
-        'jumlah_premi' => array (
-            'type'  => 'NUMERIC',
-            'constraint' => '15,2',
-            'default' => 0.00,
-            'null' => FALSE
-        ),
-        'jumlah_premi_idr' => array (
-            'type'  => 'NUMERIC',
-            'constraint' => '15,2',
-            'default' => 0.00,
             'null' => FALSE
         ),
         'biaya_lain' => array (
