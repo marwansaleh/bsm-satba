@@ -70,6 +70,6 @@ class Migration_add_marketing_polis_penanggung extends MY_Migration {
 }
 
 /*
- * filename : 023_marketing_polis_penanggung.php
- * location : /application/migrations/023_marketing_polis_penanggung.php
+ * filename : 023_add_marketing_polis_penanggung.php
+ * location : /application/migrations/023_add_marketing_polis_penanggung.php
  */

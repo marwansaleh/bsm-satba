@@ -127,6 +127,6 @@ class Migration_add_marketing_polis extends MY_Migration {
 }
 
 /*
- * filename : 020_marketing_polis.php
- * location : /application/migrations/020_marketing_polis.php
+ * filename : 020_add_marketing_polis.php
+ * location : /application/migrations/020_add_marketing_polis.php
  */

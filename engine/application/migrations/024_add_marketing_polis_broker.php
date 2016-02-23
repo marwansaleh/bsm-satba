@@ -60,6 +60,6 @@ class Migration_add_marketing_polis_broker extends MY_Migration {
 }
 
 /*
- * filename : 022_marketing_polis_broker.php
- * location : /application/migrations/022_marketing_polis_broker.php
+ * filename : 022_add_marketing_polis_broker.php
+ * location : /application/migrations/022_add_marketing_polis_broker.php
  */

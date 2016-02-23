@@ -72,6 +72,6 @@ class Migration_add_marketing_polis_objek extends MY_Migration {
 }
 
 /*
- * filename : 021_marketing_polis_objek.php
- * location : /application/migrations/021_marketing_polis_objek.php
+ * filename : 021_add_marketing_polis_objek.php
+ * location : /application/migrations/021_add_marketing_polis_objek.php
  */

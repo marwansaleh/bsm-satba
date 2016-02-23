@@ -78,6 +78,6 @@ class Migration_add_marketing_polis_premi extends MY_Migration {
 }
 
 /*
- * filename : 022_marketing_polis.php
- * location : /application/migrations/022_marketing_polis.php
+ * filename : 022_add_marketing_polis.php
+ * location : /application/migrations/022_add_marketing_polis.php
  */
