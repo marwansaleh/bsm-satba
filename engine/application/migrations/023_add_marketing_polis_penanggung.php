@@ -8,7 +8,6 @@
 class Migration_add_marketing_polis_penanggung extends MY_Migration {
     protected $_table_name = 'rel_marketing_polis_penanggung';
     protected $_primary_key = 'id';
-    protected $_index_keys = array('nomor_polis');
     protected $_fields = array(
         'id'    => array (
             'type'  => 'INT',
