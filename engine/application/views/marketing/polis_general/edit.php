@@ -9,6 +9,7 @@
                     <li class=""><a href="#tab-premi" data-toggle="tab" aria-expanded="false"><i class="fa fa-list"></i> Premi</a></li>
                     <li class=""><a href="#tab-asuradur" data-toggle="tab" aria-expanded="false"><i class="fa fa-list"></i> Asuradur</a></li>
                     <li class=""><a href="#tab-broker" data-toggle="tab" aria-expanded="false"><i class="fa fa-list"></i> Broker</a></li>
+                    <li class=""><a href="#tab-attachment" data-toggle="tab" aria-expanded="false"><i class="fa fa-list"></i> Lampiran</a></li>
                 </ul>
             </div>
             <div class="widget-content clearfix">
@@ -129,32 +130,51 @@
                         <div class="tab-pane fade" id="tab-pertanggungan">
                             <legend>Objek Pertanggungan</legend>
                             <div id="container-objek-pertanggungan" class="container-input-appendable">
-                                <div class="row">
-                                    <div class="col-lg-6">
+                                <div class="row row-objek">
+                                    <div class="col-lg-5">
                                         <div class="form-group">
-                                            <label>Nama objek</label>
-                                            <input type="text" class="form-control" name="objek_nama[]" value="">
+                                            <input type="text" class="form-control objek-nama" name="objek_nama[]" value="" placeholder="Nama objek pertanggungan" maxlength="50">
                                         </div>
                                     </div>
-                                    <div class="col-lg-2">
+                                    <div class="col-lg-1">
                                         <div class="form-group">
-                                            <label>Mata uang</label>
-                                            <select class="form-control" name="objek_matauang[]">
+                                            <select name="objek_matauang[]" class="form-control objek-matauang">
                                                 <?php foreach ($mata_uang as $mu): ?>
                                                 <option value="<?php echo $mu->id; ?>" title="<?php echo $mu->nama; ?>"><?php echo $mu->id;?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-3">
                                         <div class="form-group">
-                                            <label>Nilai pertanggungan</label>
+                                            <input type="number" class="form-control text-right objek-nilai" name="objek_nilai[]" placeholder="Nilai pertanggungan">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
                                             <div class="input-group">
-                                                <input type="number" class="form-control" name="objek_nilai[]">
+                                                <div class="input-group-addon">
+                                                    <span>IDR</span>
+                                                </div>
+                                                <input type="number" class="form-control text-right objek-nilai-idr" placeholder="Nilai pertanggungan (IDR)">
                                                 <div class="input-group-btn">
-                                                    <button type="button" class="btn btn-success btn-objek" title="Tambah objek pertanggungan"><span class="fa fa-plus"></span></button>
+                                                    <button type="button" class="btn btn-success btn-objek-tambah" title="Tambah objek pertanggungan"><span class="fa fa-plus"></span></button>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row description">
+                                    <div class="col-lg-9">
+                                        <p class="form-control-static text-right">Total nilai pertanggungan (IDR)</p>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <span>IDR</span>
+                                            </div>
+                                            <input type="number" readonly="true" id="total-pertanggungan-idr" name="total_pertanggungan_idr" class="form-control text-right">
+                                            <div class="input-group-btn"><button type="button" class="btn btn-default btn-objek-hitung"><span class="fa fa-calculator"></span></button></div>
                                         </div>
                                     </div>
                                 </div>
@@ -163,50 +183,52 @@
                         <div class="tab-pane fade" id="tab-premi">
                             <legend>Suku Premi</legend>
                             <div id="container-premi" class="container-input-appendable">
-                                <div class="row">
-                                    <div class="col-lg-3">
+                                <div class="row row-premi">
+                                    <div class="col-lg-4">
                                         <div class="form-group">
-                                            <input type="text" disabled="true" class="form-control disabled" />
+                                            <input type="text" disabled="true" class="form-control disabled input-objek-pertanggungan" />
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <input type="number" class="form-control" name="premi_rate[]" placeholder="Premi rate" />
+                                                <input type="number" class="form-control text-right premi-rate" name="premi_rate[]" placeholder="Premi rate" />
                                                 <div class="input-group-btn">
-                                                    <div class="btn-group">
-                                                        <button type="button" class="multiselect dropdown-toggle btn btn-default" data-toggle="dropdown" title="Cheese" aria-expanded="false">
-                                                            Prosen <b class="caret"></b>
-                                                        </button>
-                                                        <ul class="multiselect-container dropdown-menu" style="max-height: 300px; overflow-y: auto; overflow-x: hidden;">
-                                                            <li class="active">
-                                                                <a href="javascript:void(0);">
-                                                                    <label class="radio">
-                                                                        <input type="radio" name="premi_rate_type[]" value="prosen"> Prosen
-                                                                    </label>
-                                                                </a>
-                                                            </li>
-                                                            <li class="active">
-                                                                <a href="javascript:void(0);">
-                                                                    <label class="radio">
-                                                                        <input type="radio" name="premi_rate_type[]" value="promil"> Promil
-                                                                    </label>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
+                                                    <select class="multiselect" name="premi_rate_type[]">
+                                                        <option value="prosen">Prosen</option>
+                                                        <option value="promil">Promil</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <input type="number" class="form-control text-right premi-nilai" name="premi_nilai[]" placeholder="Nilai premi">
+                                        </div>
+                                    </div>
                                     <div class="col-lg-3">
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <input type="number" class="form-control" name="premi_nilai[]">
+                                                <input type="number" class="form-control text-right premi-nilai-idr" name="premi_nilai_idr[]" placeholder="Nilai premi IDR">
                                                 <div class="input-group-btn">
                                                     <button type="button" class="btn btn-success btn-premi" title="Tambah premi"><span class="fa fa-plus"></span></button>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row description">
+                                    <div class="col-lg-9">
+                                        <p class="form-control-static text-right">Total nilai premi dasar (IDR)</p>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <span>IDR</span>
+                                            </div>
+                                            <input type="number" readonly="true" id="total-premi-idr" name="total_premi_idr" class="form-control text-right">
+                                            <div class="input-group-btn"><button type="button" class="btn btn-default"><span class="fa fa-calculator"></span></button></div>
                                         </div>
                                     </div>
                                 </div>
@@ -217,6 +239,10 @@
                         </div>
                         <div class="tab-pane fade" id="tab-broker">
                             <legend>Broker</legend>
+                        </div>
+                        <div class="tab-pane fade" id="tab-attachment">
+                            <legend>Dokumentasi &amp; Lampiran</legend>
+                            
                         </div>
                     </div>
                     <div class="form-group form-group-lg">
@@ -232,6 +258,9 @@
 
 <script type="text/javascript">
     var module = 'menu';
+    var PolisManager = {
+        
+    };
     $(document).ready(function(){
         //load init parent menu
         //load_menu_parent($('#module').val(), $('#module').attr('data-parent-selected'));
@@ -250,25 +279,53 @@
                 $(element).closest('.form-group').removeClass('has-error');
             }
         });
-        $('#module').on('change', function(){
-            load_menu_parent($(this).val(),$(this).attr('data-parent-selected'));
+        
+        $('#container-objek-pertanggungan').on('change', 'select', function (){
+            $(this).parents('.row-objek').find('input.objek-nilai').trigger('keyup');
+        });
+        $('#container-objek-pertanggungan').on('change', 'input.objek-nilai', function(){$(this).trigger('keyup')});
+        $('#container-objek-pertanggungan').on('keyup', 'input.objek-nilai', function(){
+            var matauang = $(this).parents('.row-objek').find('select').val();
+            var target = $(this).parents('.row-objek').find('input.objek-nilai-idr');
             
+            KonversiMataUang.konversi(matauang, $(this), $(target));
+            totalNilai('#container-objek-pertanggungan', 'input.objek-nilai-idr', '#total-pertanggungan-idr');
+        });
+        $('#container-objek-pertanggungan').on('click','button.btn-objek-tambah', function(){
+            var $row = $(this).parents('.row-objek');
+            var $new = $row.clone(true);
+            
+            //change attribute of new
+            $new.find('input.objek-nama').val('');
+            $new.find('input.objek-nilai').val(0);
+            $new.find('input.objek-nilai-idr').val('0.00');
+            
+            //change attribute of button current row
+            $(this).removeClass('btn-success').addClass('btn-danger').addClass('btn-objek-hapus')
+                    .removeClass('btn-objek-tambah').attr('title','Hapus objek pertanggungan')
+                    .find('span').removeClass('fa-plus').addClass('fa-minus');
+            
+            //put new row to the last
+            $new.insertAfter($row);
+        });
+        $('#container-objek-pertanggungan').on('click','button.btn-objek-hapus', function(){
+            var $row = $(this).parents('.row-objek');
+            $row.remove();
+            
+            totalNilai('#container-objek-pertanggungan', 'input.objek-nilai-idr', '#total-pertanggungan-idr');
+        });
+        $('#container-objek-pertanggungan').on('click','.btn-objek-hitung', function(){
+            totalNilai('#container-objek-pertanggungan', 'input.objek-nilai-idr', '#total-pertanggungan-idr');
         });
     });
     
-    function load_menu_parent(module_id,parent_selected){
-        $.getJSON('<?php echo get_action_url('system/menu/select_parent_menu'); ?>/'+module_id, function(data){
-            $('#parent').empty();
-
-            var s = '<optgroup label="'+data.module_name+'">';
-            for (var i in data.items){
-                s+= '<option value="'+data.items[i].id+'"'+(data.items[i].parent==parent_selected?' selected':'')+'>'+data.items[i].caption+'</option>';
-            }
-            s+= '</optgroup>'
-
-            $('#parent').append(s);
-
-            $('#parent').selectpicker('refresh');
+    function totalNilai(parent, selector, target){
+        var total = 0.00;
+        $(parent +' '+ selector).each(function (){
+            total += parseFloat($(this).val());
         });
+        
+        $(target).val(total.toFixed(2));
     }
+    
 </script>

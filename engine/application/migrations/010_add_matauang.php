@@ -23,6 +23,11 @@ class Migration_add_matauang extends MY_Migration {
             'constraint' => 1,
             'default' => 1
         ),
+        'sort'   => array(
+            'type'  => 'INT',
+            'constraint' => 3,
+            'default' => 0
+        ),
         'created'   => array(
             'type'  => 'INT',
             'constraint' => 11,
@@ -57,6 +62,7 @@ class Migration_add_matauang extends MY_Migration {
                 'id'            => 'IDR',
                 'nama'          => 'Rupiah',
                 'is_active'     => 1,
+                'sort'          => 0,
                 'created'       => time(),
                 'created_by'    => 1,
                 'modified'      => time(),
@@ -66,6 +72,7 @@ class Migration_add_matauang extends MY_Migration {
                 'id'            => 'USD',
                 'nama'          => 'US Dollar',
                 'is_active'     => 1,
+                'sort'          => 1,
                 'created'       => time(),
                 'created_by'    => 1,
                 'modified'      => time(),
@@ -75,6 +82,7 @@ class Migration_add_matauang extends MY_Migration {
                 'id'            => 'HKD',
                 'nama'          => 'Hongkong Dollar',
                 'is_active'     => 1,
+                'sort'          => 2,
                 'created'       => time(),
                 'created_by'    => 1,
                 'modified'      => time(),

@@ -1,13 +1,14 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Description of Migration_add_marketing_polis_penanggung
+ * Description of Migration_add_marketing_polis_attachment
  *
  * @author marwansaleh
  */
-class Migration_add_marketing_polis_penanggung extends MY_Migration {
-    protected $_table_name = 'rel_marketing_polis_penanggung';
+class Migration_add_manual_user extends MY_Migration {
+    protected $_table_name = 'ref_manual_user';
     protected $_primary_key = 'id';
+    protected $_index_keys = array('caption','title');
     protected $_fields = array(
         'id'    => array (
             'type'  => 'INT',
@@ -15,35 +16,24 @@ class Migration_add_marketing_polis_penanggung extends MY_Migration {
             'unsigned' => TRUE,
             'auto_increment' => TRUE
         ),
-        'polis'    => array (
+        'parent'    => array (
             'type'  => 'INT',
             'constraint' => 11,
-            'null' => FALSE
-        ),
-        'objek'    => array (
-            'type'  => 'INT',
-            'constraint' => 11,
-            'null' => FALSE
-        ),
-        'asuradur'    => array (
-            'type'  => 'INT',
-            'constraint' => 11,
-            'null' => FALSE
-        ),
-        'leader'    => array (
-            'type'  => 'TINYINT',
-            'constraint' => 1,
             'default' => 0
         ),
-        'persentase'    => array (
-            'type'  => 'NUMERIC',
-            'constraint' => '6,3',
-            'default' => 0.000
+        'caption'    => array (
+            'type'  => 'VARCHAR',
+            'constraint' => 50,
+            'null' => FALSE
         ),
-        'premi' => array (
-            'type'  => 'NUMERIC',
-            'constraint' => '15,2',
-            'default' => 0.00
+        'title'    => array (
+            'type'  => 'VARCHAR',
+            'constraint' => 254,
+            'null' => TRUE
+        ),
+        'content'    => array (
+            'type'  => 'TEXT',
+            'null' => TRUE
         ),
         'created'   => array(
             'type'  => 'INT',
@@ -74,6 +64,6 @@ class Migration_add_marketing_polis_penanggung extends MY_Migration {
 }
 
 /*
- * filename : 023_add_marketing_polis_penanggung.php
- * location : /application/migrations/023_add_marketing_polis_penanggung.php
+ * filename : 027_add_manual_user.php
+ * location : /application/migrations/027_add_manual_user.php
  */

@@ -10,7 +10,7 @@ class Mtr_matauang_m extends MY_Model {
     protected $_table_name = 'ref_matauang';
     protected $_primary_key = 'id';
     protected $_primary_filter = 'strval';
-    protected $_order_by = 'id';
+    protected $_order_by = 'sort';
     protected $_timestamps = TRUE;
     protected $_timestamps_field = array('created','modified');
     

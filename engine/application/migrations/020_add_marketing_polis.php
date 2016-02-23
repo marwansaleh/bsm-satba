@@ -80,12 +80,12 @@ class Migration_add_marketing_polis extends MY_Migration {
             'constraint' => '10,2',
             'default' => 0.00
         ),
-        'total_premi' => array (
+        'total_premi_idr' => array (
             'type'  => 'NUMERIC',
             'constraint' => '15,2',
             'default' => 0.00
         ),
-        'total_premi_idr' => array (
+        'total_pertanggungan_idr' => array (
             'type'  => 'NUMERIC',
             'constraint' => '15,2',
             'default' => 0.00

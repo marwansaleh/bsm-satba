@@ -13,7 +13,7 @@
                 })
                 
                 $('select.selectpicker').selectpicker();
-                
+                $('.multiselect').multiselect();
             });
         </script>
         <script src="<?php echo get_asset_url('js/bootstrap/bootstrap.js') ?>"></script>
@@ -31,6 +31,7 @@
         <script src="<?php echo get_asset_url('js/plugins/bootstrap-select/bootstrap-select.min.js'); ?>"></script>
         <script src="<?php echo get_asset_url('js/jquery-validation/jquery.validate.min.js'); ?>"></script>
         <script src="<?php echo get_asset_url('js/plugins/select2/select2.min.js'); ?>"></script>
+        <script src="<?php echo get_asset_url('js/plugins/bootstrap-multiselect/bootstrap-multiselect.js'); ?>"></script>
         
         <!-- DataTables -->
         <script src="<?php echo get_asset_url('DataTables/media/js/jquery.dataTables.min.js'); ?>"></script>
