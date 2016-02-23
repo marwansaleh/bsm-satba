@@ -20,13 +20,28 @@ class Migration_add_kurs_matauang extends MY_Migration {
             'type' => 'DATE',
             'null' => FALSE
         ),
+        'hari'    => array(
+            'type' => 'INT',
+            'constraint' => 2,
+            'null' => FALSE
+        ),
+        'bulan'    => array(
+            'type' => 'INT',
+            'constraint' => 2,
+            'null' => FALSE
+        ),
+        'tahun'    => array(
+            'type' => 'INT',
+            'constraint' => 4,
+            'null' => FALSE
+        ),
         'matauang_id'   => array(
             'type'  => 'VARCHAR',
             'constraint' => 3,
             'null' => FALSE
         ),
         'kurs'   => array(
-            'type'  => 'DECIMAL',
+            'type'  => 'NUMERIC',
             'constraint' => '8,2',
             'default' => 0.00
         ),
