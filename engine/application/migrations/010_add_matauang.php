@@ -87,6 +87,36 @@ class Migration_add_matauang extends MY_Migration {
                 'created_by'    => 1,
                 'modified'      => time(),
                 'modified_by'   => 1
+            ),
+            array(
+                'id'            => 'SGD',
+                'nama'          => 'SIngapore Dollar',
+                'is_active'     => 1,
+                'sort'          => 3,
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
+            ),
+            array(
+                'id'            => 'YEN',
+                'nama'          => 'Yen Japan',
+                'is_active'     => 1,
+                'sort'          => 4,
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
+            ),
+            array(
+                'id'            => 'EUR',
+                'nama'          => 'Euro',
+                'is_active'     => 1,
+                'sort'          => 5,
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
             )
         ));
     }

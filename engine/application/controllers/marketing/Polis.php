@@ -25,25 +25,32 @@ class Polis extends Admin_Controller {
         $this->data['page_subtitle'] = $id ? 'Edit polis':'Registrasi Polis';
         
         //load model user if not loaded
-        $this->load->model(array('mkt_polis_m','mtr_sumberbisnis_m','mtr_jenisasuransi_m','mkt_objek_pertanggungan_m','mtr_matauang_m','mtr_asuradur_m'));
+        $this->load->model(array(
+            'mkt_polis_m','mtr_sumberbisnis_m','mtr_jenisasuransi_m','mkt_objek_pertanggungan_m',
+            'mtr_matauang_m','mtr_asuradur_m','mtr_broker_m','mtr_sales_m','mtr_tertanggung_m'));
         
         if ($id){
             $item = $this->mkt_polis_m->get($id);
             $item->objek_pertanggungan = $this->mkt_objek_pertanggungan_m->get_by(array('polis'=>$item->id));
         }else{
             $item = $this->mkt_polis_m->get_new();
+            $item->persetujuan = 'pusat';
+            $item->periode_mulai = date('Y-m-d');
+            $item->periode_akhir = date('Y-m-d', strtotime('+1 year'));
             $item->mata_uang = 'IDR';
-            $item->biaya_lain = 0.00;
-            $item->komisi_kembali = 0.00;
+            $item->komisi_kembali = 0;
             $item->objek_pertanggungan = NULL;
         }
         $this->data['item'] = $item;
         
         //suported data
+        $this->data['tertanggung'] = $this->mtr_tertanggung_m->get();
+        $this->data['sales'] = $this->mtr_sales_m->get();
         $this->data['sumber_bisnis'] = $this->mtr_sumberbisnis_m->get();
         $this->data['jenis_asuransi'] = $this->mtr_jenisasuransi_m->get();
         $this->data['mata_uang'] = $this->mtr_matauang_m->get();
         $this->data['asuradurs'] = $this->mtr_asuradur_m->get();
+        $this->data['brokers'] = $this->mtr_broker_m->get();
         
         //set breadcumb
         breadcumb_add($this->data['breadcumb'], '<i class="fa fa-home"></i> Home', get_action_url('dashboard'));

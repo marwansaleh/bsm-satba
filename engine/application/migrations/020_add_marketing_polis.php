@@ -65,22 +65,27 @@ class Migration_add_marketing_polis extends MY_Migration {
             'type'  => 'DATE',
             'null' => FALSE
         ),
-        'mata_uang'    => array (
-            'type'  => 'INT',
-            'constraint' => 11,
-            'null' => FALSE
-        ),
-        'biaya_lain' => array (
+        'total_biaya_lain' => array (
             'type'  => 'NUMERIC',
             'constraint' => '10,2',
             'default' => 0.00
         ),
-        'biaya_lain_idr' => array (
+        'total_biaya_lain_idr' => array (
             'type'  => 'NUMERIC',
             'constraint' => '10,2',
+            'default' => 0.00
+        ),
+        'total_premi' => array (
+            'type'  => 'NUMERIC',
+            'constraint' => '15,2',
             'default' => 0.00
         ),
         'total_premi_idr' => array (
+            'type'  => 'NUMERIC',
+            'constraint' => '15,2',
+            'default' => 0.00
+        ),
+        'total_pertanggungan' => array (
             'type'  => 'NUMERIC',
             'constraint' => '15,2',
             'default' => 0.00
@@ -94,7 +99,7 @@ class Migration_add_marketing_polis extends MY_Migration {
             'type' => 'ENUM("pusat","cabang")',
             'default' => 'pusat'
         ),
-        'sales' => array(
+        'matauang_komisi_kembali' => array(
             'type' => 'INT',
             'constraint' => 11,
             'null' => FALSE
@@ -103,6 +108,11 @@ class Migration_add_marketing_polis extends MY_Migration {
             'type'  => 'NUMERIC',
             'constraint' => '15,2',
             'default' => 0.00
+        ),
+        'sales' => array(
+            'type' => 'INT',
+            'constraint' => 11,
+            'null' => FALSE
         ),
         'created'   => array(
             'type'  => 'INT',

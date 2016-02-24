@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <div class="widget">
             <div class="widget-header">
-                <h3><?php echo $page_subtitle ? $page_subtitle:'Edit Data'; ?></h3>
+                <h3><?php echo $page_subtitle ? $page_subtitle:'Edit Polis'; ?></h3>
                 <ul class="nav nav-tabs pull-right">
                     <li class="active"><a href="#tab-basic" data-toggle="tab" aria-expanded="true"><i class="fa fa-list-alt"></i> Basic Data</a></li>
                     <li class=""><a href="#tab-pertanggungan" data-toggle="tab" aria-expanded="false"><i class="fa fa-list"></i> Pertanggungan</a></li>
@@ -42,9 +42,9 @@
                             <div class="form-group">
                                 <label>Tertanggung</label>
                                 <div class="input-group">
-                                    <select id="sumber_bisnis" name="sumber_bisnis" data-parent-selected="<?php echo $item->sumber_bisnis; ?>" class="form-control selectpicker show-tick"" data-live-search="true" data-size="5">
-                                        <?php foreach ($sumber_bisnis as $sb): ?>
-                                        <option value="<?php echo $sb->id; ?>" <?php echo $sb->id==$item->sumber_bisnis?'selected':''; ?>><?php echo $sb->kode .' - '. $sb->nama; ?></option>
+                                    <select id="tertanggung" name="tertanggung" data-parent-selected="<?php echo $item->tertanggung; ?>" class="form-control selectpicker show-tick"" data-live-search="true" data-size="5">
+                                        <?php foreach ($tertanggung as $tg): ?>
+                                        <option value="<?php echo $tg->id; ?>" <?php echo $tg->id==$item->tertanggung?'selected':''; ?>><?php echo $tg->nama_lengkap; ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                     <div class="input-group-btn">
@@ -100,28 +100,34 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-2">
+                                <div class="col-lg-1">
                                     <div class="form-group">
                                         <label>Mata uang</label>
-                                        <select class="form-control" name="mata_uang">
+                                        <select class="form-control" name="matauang_komisi_kembali">
                                             <?php foreach ($mata_uang as $mu): ?>
-                                            <option value="<?php echo $mu->id; ?>" title="<?php echo $mu->nama; ?>" <?php echo $item->mata_uang==$mu->id ? 'selected':''; ?>>
+                                            <option value="<?php echo $mu->id; ?>" title="<?php echo $mu->nama; ?>" <?php echo $item->matauang_komisi_kembali==$mu->id ? 'selected':''; ?>>
                                                 <?php echo $mu->id;?>
                                             </option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-lg-5">
-                                    <div class="form-group">
-                                        <label>Biaya lain-lain</label>
-                                        <input type="number" class="form-control" name="biaya_lain" value="<?php echo $item->biaya_lain; ?>" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-5">
+                                <div class="col-lg-3">
                                     <div class="form-group">
                                         <label>Komisi kembali</label>
-                                        <input type="number" class="form-control" name="komisi_kembali" value="<?php echo $item->komisi_kembali; ?>" />
+                                        <input type="number" class="form-control text-right" name="komisi_kembali" value="<?php echo $item->komisi_kembali; ?>" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="form-group">
+                                        <label>Sales / AO</label>
+                                        <select class="form-control selectpicker show-tick" name="sales" data-live-search="true" data-size="5">
+                                            <?php foreach ($sales as $sa): ?>
+                                            <option value="<?php echo $sa->id; ?>" <?php echo $item->sales==$sa->id ? 'selected':''; ?>>
+                                                <?php echo $sa->nama;?>
+                                            </option>
+                                            <?php endforeach; ?>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -274,8 +280,8 @@
                                     <div class="col-lg-9">
                                         <div class="form-group">
                                             <select id="broker" name="broker[]" class="form-control selectpicker show-tick select-broker" data-live-search="true" data-size="5">
-                                                <?php foreach ($asuradurs as $as): ?>
-                                                <option value="<?php echo $as->id; ?>"><?php echo $as->nama; ?></option>
+                                                <?php foreach ($brokers as $brk): ?>
+                                                <option value="<?php echo $brk->id; ?>"><?php echo $brk->nama; ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
@@ -311,20 +317,39 @@
 </div>
 
 <script type="text/javascript">
-    var module = 'menu';
-    var PolisManager = {
-        
-    };
     $(document).ready(function(){
-        //load init parent menu
-        //load_menu_parent($('#module').val(), $('#module').attr('data-parent-selected'));
-        
+        $('form.form-validation').on('keydown', 'input, select, textarea', function(e) {
+            var self = $(this)
+              , form = self.parents('form:eq(0)')
+              , focusable
+              , next
+              ;
+            if (e.keyCode == 13) {
+                focusable = form.find('input,a,select,button,textarea').filter(':visible');
+                next = focusable.eq(focusable.index(this)+1);
+                if (next.length) {
+                    next.focus();
+                }
+                /*
+                else {
+                    form.submit();
+                }*/
+                return false;
+            }
+        });
         $('form.form-validation').validate({
+            ignore: [],
             rules: {
+                sumber_bisnis: {
+                    required: true
+                },
                 nomor_polis: {
                     minlength: 2,
                     required: true
-                }
+                },
+                'broker[]': {
+                    required: true
+                },
             },
             highlight: function(element) {
                 $(element).closest('.form-group').addClass('has-error');
