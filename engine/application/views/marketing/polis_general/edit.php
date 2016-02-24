@@ -4,9 +4,10 @@
             <div class="widget-header">
                 <h3><?php echo $page_subtitle ? $page_subtitle:'Edit Polis'; ?></h3>
                 <ul class="nav nav-tabs pull-right">
-                    <li class="active"><a href="#tab-basic" data-toggle="tab" aria-expanded="true"><i class="fa fa-list-alt"></i> Basic Data</a></li>
+                    <li class="active"><a href="#tab-basic" data-toggle="tab" aria-expanded="true"><i class="fa fa-list-alt"></i> Basic</a></li>
                     <li class=""><a href="#tab-pertanggungan" data-toggle="tab" aria-expanded="false"><i class="fa fa-list"></i> Pertanggungan</a></li>
                     <li class=""><a href="#tab-premi" data-toggle="tab" aria-expanded="false"><i class="fa fa-list"></i> Premi</a></li>
+                    <li class=""><a href="#tab-biayalain" data-toggle="tab" aria-expanded="false"><i class="fa fa-list"></i> Biaya Lain</a></li>
                     <li class=""><a href="#tab-asuradur" data-toggle="tab" aria-expanded="false"><i class="fa fa-list"></i> Asuradur</a></li>
                     <li class=""><a href="#tab-broker" data-toggle="tab" aria-expanded="false"><i class="fa fa-list"></i> Broker</a></li>
                     <li class=""><a href="#tab-attachment" data-toggle="tab" aria-expanded="false"><i class="fa fa-list"></i> Lampiran</a></li>
@@ -241,6 +242,59 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="tab-pane fade" id="tab-biayalain">
+                            <legend>Biaya Lain</legend>
+                            <div id="container-biayalain" class="container-input-appendable">
+                                <div class="row row-biayalain">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control biayalain-nama" name="biayalain_nama[]" value="" placeholder="Nama biaya lain" maxlength="50">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-1">
+                                        <div class="form-group">
+                                            <select name="biayalain_matauang[]" class="form-control biayalain-matauang">
+                                                <?php foreach ($mata_uang as $mu): ?>
+                                                <option value="<?php echo $mu->id; ?>" title="<?php echo $mu->nama; ?>"><?php echo $mu->id;?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <input type="number" class="form-control text-right biayalain-nilai" name="biayalain_nilai[]" placeholder="Nilai biaya lain">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <span>IDR</span>
+                                                </div>
+                                                <input type="number" disabled="disabled" class="form-control text-right biayalain-nilai-idr disabled" name="biayalain_idr[]" placeholder="Nilai biaya lain (IDR)">
+                                                <div class="input-group-btn">
+                                                    <button type="button" class="btn btn-success btn-biayalain-tambah" title="Tambah biaya lain"><span class="fa fa-plus"></span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row description">
+                                    <div class="col-lg-9">
+                                        <p class="form-control-static text-right">Total biaya lain (IDR)</p>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <span>IDR</span>
+                                            </div>
+                                            <input type="number" readonly="true" id="total-biayalain-idr" name="total_pertanggungan_idr" class="form-control text-right">
+                                            <div class="input-group-btn"><button type="button" class="btn btn-default btn-biayalain-hitung"><span class="fa fa-calculator"></span></button></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="tab-pane fade" id="tab-asuradur">
                             <legend>Asuradur / Penanggung</legend>
                             <div id="container-asuradur" class="container-input-appendable">
@@ -361,15 +415,17 @@
         
         /* OBJEK PAERTANGGUNGAN */
         $('#container-objek-pertanggungan').on('change', 'select', function (){
-            $(this).parents('.row-objek').find('input.objek-nilai').trigger('keyup');
+            $(this).parents('.row-objek').find('input.objek-nilai').trigger('change');
         });
-        $('#container-objek-pertanggungan').on('change', 'input.objek-nilai', function(){$(this).trigger('keyup')});
-        $('#container-objek-pertanggungan').on('keyup', 'input.objek-nilai', function(){
+        $('#container-objek-pertanggungan').on('change', 'input.objek-nilai', function(){
             var matauang = $(this).parents('.row-objek').find('select').val();
             var target = $(this).parents('.row-objek').find('input.objek-nilai-idr');
             
             KonversiMataUang.konversi(matauang, $(this), $(target));
             totalNilai('#container-objek-pertanggungan', 'input.objek-nilai-idr', '#total-pertanggungan-idr');
+        });
+        $('#container-objek-pertanggungan').on('keyup', 'input.objek-nilai', function(){
+            $(this).trigger('change');
         });
         $('#container-objek-pertanggungan').on('click','button.btn-objek-tambah', function(){
             var $row = $(this).parents('.row-objek');
@@ -400,7 +456,6 @@
         $('#container-objek-pertanggungan').on('click','.btn-objek-hitung', function(){
             totalNilai('#container-objek-pertanggungan', 'input.objek-nilai-idr', '#total-pertanggungan-idr');
         });
-        
         //update nama objek pertanggungan
         $('#container-objek-pertanggungan').on('keyup', 'input.objek-nama', function(){
             //var nama = $(this).val();
@@ -462,7 +517,46 @@
         $('#container-premi').on('change','select.premi-tipe',function(){
             $(this).parents('.row-premi').find('input.premi-rate').trigger('keyup');
         });
-        
+        /* BIAYA LAIN */
+        $('#container-biayalain').on('click','button.btn-biayalain-tambah', function(){
+            var $row = $(this).parents('.row-biayalain');
+            var $new = $row.clone(true);
+            
+            //change attribute of new
+            $new.find('input.biayalain-nama').val('');
+            $new.find('input.biayalain-nilai').val('');
+            $new.find('input.biayalain-nilai-idr').val('');
+            
+            //change attribute of button current row
+            $(this).removeClass('btn-success').addClass('btn-danger').addClass('btn-biayalain-hapus')
+                    .removeClass('btn-biayalain-tambah').attr('title','Hapus biaya lain')
+                    .find('span').removeClass('fa-plus').addClass('fa-minus');
+            
+            //put new row to the last
+            $new.insertAfter($row);
+        });
+        $('#container-biayalain').on('click','button.btn-biayalain-hapus', function(){
+            var $row = $(this).parents('.row-biayalain');
+            $row.remove();
+            
+            totalNilai('#container-biayalain', 'input.biayalain-nilai-idr', '#total-biayalain-idr');
+        });
+        $('#container-biayalain').on('keyup', 'input.biayalain-nilai', function(){
+            $(this).trigger('change');
+        });
+        $('#container-biayalain').on('change', 'select.biayalain-matauang', function (){
+            $(this).parents('.row-biayalain').find('input.biayalain-nilai').trigger('change');
+        });
+        $('#container-biayalain').on('change', 'input.biayalain-nilai', function(){
+            var matauang = $(this).parents('.row-biayalain').find('select').val();
+            var target = $(this).parents('.row-biayalain').find('input.biayalain-nilai-idr');
+            
+            KonversiMataUang.konversi(matauang, $(this), $(target));
+            totalNilai('#container-biayalain', 'input.biayalain-nilai-idr', '#total-biayalain-idr');
+        });
+        $('#container-biayalain').on('click','.btn-biayalain-hitung', function(){
+            totalNilai('#container-biayalain', 'input.biayalain-nilai-idr', '#total-biayalain-idr');
+        });
         /* ASURADUR */
         $('#container-asuradur').on('click','button.btn-asuradur-tambah', function(){
             var counter = $('#container-asuradur .row-asuradur').length + 1;
