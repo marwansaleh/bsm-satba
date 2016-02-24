@@ -248,7 +248,7 @@
                                     <div class="col-lg-9">
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <select id="asuradur" name="asuradur[]" class="form-control selectpicker show-tick select-asuradur" data-live-search="true" data-size="5">
+                                                <select name="asuradur[]" class="form-control selectpicker show-tick select-asuradur" data-live-search="true" data-size="5">
                                                     <?php foreach ($asuradurs as $as): ?>
                                                     <option value="<?php echo $as->id; ?>"><?php echo $as->nama; ?></option>
                                                     <?php endforeach; ?>
@@ -279,7 +279,7 @@
                                 <div class="row row-broker">
                                     <div class="col-lg-9">
                                         <div class="form-group">
-                                            <select id="broker" name="broker[]" class="form-control selectpicker show-tick select-broker" data-live-search="true" data-size="5">
+                                            <select name="broker[]" class="form-control selectpicker show-tick select-broker" data-live-search="true" data-size="5">
                                                 <?php foreach ($brokers as $brk): ?>
                                                 <option value="<?php echo $brk->id; ?>"><?php echo $brk->nama; ?></option>
                                                 <?php endforeach; ?>
@@ -377,8 +377,8 @@
             
             //change attribute of new
             $new.find('input.objek-nama').val('');
-            $new.find('input.objek-nilai').val(0);
-            $new.find('input.objek-nilai-idr').val('0.00');
+            $new.find('input.objek-nilai').val('');
+            $new.find('input.objek-nilai-idr').val('');
             
             //change attribute of button current row
             $(this).removeClass('btn-success').addClass('btn-danger').addClass('btn-objek-hapus')
@@ -465,12 +465,12 @@
         
         /* ASURADUR */
         $('#container-asuradur').on('click','button.btn-asuradur-tambah', function(){
+            var counter = $('#container-asuradur .row-asuradur').length + 1;
             var $row = $(this).parents('.row-asuradur');
             var $new = $row.clone(true);
 
             //change attribute of new
             $new.find('input.asuradur-persen').val(0).prop('disabled',false);
-            $new.find('select.select-asuradur').val(0);
             $new.find('input.asuradur-leader').prop('checked', false);
             $new.find('span.asuradur-leader-label').html('Member');
 
@@ -478,9 +478,16 @@
             $(this).removeClass('btn-success').addClass('btn-danger').addClass('btn-asuradur-hapus')
                     .removeClass('btn-asuradur-tambah').attr('title','Hapus asuradur')
                     .find('span').removeClass('fa-plus').addClass('fa-minus');
-
+            
             //put new row to the last
             $new.insertAfter($row);
+            
+            //re-init selectpicker
+            $new.find('select.select-asuradur').attr('id','asuradur-select-'+counter);
+            //$new.find('select.select-asuradur').css('display','block');
+            //$new.find('.bootstrap-select').remove();
+            $new.find('select').selectpicker();
+            
         });
         $('#container-asuradur').on('click','button.btn-asuradur-hapus', function(){
             var $row = $(this).parents('.row-asuradur');
