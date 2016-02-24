@@ -24,6 +24,9 @@
         <link href="<?php echo get_asset_url('DataTables/extensions/Buttons/css/buttons.bootstrap.min.css') ?>" rel="stylesheet" type="text/css">
         <link href="<?php echo get_asset_url('DataTables/extensions/Select/css/select.dataTables.min.css') ?>" rel="stylesheet" type="text/css">
         <link href="<?php echo get_asset_url('DataTables/extensions/Select/css/select.bootstrap.min.css') ?>" rel="stylesheet" type="text/css">
+        
+        <!-- tree view -->
+        <link href="<?php echo get_asset_url('js/plugins/tree/themes/default-dark/style.min.css') ?>" rel="stylesheet" type="text/css">
         <!--[if lte IE 9]>
                 <link href="<?php echo get_asset_url('css/main-ie.css') ?>" rel="stylesheet" type="text/css"/>
                 <link href="<?php echo get_asset_url('css/main-ie-part2.css') ?>" rel="stylesheet" type="text/css"/>

@@ -34,11 +34,32 @@ class Usermanual extends Admin_Controller {
         //set breadcumb
         breadcumb_add($this->data['breadcumb'], '<i class="fa fa-home"></i> Home', get_action_url('dashboard'));
         breadcumb_add($this->data['breadcumb'], 'Manual', get_action_url('manual/usermanual'), TRUE);
+        if ($manual->parent>0){
+            $parent_caption = $this->manual_user->get_value('caption', array('id'=>$manual->parent));
+            breadcumb_add($this->data['breadcumb'], $parent_caption, get_action_url('manual/usermanual/detail/'.$manual->parent), TRUE);
+        }
         breadcumb_add($this->data['breadcumb'], $manual->caption, NULL, TRUE);
         
+        //set prev and next
+        $manual_index = $this->session->userdata('manual_index');
+        if ($manual_index){
+            $cur_pos = array_search($id, $manual_index);
+            if (isset($manual_index[$cur_pos-1])){
+                $prev_pos = $manual_index[$cur_pos-1];
+            }
+            if (isset($manual_index[$cur_pos+1])){
+                $next_pos = $manual_index[$cur_pos+1];
+            }
+        }
+        
         $this->data['index_url'] = get_action_url('manual/usermanual');
-        $this->data['next_url'] = get_action_url('manual/usermanual/detail/'.$id);
-        $this->data['prev_url'] = get_action_url('manual/usermanual/detail/'.$id);
+        if (isset($prev_pos)){
+            $this->data['prev_url'] = get_action_url('manual/usermanual/detail/'.$prev_pos);
+        }
+        if (isset($next_pos)){
+            $this->data['next_url'] = get_action_url('manual/usermanual/detail/'.$next_pos);
+        }
+        
         
         $this->data['subview'] = 'manual/usermanual/detail';
         $this->load->view('_layout_main', $this->data);

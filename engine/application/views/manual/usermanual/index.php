@@ -1,5 +1,3 @@
-<link href="<?php echo get_asset_url('js/plugins/tree/themes/default-dark/style.min.css') ?>" rel="stylesheet" type="text/css">
-
 <div id="tree-manual">
     <?php echo draw_manual_tree($manuals); ?>
 </div>

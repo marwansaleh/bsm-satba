@@ -152,8 +152,18 @@ if (!function_exists('draw_menus')){
 
 if (!function_exists('draw_manual_tree')){
     function draw_manual_tree($manuals, $active_id=0){
+        if (!isset($ci)){
+            $ci =& get_instance(); 
+        }
         $str = '<ul>';
         foreach ($manuals as $manual){
+            if (!$ci->session->userdata('manual_index')){
+                $manual_index = array($manual->id);
+            }else{
+                $manual_index [] = $manual->id;
+            }
+            $ci->session->set_userdata('manual_index', $manual_index);
+            
             $str.= '<li'.($manual->id==$active_id?' data-jstree=\'{"opened":true,"selected":true}\'':'').'>';
             if ($manual->content){
                 $str.= '<a href="'.get_action_url('manual/usermanual/detail/'.$manual->id).'">'.$manual->caption.'</a>';
