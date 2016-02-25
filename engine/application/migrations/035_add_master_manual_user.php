@@ -66,7 +66,6 @@ class Migration_add_master_manual_user extends MY_Migration {
         //Need seeding ?
         $this->_seed(array(
             array(
-                'id'            => 1,
                 'parent'        => 0,
                 'caption'       => 'INTRODUCTION',
                 'title'         => 'Introduction',
@@ -77,7 +76,6 @@ class Migration_add_master_manual_user extends MY_Migration {
                 'modified_by'   => 1
             ),
             array(
-                'id'            => 2,
                 'parent'        => 0,
                 'caption'       => 'MODUL MARKETING',
                 'title'         => 'Modul Marketing',
@@ -88,7 +86,6 @@ class Migration_add_master_manual_user extends MY_Migration {
                 'modified_by'   => 1
             ),
             array(
-                'id'            => 3,
                 'parent'        => 0,
                 'caption'       => 'MODUL KEUANGAN',
                 'title'         => 'Modul Keuangan',

@@ -13,6 +13,7 @@
                 })
                 
                 $('select.selectpicker').selectpicker();
+                $('select.select2').select2();
                 $('.multiselect').multiselect();
             });
         </script>

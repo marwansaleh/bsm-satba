@@ -199,24 +199,29 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-lg-2">
+                                    <div class="col-lg-1">
                                         <div class="form-group">
-                                            <input type="number" class="form-control text-right premi-rate" name="premi_rate[]" placeholder="Premi rate" />
+                                            <input type="number" class="form-control text-right premi-rate" name="premi_rate[]" placeholder="Rate" />
                                         </div>
                                     </div>
                                     
-                                    <div class="col-lg-2">
+                                    <div class="col-lg-3">
                                         <div class="form-group">
-                                            <input type="number" disabled="disabled" class="form-control text-right premi-nilai disabled" name="premi_nilai[]" placeholder="Nilai premi">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <span class="premi-matauang">IDR</span>
+                                                </div>
+                                                <input type="number" disabled="disabled" class="form-control text-right premi-nilai disabled" name="premi_nilai[]" placeholder="Nilai premi">
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <input type="number" disabled="disabled" class="form-control text-right premi-nilai-idr disabled" name="premi_nilai_idr[]" placeholder="Nilai premi IDR">
-                                                <div class="input-group-btn">
-                                                    <button type="button" class="btn btn-success btn-premi-tambah" title="Tambah premi"><span class="fa fa-plus"></span></button>
+                                                <div class="input-group-addon">
+                                                    <span>IDR</span>
                                                 </div>
+                                                <input type="number" disabled="disabled" class="form-control text-right premi-nilai-idr disabled" name="premi_nilai_idr[]" placeholder="Nilai premi IDR">
                                             </div>
                                         </div>
                                     </div>
@@ -231,7 +236,6 @@
                                                 <span>IDR</span>
                                             </div>
                                             <input type="number" readonly="true" id="total-premi-idr" name="total_premi_idr" class="form-control text-right">
-                                            <div class="input-group-btn"><button type="button" class="btn btn-default"><span class="fa fa-calculator"></span></button></div>
                                         </div>
                                     </div>
                                 </div>
@@ -294,18 +298,21 @@
                             <legend>Asuradur / Penanggung</legend>
                             <div id="container-asuradur" class="container-input-appendable">
                                 <div class="row row-asuradur">
-                                    <div class="col-lg-9">
+                                    <div class="col-lg-2">
                                         <div class="form-group">
-                                            <div class="input-group">
-                                                <select name="asuradur[]" class="form-control selectpicker show-tick select-asuradur" data-live-search="true" data-size="5">
-                                                    <?php foreach ($asuradurs as $as): ?>
-                                                    <option value="<?php echo $as->id; ?>"><?php echo $as->nama; ?></option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                                <div class="input-group-addon">
-                                                    <input type="radio" class="asuradur-leader" name="asuradur_leader" value="1" checked="true"> <span class="asuradur-leader-label">Leader</span>
-                                                </div>
-                                            </div>
+                                            <label class="control-inline fancy-radio">
+                                                <input type="radio" class="asuradur-leader"  name="asuradur_leader" value="1" checked="true">
+                                                <span class="asuradur-leader-label"><i></i> Leader</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <select name="asuradur[]" class="select2 select-asuradur">
+                                                <?php foreach ($asuradurs as $as): ?>
+                                                <option value="<?php echo $as->id; ?>"><?php echo $as->nama; ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
@@ -326,9 +333,17 @@
                             <legend>Brokers</legend>
                             <div id="container-broker" class="container-input-appendable">
                                 <div class="row row-broker">
-                                    <div class="col-lg-9">
+                                    <div class="col-lg-2">
                                         <div class="form-group">
-                                            <select name="broker[]" class="form-control selectpicker show-tick select-broker" data-live-search="true" data-size="5">
+                                            <label class="control-inline fancy-radio">
+                                                <input type="radio" class="broker-leader"  name="broker_leader" value="1" checked="true">
+                                                <span class="broker-leader-label"><i></i> Leader</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="form-group">
+                                            <select name="broker[]" class="select2 select-broker">
                                                 <?php foreach ($brokers as $brk): ?>
                                                 <option value="<?php echo $brk->id; ?>"><?php echo $brk->nama; ?></option>
                                                 <?php endforeach; ?>
@@ -393,6 +408,7 @@
         /* OBJEK PAERTANGGUNGAN */
         $('#container-objek-pertanggungan').on('change', 'select', function (){
             $(this).parents('.row-objek').find('input.objek-nilai').trigger('change');
+            $('#container-premi span.premi-matauang').eq($(this).index()).html($(this).val());
         });
         $('#container-objek-pertanggungan').on('change', 'input.objek-nilai', function(){
             var matauang = $(this).parents('.row-objek').find('select').val();
@@ -419,53 +435,45 @@
                     .find('span').removeClass('fa-plus').addClass('fa-minus');
             
             //put new row to the last
-            $new.insertAfter($row);
+            $new.insertBefore($row);
             
-            //trigger add premi
-            $('#container-premi .btn-premi-tambah').last().trigger('click');
+            //add premi also
+            var $row_premi = $('#container-premi .row-premi').first();
+            var $new_premi = $row_premi.clone(true);
+            
+            //change attribute of new premi
+            $new_premi.find('input.premi-nama').val($row.find('input.objek-nama').val());
+            $new_premi.find('input.premi-rate').val(0);
+            $new_premi.find('input.premi-nilai').val(0);
+            $new_premi.find('span.premi-nilai-matauang').html($row.find('select.objek-matauang').val());
+            $new_premi.find('input.premi-nilai-idr').val(0);
+            
+            $new_premi.insertBefore($row_premi);
         });
         $('#container-objek-pertanggungan').on('click','button.btn-objek-hapus', function(){
             var $row = $(this).parents('.row-objek');
+            var index = $row.index();
             $row.remove();
             
             totalNilai('#container-objek-pertanggungan', 'input.objek-nilai-idr', '#total-pertanggungan-idr');
+            
+            //update premi
+            $('#container-premi .row-premi').eq(index).remove();
+            totalNilai('#container-premi','input.premi-nilai-idr','#total-premi-idr');
         });
         $('#container-objek-pertanggungan').on('click','.btn-objek-hitung', function(){
             totalNilai('#container-objek-pertanggungan', 'input.objek-nilai-idr', '#total-pertanggungan-idr');
         });
-        //update nama objek pertanggungan
         $('#container-objek-pertanggungan').on('keyup', 'input.objek-nama', function(){
             //var nama = $(this).val();
-            var row_index = $(this).parents('.row').index();
-            
-            //update the other objek-nama
-            $('#container-premi input.objek-nama').eq(row_index).val($(this).val());
+            var objek_row_index = $(this).index();
+            $('#container-premi input.objek-nama').eq(objek_row_index).val($(this).val());
         });
         /* PREMI PERTANGGUNGAN */
-        $('#container-premi').on('click','button.btn-premi-tambah', function(){
-            //maximum rows number as many as rows in pertanggungan
-            var current_num_row = $('#container-premi .row-premi').length;
-            var max_row = $('#container-objek-pertanggungan .row-objek').length;
-            if (current_num_row < max_row){
-                var $row = $(this).parents('.row-premi');
-                var $new = $row.clone(true);
-
-                //change attribute of new
-                $new.find('input.objek-nama').val($('#container-objek-pertanggungan input.objek-nama').eq(current_num_row).val());
-                $new.find('input.premi-rate').val(0);
-                $new.find('input.premi-nilai').val('0.00');
-                $new.find('input.premi-nilai-idr').val('0.00');
-
-                //change attribute of button current row
-                $(this).removeClass('btn-success').addClass('btn-danger').addClass('btn-premi-hapus')
-                        .removeClass('btn-premi-tambah').attr('title','Hapus premi')
-                        .find('span').removeClass('fa-plus').addClass('fa-minus');
-
-                //put new row to the last
-                $new.insertAfter($row);
-            }
-        });
         $('#container-premi').on('keyup','input.premi-rate', function(){
+            $(this).trigger('change');
+        });
+        $('#container-premi').on('change','input.premi-rate',function(){
             var row_index = $(this).parents('.row-premi').index();
             var $row = $(this).parents('.row-premi');
             var tipe_premi = $row.find('select.premi-tipe').val();
@@ -478,8 +486,6 @@
             var nilai_premi = hitungPremi(tipe_premi,rate,nilai_objek);
             var nilai_premi_idr = hitungPremi(tipe_premi,rate, nilai_objek_idr);
             
-            console.log('premi:'+nilai_premi);
-            console.log('premi-idr:'+nilai_premi_idr);
             //set nilai premi
             $row.find('input.premi-nilai').val(nilai_premi.toFixed(2));
             //set nilai premi idr
@@ -488,11 +494,8 @@
             //hitung total nilai
             totalNilai('#container-premi','input.premi-nilai-idr','#total-premi-idr');
         });
-        $('#container-premi').on('change','input.premi-rate',function(){
-            $(this).trigger('keyup');
-        });
         $('#container-premi').on('change','select.premi-tipe',function(){
-            $(this).parents('.row-premi').find('input.premi-rate').trigger('keyup');
+            $(this).parents('.row-premi').find('input.premi-rate').trigger('change');
         });
         /* BIAYA LAIN */
         $('#container-biayalain').on('click','button.btn-biayalain-tambah', function(){
@@ -510,7 +513,7 @@
                     .find('span').removeClass('fa-plus').addClass('fa-minus');
             
             //put new row to the last
-            $new.insertAfter($row);
+            $new.insertBefore($row);
         });
         $('#container-biayalain').on('click','button.btn-biayalain-hapus', function(){
             var $row = $(this).parents('.row-biayalain');
@@ -536,15 +539,16 @@
         });
         /* ASURADUR */
         $('#container-asuradur').on('click','button.btn-asuradur-tambah', function(){
-            var counter = $('#container-asuradur .row-asuradur').length + 1;
+            //destroy select2 componenet before clone
+            $('#container-asuradur .select2').select2('destroy');
+            
             var $row = $(this).parents('.row-asuradur');
             var $new = $row.clone(true);
-            var $selectPickers = $new.find('.selectpicker');
-
+            
             //change attribute of new
             $new.find('input.asuradur-persen').val(0).prop('disabled',false);
             $new.find('input.asuradur-leader').prop('checked', false);
-            $new.find('span.asuradur-leader-label').html('Member');
+            $new.find('span.asuradur-leader-label').html('<i></i> Member');
 
             //change attribute of button current row
             $(this).removeClass('btn-success').addClass('btn-danger').addClass('btn-asuradur-hapus')
@@ -552,40 +556,47 @@
                     .find('span').removeClass('fa-plus').addClass('fa-minus');
             
             //put new row to the last
-            $new.insertAfter($row);
+            $new.insertBefore($row);
             
-            //re-init selectpicker
-            $selectPickers.data('selectpicker', null);
-            $new.find('.bootstrap-select').remove();
-            $selectPickers.selectpicker();
-            
+            $('#container-asuradur .select2').select2();
         });
         $('#container-asuradur').on('click','button.btn-asuradur-hapus', function(){
-            var $row = $(this).parents('.row-asuradur');
-            if ($row.find('input.asuradur-leader').prop('checked')){
-                alert('Asuradur "Leader" tidak dapat dihapus');
-                return;
+            if ($('#container-asuradur .row-asuradur').length==1){
+                alert('Minimal harus ada satu asuradur penanggung');
+                return false;
             }
-            //get persen before delete
-            var persen = parseFloat($row.find('input.asuradur-persen').val());
-            console.log('persen:'+persen);
-            //update leader
-            $('#container-asuradur input.asuradur-leader').each(function(){
-                if ($(this).prop('checked')){
-                    var leader_persen = parseFloat($(this).parents('.row-asuradur').find('input.asuradur-persen').val())+persen;
-                    //update the leader persen
-                    $(this).parents('.row-asuradur').find('input.asuradur-persen').val(leader_persen);
-                    console.log(leader_persen);
-                }
-            });
             
-            $row.remove();
+            var $row = $(this).parents('.row-asuradur');
+            var change_leader = false;
+            var persen = parseFloat($row.find('input.asuradur-persen').val());
+            
+            //check if is a leader
+            if ($row.find('input.asuradur-leader').prop('checked')){
+                //remove the row
+                $row.remove();
+                //set first row became leader
+                $('#container-asuradur input.asuradur-leader').eq(0).prop('checked', true).next('span.asuradur-leader-label').html('<i></i> Leader');
+                //$(this).next('span.asuradur-leader-label').html('<i></i> Leader');
+                var $persen_input = $('#container-asuradur input.asuradur-persen').eq(0);
+                var new_persen = parseFloat($persen_input.val())+persen;
+                $persen_input.val(new_persen).prop('disabled', true);
+            }else{
+                //iterate leader
+                $('#container-asuradur input.asuradur-leader').each(function (index){
+                    if ($(this).prop('checked')){
+                        var new_persen = parseFloat($('#container-asuradur input.asuradur-persen').eq(index).val())+persen;
+                        $('#container-asuradur input.asuradur-persen').eq(index).val(new_persen);
+                    }
+                });
+                //remove the row
+                $row.remove();
+            }
         });
         $('#container-asuradur').on('click', '.asuradur-leader', function(){
             if ($(this).prop('checked')){
                 //change label
-                $('#container-asuradur').find('span.asuradur-leader-label').html('Member');
-                $(this).next('span.asuradur-leader-label').html('Leader');
+                $('#container-asuradur').find('span.asuradur-leader-label').html('<i></i> Member');
+                $(this).next('span.asuradur-leader-label').html('<i></i> Leader');
                 //set enable for member persentase
                 $('#container-asuradur').find('input.asuradur-persen').prop('disabled', false);
                 //set disable for persentase leader
@@ -616,56 +627,90 @@
         
         /* BROKER */
         $('#container-broker').on('click','button.btn-broker-tambah', function(){
+            //destroy select2 componenet before clone
+            $('#container-broker .select2').select2('destroy');
+            
             var $row = $(this).parents('.row-broker');
             var $new = $row.clone(true);
-
+            
             //change attribute of new
             $new.find('input.broker-persen').val(0).prop('disabled',false);
-            $new.find('select.select-broker').val(0);
+            $new.find('input.broker-leader').prop('checked', false);
+            $new.find('span.broker-leader-label').html('<i></i> Member');
 
             //change attribute of button current row
             $(this).removeClass('btn-success').addClass('btn-danger').addClass('btn-broker-hapus')
                     .removeClass('btn-broker-tambah').attr('title','Hapus broker')
                     .find('span').removeClass('fa-plus').addClass('fa-minus');
-
+            
             //put new row to the last
-            $new.insertAfter($row);
+            $new.insertBefore($row);
+            
+            $('#container-broker .select2').select2();
         });
         $('#container-broker').on('click','button.btn-broker-hapus', function(){
-            if ($('#container-broker .row-broker').length < 2){
-                alert('Minimal satu broker harus tetap ada');
-                return;
+            if ($('#container-broker .row-broker').length==1){
+                alert('Minimal harus ada satu broker');
+                return false;
             }
+            
             var $row = $(this).parents('.row-broker');
-            //get old persen
+            var change_leader = false;
             var persen = parseFloat($row.find('input.broker-persen').val());
-            console.log('persen:'+persen);
             
-            //update leader
-            var top_persen = parseFloat($row.eq(0).find('input.broker-persen').val());
-            console.log(top_persen);
-            $row.eq(0).find('input.broker-persen').val(top_persen+persen);
-            
-            $row.remove();
+            //check if is a leader
+            if ($row.find('input.broker-leader').prop('checked')){
+                //remove the row
+                $row.remove();
+                //set first row became leader
+                $('#container-broker input.broker-leader').eq(0).prop('checked', true).next('span.broker-leader-label').html('<i></i> Leader');
+                //$(this).next('span.asuradur-leader-label').html('<i></i> Leader');
+                var $persen_input = $('#container-broker input.broker-persen').eq(0);
+                var new_persen = parseFloat($persen_input.val())+persen;
+                $persen_input.val(new_persen).prop('disabled', true);
+            }else{
+                //iterate leader
+                $('#container-broker input.broker-leader').each(function (index){
+                    if ($(this).prop('checked')){
+                        var new_persen = parseFloat($('#container-broker input.broker-persen').eq(index).val())+persen;
+                        $('#container-broker input.broker-persen').eq(index).val(new_persen);
+                    }
+                });
+                //remove the row
+                $row.remove();
+            }
+        });
+        $('#container-broker').on('click', '.broker-leader', function(){
+            if ($(this).prop('checked')){
+                //change label
+                $('#container-broker').find('span.broker-leader-label').html('<i></i> Member');
+                $(this).next('span.broker-leader-label').html('<i></i> Leader');
+                //set enable for member persentase
+                $('#container-broker').find('input.broker-persen').prop('disabled', false);
+                //set disable for persentase leader
+                $(this).parents('.row-broker').find('input.broker-persen').prop('disabled',true);
+            }
         });
         $('#container-broker').on('keyup', 'input.broker-persen', function(){
             //get leader 
             var $leader;
             var member = 0;
-            $('#container-broker .row-broker').each(function(index){
-                if (index==0){
-                    $leader = $(this);
+            $('#container-broker .broker-leader').each(function(){
+                if ($(this).prop('checked')){
+                    $leader = $(this).parents('.row-broker').find('input.broker-persen');
                 }else{
-                    member += parseFloat($(this).find('input.broker-persen').val());
+                    member += parseFloat($(this).parents('.row-broker').find('input.broker-persen').val());
                 }
             });
             var persentaseLeader = 100 - member;
-            $leader.find('input.broker-persen').val(persentaseLeader);
-            
+            $leader.val(persentaseLeader);
             if(persentaseLeader <= 0){
                 alert('Persentase leader telah mencapai kurang atau sama dengan nol. Silahkan ganti persentase member');
                 return false;
             }
+        });
+        $('#container-broker').on('change', 'input.broker-persen', function(){
+            $(this).trigger('keyup');
         });
     });
     
