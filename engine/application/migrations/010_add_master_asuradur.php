@@ -1,30 +1,62 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Description of Migration_add_matauang
+ * Description of Migration_add_master_asuradur
  *
  * @author marwansaleh
  */
-class Migration_add_matauang extends MY_Migration {
-    protected $_table_name = 'ref_matauang';
+class Migration_add_master_asuradur extends MY_Migration {
+    protected $_table_name = 'ref_asuradur';
     protected $_primary_key = 'id';
     protected $_fields = array(
         'id'    => array (
-            'type'  => 'VARCHAR',
-            'constraint' => 3
+            'type'  => 'INT',
+            'constraint' => 7,
+            'unsigned' => TRUE,
+            'auto_increment' => TRUE
         ),
         'nama'    => array(
             'type' => 'VARCHAR',
             'constraint' => '50',
             'null' => FALSE
         ),
+        'alamat'    => array(
+            'type' => 'VARCHAR',
+            'constraint' => 254,
+            'null' => TRUE
+        ),
+        'kota'    => array(
+            'type' => 'VARCHAR',
+            'constraint' => 4,
+            'null' => FALSE
+        ),
+        'telepon'    => array(
+            'type' => 'VARCHAR',
+            'constraint' => 12,
+            'null' => TRUE
+        ),
+        'fax'    => array(
+            'type' => 'VARCHAR',
+            'constraint' => 12,
+            'null' => TRUE
+        ),
+        'contact_person'    => array(
+            'type' => 'VARCHAR',
+            'constraint' => 50,
+            'null' => TRUE
+        ),
+        'email'    => array(
+            'type' => 'VARCHAR',
+            'constraint' => 30,
+            'null' => TRUE
+        ),
         'is_active'   => array(
             'type'  => 'TINYINT',
             'constraint' => 1,
             'default' => 1
         ),
-        'sort'   => array(
-            'type'  => 'INT',
+        'sort' => array(
+            'type' => 'INT',
             'constraint' => 3,
             'default' => 0
         ),
@@ -59,9 +91,7 @@ class Migration_add_matauang extends MY_Migration {
         //Need seeding ?
         $this->_seed(array(
             array(
-                'id'            => 'IDR',
-                'nama'          => 'Rupiah',
-                'is_active'     => 1,
+                'nama'          => 'PT. BRINS General Insurance',
                 'sort'          => 0,
                 'created'       => time(),
                 'created_by'    => 1,
@@ -69,9 +99,7 @@ class Migration_add_matauang extends MY_Migration {
                 'modified_by'   => 1
             ),
             array(
-                'id'            => 'USD',
-                'nama'          => 'US Dollar',
-                'is_active'     => 1,
+                'nama'          => 'Berdikari Insurance Company',
                 'sort'          => 1,
                 'created'       => time(),
                 'created_by'    => 1,
@@ -79,9 +107,7 @@ class Migration_add_matauang extends MY_Migration {
                 'modified_by'   => 1
             ),
             array(
-                'id'            => 'HKD',
-                'nama'          => 'Hongkong Dollar',
-                'is_active'     => 1,
+                'nama'          => 'Ramayana',
                 'sort'          => 2,
                 'created'       => time(),
                 'created_by'    => 1,
@@ -89,9 +115,7 @@ class Migration_add_matauang extends MY_Migration {
                 'modified_by'   => 1
             ),
             array(
-                'id'            => 'SGD',
-                'nama'          => 'SIngapore Dollar',
-                'is_active'     => 1,
+                'nama'          => 'Wahana Tata',
                 'sort'          => 3,
                 'created'       => time(),
                 'created_by'    => 1,
@@ -99,9 +123,7 @@ class Migration_add_matauang extends MY_Migration {
                 'modified_by'   => 1
             ),
             array(
-                'id'            => 'YEN',
-                'nama'          => 'Yen Japan',
-                'is_active'     => 1,
+                'nama'          => 'Parolamas',
                 'sort'          => 4,
                 'created'       => time(),
                 'created_by'    => 1,
@@ -109,20 +131,18 @@ class Migration_add_matauang extends MY_Migration {
                 'modified_by'   => 1
             ),
             array(
-                'id'            => 'EUR',
-                'nama'          => 'Euro',
-                'is_active'     => 1,
+                'nama'          => 'Wahana Tata',
                 'sort'          => 5,
                 'created'       => time(),
                 'created_by'    => 1,
                 'modified'      => time(),
                 'modified_by'   => 1
             )
-        ));
+       ));
     }
 }
 
 /*
- * filename : 010_add_matauang.php
- * location : /application/migrations/010_add_matauang.php
+ * filename : 010_add_master_asuradur.php
+ * location : /application/migrations/010_add_master_asuradur.php
  */

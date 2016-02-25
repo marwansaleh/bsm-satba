@@ -1,13 +1,14 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Description of Migration_add_groups
+ * Description of Migration_add_master_manual_user
  *
  * @author marwansaleh
  */
-class Migration_add_roles extends MY_Migration {
-    protected $_table_name = 'ref_auth_roles';
+class Migration_add_master_manual_user extends MY_Migration {
+    protected $_table_name = 'ref_manual_user';
     protected $_primary_key = 'id';
+    protected $_index_keys = array('caption','title');
     protected $_fields = array(
         'id'    => array (
             'type'  => 'INT',
@@ -15,13 +16,24 @@ class Migration_add_roles extends MY_Migration {
             'unsigned' => TRUE,
             'auto_increment' => TRUE
         ),
-        'name'    => array(
-            'type' => 'VARCHAR',
-            'constraint' => 30
+        'parent'    => array (
+            'type'  => 'INT',
+            'constraint' => 11,
+            'default' => 0
         ),
-        'description' => array(
-            'type' => 'VARCHAR',
-            'constraint' => 254
+        'caption'    => array (
+            'type'  => 'VARCHAR',
+            'constraint' => 50,
+            'null' => FALSE
+        ),
+        'title'    => array (
+            'type'  => 'VARCHAR',
+            'constraint' => 254,
+            'null' => TRUE
+        ),
+        'content'    => array (
+            'type'  => 'TEXT',
+            'null' => TRUE
         ),
         'created'   => array(
             'type'  => 'INT',
@@ -48,56 +60,39 @@ class Migration_add_roles extends MY_Migration {
             'default' => 0
         )
     );
-
-
+    
     public function up(){
         parent::up();
-        
         //Need seeding ?
         $this->_seed(array(
             array(
-                'name'          => 'USER_CREATE',
-                'description'   => 'Menambah akun user baru',
+                'id'            => 1,
+                'parent'        => 0,
+                'caption'       => 'INTRODUCTION',
+                'title'         => 'Introduction',
+                'content'       => '<p>Aplikasi ini adalah core system PT. BSM untuk membantu aktifitas produksi dan penyusunan neraca keuangan</p>',
                 'created'       => time(),
                 'created_by'    => 1,
                 'modified'      => time(),
                 'modified_by'   => 1
             ),
             array(
-                'name'          => 'USER_UPDATE',
-                'description'   => 'Merubah akun user',
+                'id'            => 2,
+                'parent'        => 0,
+                'caption'       => 'MODUL MARKETING',
+                'title'         => 'Modul Marketing',
+                'content'       => '<p>Modul marketing berisikan sub modul antara lain</p>',
                 'created'       => time(),
                 'created_by'    => 1,
                 'modified'      => time(),
                 'modified_by'   => 1
             ),
             array(
-                'name'          => 'USER_DELETE',
-                'description'   => 'Menghapus akun user',
-                'created'       => time(),
-                'created_by'    => 1,
-                'modified'      => time(),
-                'modified_by'   => 1
-            ),
-            array(
-                'name'          => 'GROUP_CREATE',
-                'description'   => 'Menambah grup user baru',
-                'created'       => time(),
-                'created_by'    => 1,
-                'modified'      => time(),
-                'modified_by'   => 1
-            ),
-            array(
-                'name'          => 'GROUP_UPDATE',
-                'description'   => 'Merubah data grup user',
-                'created'       => time(),
-                'created_by'    => 1,
-                'modified'      => time(),
-                'modified_by'   => 1
-            ),
-            array(
-                'name'          => 'GROUP_DELETE',
-                'description'   => 'Menghapus data grup user',
+                'id'            => 3,
+                'parent'        => 0,
+                'caption'       => 'MODUL KEUANGAN',
+                'title'         => 'Modul Keuangan',
+                'content'       => '<p>Modul keuangan berisikan sub modul antara lain</p>',
                 'created'       => time(),
                 'created_by'    => 1,
                 'modified'      => time(),
@@ -108,6 +103,6 @@ class Migration_add_roles extends MY_Migration {
 }
 
 /*
- * filename : 004_add_roles.php
- * location : /application/migrations/004_add_roles.php
+ * filename : 035_add_master_manual_user.php
+ * location : /application/migrations/035_add_master_manual_user.php
  */

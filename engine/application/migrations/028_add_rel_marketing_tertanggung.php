@@ -5,8 +5,8 @@
  *
  * @author marwansaleh
  */
-class Migration_add_mtr_tertanggung extends MY_Migration {
-    protected $_table_name = 'ref_tertanggung';
+class Migration_add_rel_marketing_tertanggung extends MY_Migration {
+    protected $_table_name = 'rel_tertanggung';
     protected $_primary_key = 'id';
     //protected $_index_keys = array('nama_lengkap','nama_depan');
     protected $_fields = array(
@@ -105,6 +105,6 @@ class Migration_add_mtr_tertanggung extends MY_Migration {
 }
 
 /*
- * filename : 022_marketing_polis_broker.php
- * location : /application/migrations/022_marketing_polis_broker.php
+ * filename : 028_add_rel_marketing_tertanggung.php
+ * location : /application/migrations/028_add_rel_marketing_tertanggung.php
  */

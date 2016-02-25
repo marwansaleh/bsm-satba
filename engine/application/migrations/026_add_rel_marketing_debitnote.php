@@ -1,30 +1,20 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Description of Migration_add_system_dbbackup
+ * Description of Migration_add_rel_marketing_quotation
  *
  * @author marwansaleh
  */
-class Migration_add_system_dbbackup extends MY_Migration {
-    protected $_table_name = 'ref_sys_dbbackup';
+class Migration_add_rel_marketing_debitnote extends MY_Migration {
+    protected $_table_name = 'rel_marketing_debitnote';
     protected $_primary_key = 'id';
-    protected $_index_keys = array('name');
+    //protected $_index_keys = array();
     protected $_fields = array(
         'id'    => array (
             'type'  => 'INT',
             'constraint' => 11,
             'unsigned' => TRUE,
             'auto_increment' => TRUE
-        ),
-        'name'    => array (
-            'type'  => 'VARCHAR',
-            'constraint' => 50,
-            'null' => true
-        ),
-        'size'    => array (
-            'type'  => 'FLOAT',
-            'constraint' => 10,2,
-            'default' => 0.00
         ),
         'created'   => array(
             'type'  => 'INT',
@@ -37,12 +27,24 @@ class Migration_add_system_dbbackup extends MY_Migration {
             'constraint' => 11,
             'unsigned' => TRUE,
             'default' => 0
+        ),
+        'modified'   => array(
+            'type'  => 'INT',
+            'constraint' => 11,
+            'unsigned' => TRUE,
+            'default' => 0
+        ),
+        'modified_by'   => array(
+            'type'  => 'INT',
+            'constraint' => 11,
+            'unsigned' => TRUE,
+            'default' => 0
         )
     );
     
 }
 
 /*
- * filename : 019_add_system_dbbackup.php
- * location : /application/migrations/019_add_system_dbbackup.php
+ * filename : 026_add_rel_marketing_debitnote.php
+ * location : /application/migrations/026_add_rel_marketing_debitnote.php
  */

@@ -5,7 +5,7 @@
  *
  * @author marwansaleh
  */
-class Migration_add_marketing_polis extends MY_Migration {
+class Migration_add_rel_marketing_polis extends MY_Migration {
     protected $_table_name = 'rel_marketing_polis';
     protected $_primary_key = 'id';
     protected $_index_keys = array('nomor_polis');
@@ -65,17 +65,7 @@ class Migration_add_marketing_polis extends MY_Migration {
             'type'  => 'DATE',
             'null' => FALSE
         ),
-        'total_biaya_lain' => array (
-            'type'  => 'NUMERIC',
-            'constraint' => '10,2',
-            'default' => 0.00
-        ),
-        'total_biaya_lain_idr' => array (
-            'type'  => 'NUMERIC',
-            'constraint' => '10,2',
-            'default' => 0.00
-        ),
-        'total_premi' => array (
+        'total_pertanggungan_idr' => array (
             'type'  => 'NUMERIC',
             'constraint' => '15,2',
             'default' => 0.00
@@ -85,14 +75,9 @@ class Migration_add_marketing_polis extends MY_Migration {
             'constraint' => '15,2',
             'default' => 0.00
         ),
-        'total_pertanggungan' => array (
+        'total_biaya_lain_idr' => array (
             'type'  => 'NUMERIC',
-            'constraint' => '15,2',
-            'default' => 0.00
-        ),
-        'total_pertanggungan_idr' => array (
-            'type'  => 'NUMERIC',
-            'constraint' => '15,2',
+            'constraint' => '10,2',
             'default' => 0.00
         ),
         'persetujuan' => array(
@@ -113,6 +98,11 @@ class Migration_add_marketing_polis extends MY_Migration {
             'type' => 'INT',
             'constraint' => 11,
             'null' => FALSE
+        ),
+        'cicil' => array(
+            'type' => 'TINY',
+            'constraint' => 11,
+            'default' => 0
         ),
         'created'   => array(
             'type'  => 'INT',
@@ -143,6 +133,6 @@ class Migration_add_marketing_polis extends MY_Migration {
 }
 
 /*
- * filename : 020_add_marketing_polis.php
- * location : /application/migrations/020_add_marketing_polis.php
+ * filename : 027_add_rel_marketing_polis.php
+ * location : /application/migrations/027_add_rel_marketing_polis.php
  */

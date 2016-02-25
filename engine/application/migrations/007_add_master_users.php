@@ -1,11 +1,11 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Description of Migration_add_users
+ * Description of Migration_add_master_users
  *
  * @author marwansaleh
  */
-class Migration_add_users extends MY_Migration {
+class Migration_add_master_users extends MY_Migration {
     protected $_table_name = 'ref_auth_users';
     protected $_primary_key = 'id';
     protected $_index_keys = array('username','group_id');
@@ -107,6 +107,6 @@ class Migration_add_users extends MY_Migration {
 }
 
 /*
- * filename : 003_add_users.php
- * location : /application/migrations/003_add_users.php
+ * filename : 007_add_master_users.php
+ * location : /application/migrations/007_add_master_users.php
  */

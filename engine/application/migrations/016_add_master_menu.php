@@ -1,11 +1,11 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Description of Migration_add_mainmenu
+ * Description of Migration_add_master_menu
  *
  * @author marwansaleh
  */
-class Migration_add_mainmenu extends MY_Migration {
+class Migration_add_master_menu extends MY_Migration {
     protected $_table_name = 'ref_mainmenu';
     protected $_primary_key = 'id';
     protected $_fields = array(
@@ -870,6 +870,6 @@ class Migration_add_mainmenu extends MY_Migration {
 }
 
 /*
- * filename : 014_add_mainmenu.php
- * location : /application/migrations/014_add_mainmenu.php
+ * filename : 016_add_master_menu.php
+ * location : /application/migrations/016_add_master_menu.php
  */

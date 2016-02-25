@@ -1,23 +1,17 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Description of Migration_add_marketing_polis
+ * Description of Migration_add_master_propinsi
  *
  * @author marwansaleh
  */
-class Migration_add_marketing_polis_biayalain extends MY_Migration {
-    protected $_table_name = 'rel_marketing_polis_biayalain';
+class Migration_add_master_propinsi extends MY_Migration {
+    protected $_table_name = 'ref_propinsi';
     protected $_primary_key = 'id';
-    protected $_index_keys = array('polis');
+    protected $_index_keys = array('nama');
     protected $_fields = array(
         'id'    => array (
-            'type'  => 'INT',
-            'constraint' => 11,
-            'unsigned' => TRUE,
-            'auto_increment' => TRUE
-        ),
-        'polis' => array(
-            'type' => 'INT',
+            'type'  => 'VARCHAR',
             'constraint' => 2,
             'null' => FALSE
         ),
@@ -25,21 +19,6 @@ class Migration_add_marketing_polis_biayalain extends MY_Migration {
             'type' => 'VARCHAR',
             'constraint' => 50,
             'null' => FALSE
-        ),
-        'mata_uang' => array (
-            'type'  => 'INT',
-            'constraint' => 11,
-            'default' => 1
-        ),
-        'biaya_lain' => array (
-            'type'  => 'NUMERIC',
-            'constraint' => '10,2',
-            'default' => 0.00
-        ),
-        'biaya_lain_idr' => array (
-            'type'  => 'NUMERIC',
-            'constraint' => '10,2',
-            'default' => 0.00
         ),
         'created'   => array(
             'type'  => 'INT',
@@ -70,6 +49,6 @@ class Migration_add_marketing_polis_biayalain extends MY_Migration {
 }
 
 /*
- * filename : 029_add_marketing_polis_biayalain.php
- * location : /application/migrations/029_add_marketing_polis_biayalain.php
+ * filename : 002_add_master_propinsi.php
+ * location : /application/migrations/002_add_master_propinsi.php
  */

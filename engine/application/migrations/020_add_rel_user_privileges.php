@@ -1,14 +1,13 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Description of Migration_add_marketing_polis_objek
+ * Description of Migration_add_user_privileges
  *
  * @author marwansaleh
  */
-class Migration_add_marketing_polis_objek extends MY_Migration {
-    protected $_table_name = 'rel_marketing_polis_objek';
+class Migration_add_rel_user_privileges extends MY_Migration {
+    protected $_table_name = 'rel_auth_user_privileges';
     protected $_primary_key = 'id';
-    //protected $_index_keys = array('nomor_polis');
     protected $_fields = array(
         'id'    => array (
             'type'  => 'INT',
@@ -16,32 +15,20 @@ class Migration_add_marketing_polis_objek extends MY_Migration {
             'unsigned' => TRUE,
             'auto_increment' => TRUE
         ),
-        'polis'    => array (
-            'type'  => 'INT',
+        'user_id'    => array(
+            'type' => 'INT',
             'constraint' => 11,
             'null' => FALSE
         ),
-        'objek'    => array (
-            'type'  => 'VARCHAR',
-            'constraint' => 50,
-            'null' => FALSE
-        ),
-        'mata_uang'    => array (
-            'type'  => 'INT',
+        'role_id'    => array(
+            'type' => 'INT',
             'constraint' => 11,
             'null' => FALSE
         ),
-        'jumlah_pertanggungan' => array (
-            'type'  => 'NUMERIC',
-            'constraint' => '15,2',
-            'default' => 0.00,
-            'null' => FALSE
-        ),
-        'jumlah_pertanggungan_idr' => array (
-            'type'  => 'NUMERIC',
-            'constraint' => '15,2',
-            'default' => 0.00,
-            'null' => FALSE
+        'granted'    => array(
+            'type' => 'TINYINT',
+            'constraint' => 1,
+            'default' => 0
         ),
         'created'   => array(
             'type'  => 'INT',
@@ -68,10 +55,10 @@ class Migration_add_marketing_polis_objek extends MY_Migration {
             'default' => 0
         )
     );
-    
+
 }
 
 /*
- * filename : 021_add_marketing_polis_objek.php
- * location : /application/migrations/021_add_marketing_polis_objek.php
+ * filename : 020_add_rel_user_privileges.php
+ * location : /application/migrations/020_add_rel_user_privileges.php
  */

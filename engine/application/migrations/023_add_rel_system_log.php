@@ -1,12 +1,12 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Description of Migration_add_system_log
+ * Description of Migration_add_rel_system_log
  *
  * @author marwansaleh
  */
-class Migration_add_system_log extends MY_Migration {
-    protected $_table_name = 'ref_sys_log';
+class Migration_add_rel_system_log extends MY_Migration {
+    protected $_table_name = 'rel_sys_log';
     protected $_primary_key = 'id';
     protected $_index_keys = array('user_name','group_name','event_type');
     protected $_fields = array(
@@ -59,6 +59,6 @@ class Migration_add_system_log extends MY_Migration {
 }
 
 /*
- * filename : 018_add_system_log.php
- * location : /application/migrations/018_add_system_log.php
+ * filename : 023_add_rel_system_log.php
+ * location : /application/migrations/023_add_rel_system_log.php
  */

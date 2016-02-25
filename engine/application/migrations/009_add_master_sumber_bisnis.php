@@ -1,28 +1,35 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Description of Migration_add_sales_marketing
+ * Description of Migration_add_submer_bisnis
  *
  * @author marwansaleh
  */
-class Migration_add_sales_marketing extends MY_Migration {
-    protected $_table_name = 'ref_sales_marketing';
+class Migration_add_master_sumber_bisnis extends MY_Migration {
+    protected $_table_name = 'ref_sumber_bisnis';
     protected $_primary_key = 'id';
-    protected $_index_keys = array('nama');
     protected $_fields = array(
         'id'    => array (
-            'type'  => 'INT',
-            'constraint' => 11,
-            'unsigned' => TRUE,
-            'auto_increment' => TRUE
-        ),
-        'nama'   => array(
             'type'  => 'VARCHAR',
-            'constraint' => 50,
+            'constraint' => 7
+        ),
+        'kode'    => array(
+            'type' => 'VARCHAR',
+            'constraint' => 7,
             'null' => FALSE
         ),
-        'marketing_group_id'   => array(
-            'type'  => 'INT',
+        'nama'    => array(
+            'type' => 'VARCHAR',
+            'constraint' => '50',
+            'null' => FALSE
+        ),
+        'is_captive'    => array(
+            'type' => 'TINYINT',
+            'constraint' => 1,
+            'default' => 0
+        ),
+        'wilayah_id'    => array(
+            'type' => 'INT',
             'constraint' => 11,
             'default' => 0
         ),
@@ -55,6 +62,6 @@ class Migration_add_sales_marketing extends MY_Migration {
 }
 
 /*
- * filename : 012_add_sales_marketing.php
- * location : /application/migrations/012_add_sales_marketing.php
+ * filename : 009_add_master_sumber_bisnis.php
+ * location : /application/migrations/009_add_master_sumber_bisnis.php
  */

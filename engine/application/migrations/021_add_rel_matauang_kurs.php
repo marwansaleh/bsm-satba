@@ -1,14 +1,14 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Description of Migration_add_marketing_polis_broker
+ * Description of Migration_add_rel_matauang_kurs
  *
  * @author marwansaleh
  */
-class Migration_add_marketing_polis_broker extends MY_Migration {
-    protected $_table_name = 'rel_marketing_polis_broker';
+class Migration_add_rel_matauang_kurs extends MY_Migration {
+    protected $_table_name = 'rel_kurs_matauang';
     protected $_primary_key = 'id';
-    protected $_index_keys = array('nomor_polis');
+    protected $_index_keys = array('matauang_id');
     protected $_fields = array(
         'id'    => array (
             'type'  => 'INT',
@@ -16,20 +16,34 @@ class Migration_add_marketing_polis_broker extends MY_Migration {
             'unsigned' => TRUE,
             'auto_increment' => TRUE
         ),
-        'nomor_polis'    => array (
+        'tanggal'    => array(
+            'type' => 'DATE',
+            'null' => FALSE
+        ),
+        'hari'    => array(
+            'type' => 'INT',
+            'constraint' => 2,
+            'null' => FALSE
+        ),
+        'bulan'    => array(
+            'type' => 'INT',
+            'constraint' => 2,
+            'null' => FALSE
+        ),
+        'tahun'    => array(
+            'type' => 'INT',
+            'constraint' => 4,
+            'null' => FALSE
+        ),
+        'matauang_id'   => array(
             'type'  => 'VARCHAR',
-            'constraint' => 15,
+            'constraint' => 3,
             'null' => FALSE
         ),
-        'broker'    => array (
-            'type'  => 'INT',
-            'constraint' => 11,
-            'null' => FALSE
-        ),
-        'persentase'    => array (
+        'kurs'   => array(
             'type'  => 'NUMERIC',
-            'constraint' => '6,3',
-            'default' => 0.000
+            'constraint' => '8,2',
+            'default' => 0.00
         ),
         'created'   => array(
             'type'  => 'INT',
@@ -60,6 +74,6 @@ class Migration_add_marketing_polis_broker extends MY_Migration {
 }
 
 /*
- * filename : 022_add_marketing_polis_broker.php
- * location : /application/migrations/022_add_marketing_polis_broker.php
+ * filename : 021_add_rel_matauang_kurs.php
+ * location : /application/migrations/021_add_rel_matauang_kurs.php
  */

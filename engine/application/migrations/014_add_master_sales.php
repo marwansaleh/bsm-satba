@@ -1,13 +1,14 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Description of Migration_add_user_privileges
+ * Description of Migration_add_master_sales
  *
  * @author marwansaleh
  */
-class Migration_add_user_privileges extends MY_Migration {
-    protected $_table_name = 'rel_auth_user_privileges';
+class Migration_add_master_sales extends MY_Migration {
+    protected $_table_name = 'ref_sales_marketing';
     protected $_primary_key = 'id';
+    protected $_index_keys = array('nama');
     protected $_fields = array(
         'id'    => array (
             'type'  => 'INT',
@@ -15,19 +16,14 @@ class Migration_add_user_privileges extends MY_Migration {
             'unsigned' => TRUE,
             'auto_increment' => TRUE
         ),
-        'user_id'    => array(
-            'type' => 'INT',
-            'constraint' => 11,
+        'nama'   => array(
+            'type'  => 'VARCHAR',
+            'constraint' => 50,
             'null' => FALSE
         ),
-        'role_id'    => array(
-            'type' => 'INT',
+        'marketing_group_id'   => array(
+            'type'  => 'INT',
             'constraint' => 11,
-            'null' => FALSE
-        ),
-        'granted'    => array(
-            'type' => 'TINYINT',
-            'constraint' => 1,
             'default' => 0
         ),
         'created'   => array(
@@ -55,10 +51,10 @@ class Migration_add_user_privileges extends MY_Migration {
             'default' => 0
         )
     );
-
+    
 }
 
 /*
- * filename : 006_add_privileges.php
- * location : /application/migrations/006_add_user_privileges.php
+ * filename : 014_add_master_sales.php
+ * location : /application/migrations/014_add_master_sales.php
  */

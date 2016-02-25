@@ -1,35 +1,29 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Description of Migration_add_marketing_polis_attachment
+ * Description of Migration_add_master_desa
  *
  * @author marwansaleh
  */
-class Migration_add_marketing_polis_attachment extends MY_Migration {
-    protected $_table_name = 'rel_polis_attachment';
+class Migration_add_master_desa extends MY_Migration {
+    protected $_table_name = 'ref_desa';
     protected $_primary_key = 'id';
-    //protected $_index_keys = array();
+    protected $_index_keys = array('nama');
     protected $_fields = array(
         'id'    => array (
-            'type'  => 'INT',
-            'constraint' => 11,
-            'unsigned' => TRUE,
-            'auto_increment' => TRUE
+            'type'  => 'VARCHAR',
+            'constraint' => 10,
+            'null' => false
         ),
-        'polis'    => array (
-            'type'  => 'INT',
-            'constraint' => 11,
+        'kecamatan' => array(
+            'type' => 'VARCHAR',
+            'constraint' =>7,
             'null' => FALSE
         ),
-        'nama_file'    => array (
-            'type'  => 'VARCHAR',
-            'constraint' => 254,
+        'nama' => array(
+            'type' => 'VARCHAR',
+            'constraint' => 50,
             'null' => FALSE
-        ),
-        'deskripsi'    => array (
-            'type'  => 'VARCHAR',
-            'constraint' => 254,
-            'null' => TRUE
         ),
         'created'   => array(
             'type'  => 'INT',
@@ -60,6 +54,6 @@ class Migration_add_marketing_polis_attachment extends MY_Migration {
 }
 
 /*
- * filename : 026_add_marketing_polis_attachment.php
- * location : /application/migrations/026_add_marketing_polis_attachment.php
+ * filename : 005_add_master_desa.php
+ * location : /application/migrations/005_add_master_desa.php
  */

@@ -1,11 +1,11 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Description of Migration_add_marketing_polis
+ * Description of Migration_add_rel_marketing_polis_premi
  *
  * @author marwansaleh
  */
-class Migration_add_marketing_polis_premi extends MY_Migration {
+class Migration_add_rel_marketing_polis_premi extends MY_Migration {
     protected $_table_name = 'rel_marketing_polis_premi';
     protected $_primary_key = 'id';
     protected $_index_keys = array('tipe_premi');
@@ -75,6 +75,6 @@ class Migration_add_marketing_polis_premi extends MY_Migration {
 }
 
 /*
- * filename : 022_add_marketing_polis.php
- * location : /application/migrations/022_add_marketing_polis.php
+ * filename : 030_add_rel_marketing_polis_premi.php
+ * location : /application/migrations/030_add_rel_marketing_polis_premi.php
  */

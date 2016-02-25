@@ -1,11 +1,11 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Description of Migration_add_groups
+ * Description of Migration_add_master_groups
  *
  * @author marwansaleh
  */
-class Migration_add_groups extends MY_Migration {
+class Migration_add_master_groups extends MY_Migration {
     protected $_table_name = 'ref_auth_groups';
     protected $_primary_key = 'id';
     protected $_fields = array(
@@ -124,6 +124,6 @@ class Migration_add_groups extends MY_Migration {
 }
 
 /*
- * filename : 002_add_groups.php
- * location : /application/migrations/002_add_groups.php
+ * filename : 006_add_master_groups.php
+ * location : /application/migrations/006_add_master_groups.php
  */

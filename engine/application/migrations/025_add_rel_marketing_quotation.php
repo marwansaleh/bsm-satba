@@ -1,34 +1,20 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Description of Migration_add_group_privileges
+ * Description of Migration_add_rel_marketing_quotation
  *
  * @author marwansaleh
  */
-class Migration_add_group_privileges extends MY_Migration {
-    protected $_table_name = 'rel_auth_group_privileges';
+class Migration_add_rel_marketing_quotation extends MY_Migration {
+    protected $_table_name = 'rel_marketing_quotation';
     protected $_primary_key = 'id';
+    //protected $_index_keys = array();
     protected $_fields = array(
         'id'    => array (
             'type'  => 'INT',
             'constraint' => 11,
             'unsigned' => TRUE,
             'auto_increment' => TRUE
-        ),
-        'group_id'    => array(
-            'type' => 'INT',
-            'constraint' => 11,
-            'null' => FALSE
-        ),
-        'role_id'    => array(
-            'type' => 'INT',
-            'constraint' => 11,
-            'null' => FALSE
-        ),
-        'granted'    => array(
-            'type' => 'TINYINT',
-            'constraint' => 1,
-            'default' => 0
         ),
         'created'   => array(
             'type'  => 'INT',
@@ -59,6 +45,6 @@ class Migration_add_group_privileges extends MY_Migration {
 }
 
 /*
- * filename : 005_add_privileges.php
- * location : /application/migrations/005_add_group_privileges.php
+ * filename : 025_add_rel_marketing_quotation.php
+ * location : /application/migrations/025_add_rel_marketing_quotation.php
  */

@@ -1,11 +1,11 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Description of Migration_add_marketing_polis_penanggung
+ * Description of Migration_add_rel_marketing_polis_penanggung
  *
  * @author marwansaleh
  */
-class Migration_add_marketing_polis_penanggung extends MY_Migration {
+class Migration_add_rel_marketing_polis_penanggung extends MY_Migration {
     protected $_table_name = 'rel_marketing_polis_penanggung';
     protected $_primary_key = 'id';
     protected $_fields = array(
@@ -74,6 +74,6 @@ class Migration_add_marketing_polis_penanggung extends MY_Migration {
 }
 
 /*
- * filename : 023_add_marketing_polis_penanggung.php
- * location : /application/migrations/023_add_marketing_polis_penanggung.php
+ * filename : 031_add_rel_marketing_polis_penanggung.php
+ * location : /application/migrations/031_add_rel_marketing_polis_penanggung.php
  */

@@ -1,14 +1,13 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Description of Migration_add_matauang
+ * Description of Migration_add_master_module
  *
  * @author marwansaleh
  */
-class Migration_add_kurs_matauang extends MY_Migration {
-    protected $_table_name = 'rel_kurs_matauang';
+class Migration_add_master_system_configuration extends MY_Migration {
+    protected $_table_name = 'ref_sys_configuration';
     protected $_primary_key = 'id';
-    protected $_index_keys = array('matauang_id');
     protected $_fields = array(
         'id'    => array (
             'type'  => 'INT',
@@ -16,34 +15,24 @@ class Migration_add_kurs_matauang extends MY_Migration {
             'unsigned' => TRUE,
             'auto_increment' => TRUE
         ),
-        'tanggal'    => array(
-            'type' => 'DATE',
-            'null' => FALSE
-        ),
-        'hari'    => array(
-            'type' => 'INT',
-            'constraint' => 2,
-            'null' => FALSE
-        ),
-        'bulan'    => array(
-            'type' => 'INT',
-            'constraint' => 2,
-            'null' => FALSE
-        ),
-        'tahun'    => array(
-            'type' => 'INT',
-            'constraint' => 4,
-            'null' => FALSE
-        ),
-        'matauang_id'   => array(
+        'var_name'    => array (
             'type'  => 'VARCHAR',
-            'constraint' => 3,
+            'constraint' => 50,
+            'default' => 0
+        ),
+        'var_value'    => array (
+            'type'  => 'TEXT',
+            'null' => TRUE
+        ),
+        'var_type'    => array (
+            'type'  => 'ENUM("string", "integer", "float", "boolean")',
+            'default' => 'string',
             'null' => FALSE
         ),
-        'kurs'   => array(
-            'type'  => 'NUMERIC',
-            'constraint' => '8,2',
-            'default' => 0.00
+        'is_list'   => array(
+            'type'  => 'TINYINT',
+            'constraint' => 1,
+            'default' => 0
         ),
         'created'   => array(
             'type'  => 'INT',
@@ -74,6 +63,6 @@ class Migration_add_kurs_matauang extends MY_Migration {
 }
 
 /*
- * filename : 011_add_kurs_matauang.php
- * location : /application/migrations/011_add_kurs_matauang.php
+ * filename : 018_add_master_system_configuration.php
+ * location : /application/migrations/018_add_master_system_configuration.php
  */

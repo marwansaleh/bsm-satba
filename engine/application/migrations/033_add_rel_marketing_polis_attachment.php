@@ -1,13 +1,14 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Description of Migration_add_master_module
+ * Description of Migration_add_rel_marketing_polis_attachment
  *
  * @author marwansaleh
  */
-class Migration_add_system_configuration extends MY_Migration {
-    protected $_table_name = 'ref_sys_configuration';
+class Migration_add_rel_marketing_polis_attachment extends MY_Migration {
+    protected $_table_name = 'rel_polis_attachment';
     protected $_primary_key = 'id';
+    //protected $_index_keys = array();
     protected $_fields = array(
         'id'    => array (
             'type'  => 'INT',
@@ -15,24 +16,20 @@ class Migration_add_system_configuration extends MY_Migration {
             'unsigned' => TRUE,
             'auto_increment' => TRUE
         ),
-        'var_name'    => array (
-            'type'  => 'VARCHAR',
-            'constraint' => 50,
-            'default' => 0
-        ),
-        'var_value'    => array (
-            'type'  => 'TEXT',
-            'null' => TRUE
-        ),
-        'var_type'    => array (
-            'type'  => 'ENUM("string", "integer", "float", "boolean")',
-            'default' => 'string',
+        'polis'    => array (
+            'type'  => 'INT',
+            'constraint' => 11,
             'null' => FALSE
         ),
-        'is_list'   => array(
-            'type'  => 'TINYINT',
-            'constraint' => 1,
-            'default' => 0
+        'nama_file'    => array (
+            'type'  => 'VARCHAR',
+            'constraint' => 254,
+            'null' => FALSE
+        ),
+        'deskripsi'    => array (
+            'type'  => 'VARCHAR',
+            'constraint' => 254,
+            'null' => TRUE
         ),
         'created'   => array(
             'type'  => 'INT',
@@ -63,6 +60,6 @@ class Migration_add_system_configuration extends MY_Migration {
 }
 
 /*
- * filename : 017_add_system_configuration.php
- * location : /application/migrations/017_add_system_configuration.php
+ * filename : 033_add_rel_marketing_polis_attachment.php
+ * location : /application/migrations/033_add_rel_marketing_polis_attachment.php
  */

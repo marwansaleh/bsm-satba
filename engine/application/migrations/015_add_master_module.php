@@ -132,6 +132,6 @@ class Migration_add_master_module extends MY_Migration {
 }
 
 /*
- * filename : 016_add_master_module.php
- * location : /application/migrations/016_add_master_module.php
+ * filename : 015_add_master_module.php
+ * location : /application/migrations/015_add_master_module.php
  */

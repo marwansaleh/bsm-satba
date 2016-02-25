@@ -1,11 +1,11 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Description of Migration_add_jenis_asuransi
+ * Description of Migration_add_master_jenis_asuransi
  *
  * @author marwansaleh
  */
-class Migration_add_jenis_asuransi extends MY_Migration {
+class Migration_add_master_jenis_asuransi extends MY_Migration {
     protected $_table_name = 'ref_asuransi';
     protected $_primary_key = 'id';
     protected $_fields = array(
@@ -260,6 +260,6 @@ class Migration_add_jenis_asuransi extends MY_Migration {
 }
 
 /*
- * filename : 007_add_jenis_asuransi.php
- * location : /application/migrations/007_add_jenis_asuransi.php
+ * filename : 017_add_master_jenis_asuransi.php
+ * location : /application/migrations/017_add_master_jenis_asuransi.php
  */

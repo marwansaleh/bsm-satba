@@ -1,12 +1,12 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Description of Migration_add_master_module
+ * Description of Migration_add_master_wilayah
  *
  * @author marwansaleh
  */
-class Migration_add_master_broker extends MY_Migration {
-    protected $_table_name = 'ref_broker_asuransi';
+class Migration_add_master_wilayah extends MY_Migration {
+    protected $_table_name = 'ref_wilayah';
     protected $_primary_key = 'id';
     protected $_fields = array(
         'id'    => array (
@@ -15,15 +15,10 @@ class Migration_add_master_broker extends MY_Migration {
             'unsigned' => TRUE,
             'auto_increment' => TRUE
         ),
-        'nama'    => array (
+        'wilayah'    => array (
             'type'  => 'VARCHAR',
             'constraint' => 50,
-            'default' => 0
-        ),
-        'sort'    => array (
-            'type'  => 'INT',
-            'constraint' => 3,
-            'default' => 0
+            'null' => FALSE
         ),
         'created'   => array(
             'type'  => 'INT',
@@ -57,8 +52,7 @@ class Migration_add_master_broker extends MY_Migration {
         $this->_seed(array(
             array(
                 'id'            => 1,
-                'nama'          => 'PT. BRIngin Sejahtera Makmur',
-                'sort'          => 0,
+                'wilayah'       => 'Jakarta',
                 'created'       => time(),
                 'created_by'    => 1,
                 'modified'      => time(),
@@ -66,8 +60,31 @@ class Migration_add_master_broker extends MY_Migration {
             ),
             array(
                 'id'            => 2,
-                'nama'          => 'PT. Tugu Broker',
-                'sort'          => 1,
+                'wilayah'       => 'Semarang',
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
+            ),
+            array(
+                'id'            => 3,
+                'wilayah'       => 'Bandung',
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
+            ),
+            array(
+                'id'            => 4,
+                'wilayah'       => 'Makassar',
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
+            ),
+            array(
+                'id'            => 5,
+                'wilayah'       => 'Medan',
                 'created'       => time(),
                 'created_by'    => 1,
                 'modified'      => time(),
@@ -78,6 +95,6 @@ class Migration_add_master_broker extends MY_Migration {
 }
 
 /*
- * filename : 028_add_master_broker.php
- * location : /application/migrations/028_add_master_broker.php
+ * filename : 012_add_master_wilayah.php
+ * location : /application/migrations/012_add_master_wilayah.php
  */
