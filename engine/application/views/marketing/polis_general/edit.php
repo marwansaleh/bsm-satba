@@ -297,6 +297,12 @@
                         <div class="tab-pane fade" id="tab-asuradur">
                             <legend>Asuradur / Penanggung</legend>
                             <div id="container-asuradur" class="container-input-appendable">
+                                <div class="row">
+                                    <div class="col-lg-2"></div>
+                                    <div class="col-lg-5"><label>Pilih asuradur</label></div>
+                                    <div class="col-lg-3"><label>Persentase</label></div>
+                                    <div class="col-lg-2"><label>Komisi</label></div>
+                                </div>
                                 <div class="row row-asuradur">
                                     <div class="col-lg-2">
                                         <div class="form-group">
@@ -306,7 +312,7 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="col-lg-7">
+                                    <div class="col-lg-5">
                                         <div class="form-group">
                                             <select name="asuradur[]" class="select2 select-asuradur">
                                                 <?php foreach ($asuradurs as $as): ?>
@@ -318,11 +324,19 @@
                                     <div class="col-lg-3">
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <div class="input-group-addon"><span class="fa fa-percent"></span></div>
                                                 <input type="number" class="form-control text-right asuradur-persen" name="asuradur_persen[]" value="100" placeholder="Persentase" disabled="true">
+                                                <div class="input-group-addon"><span class="fa fa-percent"></span></div>
                                                 <div class="input-group-btn">
                                                     <button type="button" class="btn btn-success btn-asuradur-tambah" title="Tambah asuradur"><span class="fa fa-plus"></span></button>
                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="number" class="form-control text-right asuradur-komisi" name="asuradur_komisi[]" value="100" placeholder="Persentase">
+                                                <div class="input-group-addon"><span class="fa fa-percent"></span></div>
                                             </div>
                                         </div>
                                     </div>
@@ -353,8 +367,8 @@
                                     <div class="col-lg-3">
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <div class="input-group-addon"><span class="fa fa-percent"></span></div>
                                                 <input type="number" class="form-control text-right broker-persen" name="broker_persen[]" value="100" placeholder="Persentase" disabled="true">
+                                                <div class="input-group-addon"><span class="fa fa-percent"></span></div>
                                                 <div class="input-group-btn">
                                                     <button type="button" class="btn btn-success btn-broker-tambah" title="Tambah broker"><span class="fa fa-plus"></span></button>
                                                 </div>
@@ -549,6 +563,7 @@
             $new.find('input.asuradur-persen').val(0).prop('disabled',false);
             $new.find('input.asuradur-leader').prop('checked', false);
             $new.find('span.asuradur-leader-label').html('<i></i> Member');
+            $new.find('input.asuradur-komisi').val(0);
 
             //change attribute of button current row
             $(this).removeClass('btn-success').addClass('btn-danger').addClass('btn-asuradur-hapus')
