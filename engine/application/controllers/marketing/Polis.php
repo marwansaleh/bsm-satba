@@ -44,6 +44,7 @@ class Polis extends Admin_Controller {
         $this->data['item'] = $item;
         
         //suported data
+        $this->data['persetujuan'] = array('pusat'=>'Kantor Pusat', 'wilayah' => 'Kantor Wilayah', 'cabang'=>'Kantor Cabang');
         $this->data['tertanggung'] = $this->mtr_tertanggung_m->get();
         $this->data['sales'] = $this->mtr_sales_m->get();
         $this->data['sumber_bisnis'] = $this->mtr_sumberbisnis_m->get();

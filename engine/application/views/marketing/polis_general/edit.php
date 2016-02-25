@@ -66,7 +66,7 @@
                                 </select>
                             </div>
                             <div class="row">
-                                <div class="col-lg-3">
+                                <div class="col-lg-4">
                                     <div class="form-group">
                                         <label>Periode</label>
                                         <div class="input-group">
@@ -75,7 +75,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-lg-4">
                                     <div class="form-group">
                                         <label>S/d</label>
                                         <div class="input-group">
@@ -84,19 +84,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
                                     <div class="form-group">
                                         <label>Persetujuan</label>
-                                        <div class="checkbox">
-                                            <label class="control-inline fancy-radio">
-                                                <input type="radio"  name="persetujuan" value="pusat" <?php echo $item->persetujuan=='pusat'?'checked':''; ?>>
-                                                <span><i></i>Kantor Pusat</span>
-                                            </label>
-                                            <label class="control-inline fancy-radio">
-                                                <input type="radio"  name="persetujuan" value="cabang" <?php echo $item->persetujuan=='cabang'?'checked':''; ?>>
-                                                <span><i></i>Cabang</span>
-                                            </label>
-                                        </div>
+                                        <select name="persetujuan" class="form-control">
+                                            <?php foreach ($persetujuan as $key => $value): ?>
+                                            <option value="<?php echo $key; ?>" <?php echo $item->persetujuan==$key ? 'selected':''; ?>><?php echo $value; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -328,7 +323,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="tab-broker">
-                            <legend>Co-Broker</legend>
+                            <legend>Brokers</legend>
                             <div id="container-broker" class="container-input-appendable">
                                 <div class="row row-broker">
                                     <div class="col-lg-9">
@@ -372,25 +367,7 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-        $('form.form-validation').on('keydown', 'input, select, textarea', function(e) {
-            var self = $(this)
-              , form = self.parents('form:eq(0)')
-              , focusable
-              , next
-              ;
-            if (e.keyCode == 13) {
-                focusable = form.find('input,a,select,button,textarea').filter(':visible');
-                next = focusable.eq(focusable.index(this)+1);
-                if (next.length) {
-                    next.focus();
-                }
-                /*
-                else {
-                    form.submit();
-                }*/
-                return false;
-            }
-        });
+        
         $('form.form-validation').validate({
             ignore: [],
             rules: {
@@ -562,6 +539,7 @@
             var counter = $('#container-asuradur .row-asuradur').length + 1;
             var $row = $(this).parents('.row-asuradur');
             var $new = $row.clone(true);
+            var $selectPickers = $new.find('.selectpicker');
 
             //change attribute of new
             $new.find('input.asuradur-persen').val(0).prop('disabled',false);
@@ -577,10 +555,9 @@
             $new.insertAfter($row);
             
             //re-init selectpicker
-            $new.find('select.select-asuradur').attr('id','asuradur-select-'+counter);
-            //$new.find('select.select-asuradur').css('display','block');
-            //$new.find('.bootstrap-select').remove();
-            $new.find('select').selectpicker();
+            $selectPickers.data('selectpicker', null);
+            $new.find('.bootstrap-select').remove();
+            $selectPickers.selectpicker();
             
         });
         $('#container-asuradur').on('click','button.btn-asuradur-hapus', function(){

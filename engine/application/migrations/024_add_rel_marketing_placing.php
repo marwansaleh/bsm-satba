@@ -8,7 +8,7 @@
 class Migration_add_rel_marketing_placing extends MY_Migration {
     protected $_table_name = 'rel_marketing_placing';
     protected $_primary_key = 'id';
-    protected $_index_keys = array('nomor_polis');
+    //protected $_index_keys = array('nomor_polis');
     protected $_fields = array(
         'id'    => array (
             'type'  => 'INT',

@@ -10,8 +10,10 @@ class Migration_add_master_sumber_bisnis extends MY_Migration {
     protected $_primary_key = 'id';
     protected $_fields = array(
         'id'    => array (
-            'type'  => 'VARCHAR',
-            'constraint' => 7
+            'type'  => 'INT',
+            'constraint' => 11,
+            'unsigned' => TRUE,
+            'auto_increment' => TRUE
         ),
         'kode'    => array(
             'type' => 'VARCHAR',
@@ -59,6 +61,39 @@ class Migration_add_master_sumber_bisnis extends MY_Migration {
         )
     );
     
+    public function up(){
+        parent::up();
+        //Need seeding ?
+        $this->_seed(array(
+            array(
+                'kode'          => 'A000001',
+                'nama'          => 'Cabang Bandung',
+                //'sort'          => 0,
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
+            ),
+            array(
+                'kode'          => 'A000002',
+                'nama'          => 'Cabang Semarang',
+                //'sort'          => 0,
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
+            ),
+            array(
+                'kode'          => 'A000003',
+                'nama'          => 'Cabang Malang',
+                //'sort'          => 0,
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
+            )
+        ));
+    }
 }
 
 /*

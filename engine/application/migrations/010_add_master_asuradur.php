@@ -92,7 +92,7 @@ class Migration_add_master_asuradur extends MY_Migration {
         $this->_seed(array(
             array(
                 'nama'          => 'PT. BRINS General Insurance',
-                //'sort'          => 0,
+                'sort'          => 0,
                 'created'       => time(),
                 'created_by'    => 1,
                 'modified'      => time(),
@@ -100,7 +100,7 @@ class Migration_add_master_asuradur extends MY_Migration {
             ),
             array(
                 'nama'          => 'Berdikari Insurance Company',
-                //'sort'          => 1,
+                'sort'          => 1,
                 'created'       => time(),
                 'created_by'    => 1,
                 'modified'      => time(),
@@ -108,7 +108,7 @@ class Migration_add_master_asuradur extends MY_Migration {
             ),
             array(
                 'nama'          => 'Ramayana',
-                //'sort'          => 2,
+                'sort'          => 2,
                 'created'       => time(),
                 'created_by'    => 1,
                 'modified'      => time(),
@@ -116,7 +116,7 @@ class Migration_add_master_asuradur extends MY_Migration {
             ),
             array(
                 'nama'          => 'Wahana Tata',
-                //'sort'          => 3,
+                'sort'          => 3,
                 'created'       => time(),
                 'created_by'    => 1,
                 'modified'      => time(),
@@ -124,7 +124,7 @@ class Migration_add_master_asuradur extends MY_Migration {
             ),
             array(
                 'nama'          => 'Parolamas',
-                //'sort'          => 4,
+                'sort'          => 4,
                 'created'       => time(),
                 'created_by'    => 1,
                 'modified'      => time(),
@@ -132,7 +132,7 @@ class Migration_add_master_asuradur extends MY_Migration {
             ),
             array(
                 'nama'          => 'Wahana Tata',
-                //'sort'          => 5,
+                'sort'          => 5,
                 'created'       => time(),
                 'created_by'    => 1,
                 'modified'      => time(),

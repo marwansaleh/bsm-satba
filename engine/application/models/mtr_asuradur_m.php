@@ -10,7 +10,7 @@ class Mtr_asuradur_m extends MY_Model {
     protected $_table_name = 'ref_asuradur';
     protected $_primary_key = 'id';
     protected $_primary_filter = 'intval';
-    protected $_order_by = 'nama';
+    protected $_order_by = 'sort,nama';
     protected $_timestamps = TRUE;
     protected $_timestamps_field = array('created','modified');
     

@@ -7,10 +7,28 @@ $(document).ready(function (){
         rowId: 'id',
         searchDelay: 1000
     });
-    
     var dtp = $('.datepicker').datepicker({format: 'yyyy-mm-dd'})
     .on('changeDate', function(e) {
             dtp.datepicker('hide');
+    });
+    $('form.form-validation').on('keydown', 'input, select, textarea', function(e) {
+        var self = $(this)
+          , form = self.parents('form:eq(0)')
+          , focusable
+          , next
+          ;
+        if (e.keyCode == 13) {
+            focusable = form.find('input,a,select,button,textarea').filter(':visible');
+            next = focusable.eq(focusable.index(this)+1);
+            if (next.length) {
+                next.focus();
+            }
+            /*
+            else {
+                form.submit();
+            }*/
+            return false;
+        }
     });
 });
 

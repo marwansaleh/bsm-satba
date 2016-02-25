@@ -7,7 +7,7 @@
  * @email amazzura.biz@gmail.com
  */
 class Sys_log_m extends MY_Model {
-    protected $_table_name = 'ref_sys_log';
+    protected $_table_name = 'rel_sys_log';
     protected $_primary_key = 'id';
     protected $_primary_filter = 'intval';
     protected $_order_by = 'date_time desc';

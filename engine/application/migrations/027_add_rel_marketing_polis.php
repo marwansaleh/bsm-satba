@@ -8,7 +8,7 @@
 class Migration_add_rel_marketing_polis extends MY_Migration {
     protected $_table_name = 'rel_marketing_polis';
     protected $_primary_key = 'id';
-    protected $_index_keys = array('nomor_polis');
+    //protected $_index_keys = array('nomor_polis');
     protected $_fields = array(
         'id'    => array (
             'type'  => 'INT',
@@ -81,7 +81,7 @@ class Migration_add_rel_marketing_polis extends MY_Migration {
             'default' => 0.00
         ),
         'persetujuan' => array(
-            'type' => 'ENUM("pusat","cabang")',
+            'type' => 'ENUM("pusat","wilayah","cabang")',
             'default' => 'pusat'
         ),
         'matauang_komisi_kembali' => array(
@@ -100,8 +100,8 @@ class Migration_add_rel_marketing_polis extends MY_Migration {
             'null' => FALSE
         ),
         'cicil' => array(
-            'type' => 'TINY',
-            'constraint' => 11,
+            'type' => 'TINYINT',
+            'constraint' => 1,
             'default' => 0
         ),
         'created'   => array(
