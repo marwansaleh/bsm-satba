@@ -26,6 +26,11 @@ class Migration_add_rel_marketing_polis_broker extends MY_Migration {
             'constraint' => 11,
             'null' => FALSE
         ),
+        'leader' => array(
+            'type' =>'TINYINT',
+            'constraint' => 1,
+            'default' => 0
+        ),
         'persentase'    => array (
             'type'  => 'NUMERIC',
             'constraint' => '6,3',
