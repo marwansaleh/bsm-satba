@@ -111,7 +111,7 @@
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <label>Komisi kembali</label>
-                                        <input type="number" class="form-control text-right" name="komisi_kembali" value="<?php echo $item->komisi_kembali; ?>" />
+                                        <input type="text" class="form-control text-right number" name="komisi_kembali" value="<?php echo $item->komisi_kembali; ?>" />
                                     </div>
                                 </div>
                                 <div class="col-lg-8">
@@ -149,7 +149,7 @@
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="form-group">
-                                            <input type="number" class="form-control text-right objek-nilai" name="objek_nilai[]" placeholder="Nilai pertanggungan">
+                                            <input type="text" class="form-control text-right objek-nilai number" name="objek_nilai[]" placeholder="Nilai pertanggungan">
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
@@ -158,7 +158,7 @@
                                                 <div class="input-group-addon">
                                                     <span>IDR</span>
                                                 </div>
-                                                <input type="number" class="form-control text-right objek-nilai-idr" placeholder="Nilai pertanggungan (IDR)">
+                                                <input type="text" class="form-control text-right objek-nilai-idr number" placeholder="Nilai pertanggungan (IDR)">
                                                 <div class="input-group-btn">
                                                     <button type="button" class="btn btn-success btn-objek-tambah" title="Tambah objek pertanggungan"><span class="fa fa-plus"></span></button>
                                                 </div>
@@ -175,7 +175,7 @@
                                             <div class="input-group-addon">
                                                 <span>IDR</span>
                                             </div>
-                                            <input type="number" readonly="true" id="total-pertanggungan-idr" name="total_pertanggungan_idr" class="form-control text-right">
+                                            <input type="text" readonly="true" id="total-pertanggungan-idr" name="total_pertanggungan_idr" class="form-control text-right number">
                                             <div class="input-group-btn"><button type="button" class="btn btn-default btn-objek-hitung"><span class="fa fa-calculator"></span></button></div>
                                         </div>
                                     </div>
@@ -201,7 +201,7 @@
                                     </div>
                                     <div class="col-lg-1">
                                         <div class="form-group">
-                                            <input type="number" class="form-control text-right premi-rate" name="premi_rate[]" placeholder="Rate" />
+                                            <input type="text" class="form-control text-right premi-rate number" name="premi_rate[]" placeholder="Rate" />
                                         </div>
                                     </div>
                                     
@@ -211,7 +211,7 @@
                                                 <div class="input-group-addon">
                                                     <span class="premi-matauang">IDR</span>
                                                 </div>
-                                                <input type="number" disabled="disabled" class="form-control text-right premi-nilai disabled" name="premi_nilai[]" placeholder="Nilai premi">
+                                                <input type="text" disabled="disabled" class="form-control text-right premi-nilai disabled number" name="premi_nilai[]" placeholder="Nilai premi">
                                             </div>
                                         </div>
                                     </div>
@@ -221,7 +221,7 @@
                                                 <div class="input-group-addon">
                                                     <span>IDR</span>
                                                 </div>
-                                                <input type="number" disabled="disabled" class="form-control text-right premi-nilai-idr disabled" name="premi_nilai_idr[]" placeholder="Nilai premi IDR">
+                                                <input type="text" disabled="disabled" class="form-control text-right premi-nilai-idr disabled number" name="premi_nilai_idr[]" placeholder="Nilai premi IDR">
                                             </div>
                                         </div>
                                     </div>
@@ -235,7 +235,7 @@
                                             <div class="input-group-addon">
                                                 <span>IDR</span>
                                             </div>
-                                            <input type="number" readonly="true" id="total-premi-idr" name="total_premi_idr" class="form-control text-right">
+                                            <input type="text" readonly="true" id="total-premi-idr" name="total_premi_idr" class="form-control text-right number">
                                         </div>
                                     </div>
                                 </div>
@@ -244,6 +244,12 @@
                         <div class="tab-pane fade" id="tab-biayalain">
                             <legend>Biaya Lain</legend>
                             <div id="container-biayalain" class="container-input-appendable">
+                                <div class="row">
+                                    <div class="col-lg-5"><div class="form-group"><label>Komponen biaya lain</label></div></div>
+                                    <div class="col-lg-1"><div class="form-group"><label>Kurs</label></div></div>
+                                    <div class="col-lg-3"><div class="form-group"><label>Besar biaya</label></div></div>
+                                    <div class="col-lg-3"><div class="form-group"><label>Besar biaya (IDR)</label></div></div>
+                                </div>
                                 <div class="row row-biayalain">
                                     <div class="col-lg-5">
                                         <div class="form-group">
@@ -261,7 +267,7 @@
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="form-group">
-                                            <input type="number" class="form-control text-right biayalain-nilai" name="biayalain_nilai[]" placeholder="Nilai biaya lain">
+                                            <input type="text" class="form-control text-right biayalain-nilai number" name="biayalain_nilai[]" placeholder="Nilai biaya lain">
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
@@ -270,7 +276,7 @@
                                                 <div class="input-group-addon">
                                                     <span>IDR</span>
                                                 </div>
-                                                <input type="number" disabled="disabled" class="form-control text-right biayalain-nilai-idr disabled" name="biayalain_idr[]" placeholder="Nilai biaya lain (IDR)">
+                                                <input type="text" disabled="disabled" class="form-control text-right biayalain-nilai-idr disabled number" name="biayalain_idr[]" placeholder="Nilai biaya lain (IDR)">
                                                 <div class="input-group-btn">
                                                     <button type="button" class="btn btn-success btn-biayalain-tambah" title="Tambah biaya lain"><span class="fa fa-plus"></span></button>
                                                 </div>
@@ -287,7 +293,7 @@
                                             <div class="input-group-addon">
                                                 <span>IDR</span>
                                             </div>
-                                            <input type="number" readonly="true" id="total-biayalain-idr" name="total_pertanggungan_idr" class="form-control text-right">
+                                            <input type="text" readonly="true" id="total-biayalain-idr" name="total_pertanggungan_idr" class="form-control text-right number">
                                             <div class="input-group-btn"><button type="button" class="btn btn-default btn-biayalain-hitung"><span class="fa fa-calculator"></span></button></div>
                                         </div>
                                     </div>
@@ -298,10 +304,15 @@
                             <legend>Asuradur / Penanggung</legend>
                             <div id="container-asuradur" class="container-input-appendable">
                                 <div class="row">
+                                    <input type="hidden" name="asuradur_total_premi" class="asuradur-total-premi" />
+                                    <div class="col-lg-12"><div class="form-group"><p class="form-control-static">Total premi (gross + biaya lain) = IDR. <span class="asuradur-total-premi text-primary number"></span> </p></div></div>
+                                </div>
+                                <div class="row">
                                     <div class="col-lg-2"></div>
-                                    <div class="col-lg-5"><label>Pilih asuradur</label></div>
-                                    <div class="col-lg-3"><label>Persentase</label></div>
-                                    <div class="col-lg-2"><label>Komisi</label></div>
+                                    <div class="col-lg-3"><div class="form-group"><label>Pilih asuradur</label></div></div>
+                                    <div class="col-lg-2"><div class="form-group"><label>Share <span class="fa fa-percent"></span></label></div></div>
+                                    <div class="col-lg-2"><div class="form-group"><label>Komisi <span class="fa fa-percent"></span></label></div></div>
+                                    <div class="col-lg-3"><div class="form-group"><label>Komisi IDR</label></div></div>
                                 </div>
                                 <div class="row row-asuradur">
                                     <div class="col-lg-2">
@@ -312,7 +323,7 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="col-lg-5">
+                                    <div class="col-lg-3">
                                         <div class="form-group">
                                             <select name="asuradur[]" class="select2 select-asuradur">
                                                 <?php foreach ($asuradurs as $as): ?>
@@ -321,23 +332,45 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-2">
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <input type="number" class="form-control text-right asuradur-persen" name="asuradur_persen[]" value="100" placeholder="Persentase" disabled="true">
+                                                <input type="text" class="form-control text-right asuradur-persen number" name="asuradur_persen[]" value="100" placeholder="Persentase" disabled="true">
                                                 <div class="input-group-addon"><span class="fa fa-percent"></span></div>
-                                                <div class="input-group-btn">
-                                                    <button type="button" class="btn btn-success btn-asuradur-tambah" title="Tambah asuradur"><span class="fa fa-plus"></span></button>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-2">
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <input type="number" class="form-control text-right asuradur-komisi" name="asuradur_komisi[]" value="100" placeholder="Persentase">
+                                                <input type="text" class="form-control text-right asuradur-komisi-persen number" name="asuradur_komisi_persen[]" value="100" placeholder="Persentase">
                                                 <div class="input-group-addon"><span class="fa fa-percent"></span></div>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">IDR</span></div>
+                                                <input type="text" disabled="true" class="form-control text-right asuradur-komisi-idr disabled number" name="asuradur_komisi_idr[]" value="100" placeholder="Nilai">
+                                                <div class="input-group-btn">
+                                                    <button type="button" class="btn btn-success btn-asuradur-tambah" title="Tambah asuradur"><span class="fa fa-plus"></span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row description">
+                                    <div class="col-lg-9">
+                                        <p class="form-control-static text-right">Total komisi (IDR)</p>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <span>IDR</span>
+                                            </div>
+                                            <input type="text" disabled="true" id="total-asuradur-komisi-idr" name="total_asuradur_komisi_idr" class="form-control text-right number disabled">
+                                            <div class="input-group-btn"><button type="button" class="btn btn-default btn-premi-komisi-hitung"><span class="fa fa-calculator"></span></button></div>
                                         </div>
                                     </div>
                                 </div>
@@ -346,6 +379,16 @@
                         <div class="tab-pane fade" id="tab-broker">
                             <legend>Brokers</legend>
                             <div id="container-broker" class="container-input-appendable">
+                                <div class="row">
+                                    <input type="hidden" name="broker_total_komisi" class="broker-total-komisi" />
+                                    <div class="col-lg-12"><div class="form-group"><p class="form-control-static">Total komisi broker = IDR. <span class="broker-total-komisi text-primary number"></span> </p></div></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-2"></div>
+                                    <div class="col-lg-5"><div class="form-group"><label>Pilih broker</label></div></div>
+                                    <div class="col-lg-2"><div class="form-group"><label>Persentase</label></div></div>
+                                    <div class="col-lg-3"><div class="form-group"><label>IDR</label></div></div>
+                                </div>
                                 <div class="row row-broker">
                                     <div class="col-lg-2">
                                         <div class="form-group">
@@ -355,7 +398,7 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="col-lg-7">
+                                    <div class="col-lg-5">
                                         <div class="form-group">
                                             <select name="broker[]" class="select2 select-broker">
                                                 <?php foreach ($brokers as $brk): ?>
@@ -364,11 +407,19 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control text-right broker-persen number" name="broker_persen[]" value="100" placeholder="Persentase" disabled="true">
+                                                <div class="input-group-addon"><span class="fa fa-percent"></span></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-lg-3">
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <input type="number" class="form-control text-right broker-persen" name="broker_persen[]" value="100" placeholder="Persentase" disabled="true">
-                                                <div class="input-group-addon"><span class="fa fa-percent"></span></div>
+                                                <div class="input-group-addon">IDR</div>
+                                                <input type="text" class="form-control text-right broker-idr number disabled" name="broker_idr[]" value="0" placeholder="IDR" disabled="true">
                                                 <div class="input-group-btn">
                                                     <button type="button" class="btn btn-success btn-broker-tambah" title="Tambah broker"><span class="fa fa-plus"></span></button>
                                                 </div>
@@ -396,6 +447,9 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
+        //number formatter
+        $('input.number').number(true,2);
+        $('span.number').number(true,2);
         
         $('form.form-validation').validate({
             ignore: [],
@@ -429,7 +483,9 @@
             var target = $(this).parents('.row-objek').find('input.objek-nilai-idr');
             
             KonversiMataUang.konversi(matauang, $(this), $(target));
+            
             totalNilai('#container-objek-pertanggungan', 'input.objek-nilai-idr', '#total-pertanggungan-idr');
+            setTotalPremi();
         });
         $('#container-objek-pertanggungan').on('keyup', 'input.objek-nilai', function(){
             $(this).trigger('change');
@@ -505,12 +561,19 @@
             //set nilai premi idr
             $row.find('input.premi-nilai-idr').val(nilai_premi_idr.toFixed(2));
             
-            //hitung total nilai
+            //hitung total nilai IDR
+            //get total gross-premi
+//            var gross = totalNilai('#container-premi','input.premi-nilai-idr');
+//            
+//            $('#total-premi-idr').val(gross.toFixed(3));
             totalNilai('#container-premi','input.premi-nilai-idr','#total-premi-idr');
+            
+            setTotalPremi();
         });
         $('#container-premi').on('change','select.premi-tipe',function(){
             $(this).parents('.row-premi').find('input.premi-rate').trigger('change');
         });
+        
         /* BIAYA LAIN */
         $('#container-biayalain').on('click','button.btn-biayalain-tambah', function(){
             var $row = $(this).parents('.row-biayalain');
@@ -547,10 +610,13 @@
             
             KonversiMataUang.konversi(matauang, $(this), $(target));
             totalNilai('#container-biayalain', 'input.biayalain-nilai-idr', '#total-biayalain-idr');
+            
+            setTotalPremi();
         });
         $('#container-biayalain').on('click','.btn-biayalain-hitung', function(){
             totalNilai('#container-biayalain', 'input.biayalain-nilai-idr', '#total-biayalain-idr');
         });
+        
         /* ASURADUR */
         $('#container-asuradur').on('click','button.btn-asuradur-tambah', function(){
             //destroy select2 componenet before clone
@@ -563,7 +629,8 @@
             $new.find('input.asuradur-persen').val(0).prop('disabled',false);
             $new.find('input.asuradur-leader').prop('checked', false);
             $new.find('span.asuradur-leader-label').html('<i></i> Member');
-            $new.find('input.asuradur-komisi').val(0);
+            $new.find('input.asuradur-komisi-persen').val(0);
+            $new.find('input.asuradur-komisi-idr').val(0);
 
             //change attribute of button current row
             $(this).removeClass('btn-success').addClass('btn-danger').addClass('btn-asuradur-hapus')
@@ -619,6 +686,9 @@
             }
         });
         $('#container-asuradur').on('keyup', 'input.asuradur-persen', function(){
+            $(this).trigger('change');
+        });
+        $('#container-asuradur').on('change', 'input.asuradur-persen', function(){
             //get leader 
             var $leader;
             var member = 0;
@@ -635,9 +705,26 @@
                 alert('Persentase leader telah mencapai kurang atau sama dengan nol. Silahkan ganti persentase member');
                 return false;
             }
+            
+            $(this).parents('.row-asuradur').find('input.asuradur-komisi-persen').trigger('change');
         });
-        $('#container-asuradur').on('change', 'input.asuradur-persen', function(){
-            $(this).trigger('keyup');
+        $('#container-asuradur').on('change','input.asuradur-komisi-persen', function (){
+            //count komisi for this row
+            var totalPremi = $('#container-asuradur').find('input.asuradur-total-premi').val() ? parseFloat($('#container-asuradur').find('input.asuradur-total-premi').val()) : 0;
+            var $row = $(this).parents('.row-asuradur');
+            var persen_asuradur = $row.find('input.asuradur-persen').val() ? parseFloat($row.find('input.asuradur-persen').val()) : 0;
+            var persen_komisi = $row.find('input.asuradur-komisi-persen').val() ? parseFloat($row.find('input.asuradur-komisi-persen').val()) : 0;
+            var komisi = (persen_asuradur / 100) * totalPremi * (persen_komisi / 100) ;
+            $row.find('input.asuradur-komisi-idr').val(komisi);
+            
+            //show total premi komisi idr
+            totalNilai('#container-asuradur', 'input.asuradur-komisi-idr', '#total-asuradur-komisi-idr');
+            
+            //update in broker view
+            setBrokerTotalKomisi();
+        });
+        $('#container-asuradur').on('keyup','input.asuradur-komisi-persen', function (){
+            $(this).trigger('change');
         });
         
         /* BROKER */
@@ -707,25 +794,31 @@
             }
         });
         $('#container-broker').on('keyup', 'input.broker-persen', function(){
+            $(this).trigger('change');
+        });
+        $('#container-broker').on('change', 'input.broker-persen', function(){
+            var totalKomisiBroker = $('#container-broker').find('input.broker-total-komisi').val() ? parseFloat($('#container-broker').find('input.broker-total-komisi').val()) : 0;
             //get leader 
             var $leader;
             var member = 0;
             $('#container-broker .broker-leader').each(function(){
                 if ($(this).prop('checked')){
-                    $leader = $(this).parents('.row-broker').find('input.broker-persen');
+                    $leader = $(this).parents('.row-broker');
                 }else{
                     member += parseFloat($(this).parents('.row-broker').find('input.broker-persen').val());
                 }
             });
             var persentaseLeader = 100 - member;
-            $leader.val(persentaseLeader);
+            $leader.find('input.broker-persen').val(persentaseLeader);
+            $leader.find('input.broker-idr').val(parseFloat((persentaseLeader/100) * totalKomisiBroker));
             if(persentaseLeader <= 0){
                 alert('Persentase leader telah mencapai kurang atau sama dengan nol. Silahkan ganti persentase member');
                 return false;
             }
-        });
-        $('#container-broker').on('change', 'input.broker-persen', function(){
-            $(this).trigger('keyup');
+            
+            var persenShare = $(this).parents('.row-broker').find('input.broker-persen').val() ? parseFloat($(this).parents('.row-broker').find('input.broker-persen').val()) : 0;
+            var shareKomisi = totalKomisiBroker * (persenShare / 100);
+            $(this).parents('.row-broker').find('input.broker-idr').val(shareKomisi);
         });
     });
     
@@ -736,7 +829,7 @@
         });
         
         if (target){
-            $(target).val(total.toFixed(2));
+            $(target).val(total);
         }else{
             return total;
         }
@@ -759,5 +852,31 @@
         var nilai_premi = rate * tipe_multiplier * pertanggungan;
         
         return nilai_premi;
+    }
+    
+    function setTotalPremi(){
+        var biayaLain = $('#total-biayalain-idr').val() ? parseFloat($('#total-biayalain-idr').val()) : 0;
+        var gross = $('#total-premi-idr').val() ? parseFloat($('#total-premi-idr').val()) : 0;
+
+        var totalPremi = gross + biayaLain;
+        $('#container-asuradur').find('.asuradur-total-premi').each(function(){
+            if ($(this).is('input')){
+                $(this).val(totalPremi);
+            }else{
+                $(this).text(totalPremi);
+            }
+        });
+    }
+    
+    function setBrokerTotalKomisi(){
+        var totalKomisi = $('#total-asuradur-komisi-idr').val() ? parseFloat($('#total-asuradur-komisi-idr').val()) : 0;
+        
+        $('#container-broker').find('.broker-total-komisi').each(function(){
+            if ($(this).is('input')){
+                $(this).val(totalKomisi);
+            }else{
+                $(this).text(totalKomisi);
+            }
+        });
     }
 </script>

@@ -55,7 +55,7 @@ var KonversiMataUang = {
         var rate = this.getRate(matauang);
         var nilai_src = $(src).val();
         
-        var nilai_konversi = nilai_src ? (nilai_src * rate).toFixed(2) : 0.00;
+        var nilai_konversi = nilai_src ? (nilai_src * rate) : 0.00;
         $(target).val(nilai_konversi);
     }
 };
