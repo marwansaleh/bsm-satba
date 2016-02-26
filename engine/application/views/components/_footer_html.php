@@ -33,7 +33,8 @@
         <script src="<?php echo get_asset_url('js/jquery-validation/jquery.validate.min.js'); ?>"></script>
         <script src="<?php echo get_asset_url('js/plugins/select2/select2.min.js'); ?>"></script>
         <script src="<?php echo get_asset_url('js/plugins/bootstrap-multiselect/bootstrap-multiselect.js'); ?>"></script>
-        
+        <!-- number formatter -->
+        <script src="<?php echo get_asset_url('js/jquery-number/jquery.number.min.js'); ?>"></script>
         <!-- DataTables -->
         <script src="<?php echo get_asset_url('DataTables/media/js/jquery.dataTables.min.js'); ?>"></script>
         <script src="<?php echo get_asset_url('DataTables/media/js/dataTables.bootstrap.min.js'); ?>"></script>
