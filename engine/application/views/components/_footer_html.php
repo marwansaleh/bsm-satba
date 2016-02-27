@@ -6,20 +6,12 @@
 	<!-- Javascript -->
         <script type="text/javascript">
             $(document).ready(function (){
-                $('.datepicker').datepicker({
-                    format: 'yyyy/mm/dd'
-                }).on('changeDate', function (e){
-                    $(this).datepicker('hide');
-                })
                 
-                $('select.selectpicker').selectpicker();
-                $('select.select2').select2();
-                $('.multiselect').multiselect();
             });
         </script>
         <script src="<?php echo get_asset_url('js/bootstrap/bootstrap.js') ?>"></script>
         <script src="<?php echo get_asset_url('js/plugins/modernizr/modernizr.js') ?>"></script>
-        <script src="<?php echo get_asset_url('js/king-common.js') ?>"></script>
+<!--        <script src="<?php echo get_asset_url('js/king-common.js') ?>"></script>-->
         <script src="<?php echo get_asset_url('js/jquery-ui/jquery-ui-1.10.4.custom.min.js') ?>"></script>
         <script src="<?php echo get_asset_url('js/plugins/jquery-slimscroll/jquery.slimscroll.min.js') ?>"></script>
         <script src="<?php echo get_asset_url('js/plugins/stat/flot/jquery.flot.min.js') ?>"></script>

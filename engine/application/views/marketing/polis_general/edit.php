@@ -18,112 +18,114 @@
                     <input type="hidden" name="id" value="<?php echo $item->id ? $item->id:0; ?>" />
                     <div class="tab-content no-padding">
                         <div class="tab-pane fade active in" id="tab-basic">
-                            <div class="form-group">
-                                <label>Sumber Bisnis</label>
-                                <select id="sumber_bisnis" name="sumber_bisnis" data-parent-selected="<?php echo $item->sumber_bisnis; ?>" class="form-control selectpicker show-tick"" data-live-search="true" data-size="5">
-                                    <?php foreach ($sumber_bisnis as $sb): ?>
-                                    <option value="<?php echo $sb->id; ?>" <?php echo $sb->id==$item->sumber_bisnis?'selected':''; ?>><?php echo $sb->kode .' - '. $sb->nama; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>Nomor Polis</label>
-                                        <input type="text" name="nomor_polis" class="form-control" value="<?php echo $item->nomor_polis; ?>" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>Nomor Polis Lama</label>
-                                        <input type="text" name="nomor_polis_lama" class="form-control" value="<?php echo $item->nomor_polis_lama; ?>" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Tertanggung</label>
-                                <div class="input-group">
-                                    <select id="tertanggung" name="tertanggung" data-parent-selected="<?php echo $item->tertanggung; ?>" class="form-control selectpicker show-tick"" data-live-search="true" data-size="5">
-                                        <?php foreach ($tertanggung as $tg): ?>
-                                        <option value="<?php echo $tg->id; ?>" <?php echo $tg->id==$item->tertanggung?'selected':''; ?>><?php echo $tg->nama_lengkap; ?></option>
+                            <div id="container-basic">
+                                <div class="form-group">
+                                    <label>Sumber Bisnis</label>
+                                    <select id="select-sumber-bisnis" name="sumber_bisnis" class="select2 select-sumber-bisnis">
+                                        <?php foreach ($sumber_bisnis as $sb): ?>
+                                        <option value="<?php echo $sb->id; ?>" <?php echo $sb->id==$item->sumber_bisnis?'selected':''; ?>><?php echo $sb->kode .' - '. $sb->nama; ?></option>
                                         <?php endforeach; ?>
                                     </select>
-                                    <div class="input-group-btn">
-                                        <button type="button" class="btn btn-success" title="Tambah tertanggung"><span class="fa fa-plus"></span></button>
-                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Okupasi</label>
-                                <input type="text" name="okupasi" class="form-control" value="<?php echo $item->okupasi; ?>" />
-                            </div>
-                            <div class="form-group">
-                                <label>Jenis Asuransi</label>
-                                <select id="sumber_bisnis" name="jenis_asuransi" class="form-control selectpicker show-tick"" data-live-search="true" data-size="5">
-                                    <?php foreach ($jenis_asuransi as $ja): ?>
-                                    <option value="<?php echo $ja->id; ?>" <?php echo $ja->id==$item->jenis_asuransi?'selected':''; ?>><?php echo $ja->nama; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label>Periode</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            <input type="text" readonly="true" id="datepicker" class="form-control datepicker text-primary" name="periode_mulai" value="<?php echo $item->periode_mulai; ?>">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Nomor Polis</label>
+                                            <input type="text" name="nomor_polis" class="form-control" value="<?php echo $item->nomor_polis; ?>" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Nomor Polis Lama</label>
+                                            <input type="text" name="nomor_polis_lama" class="form-control" value="<?php echo $item->nomor_polis_lama; ?>" />
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label>S/d</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            <input type="text" readonly="true" id="datepicker" class="form-control datepicker text-primary" name="periode_akhir" value="<?php echo $item->periode_akhir; ?>">
+                                <div class="form-group">
+                                    <label>Tertanggung</label>
+                                    <div class="input-group">
+                                        <select id="select-tertanggung" name="tertanggung" class="select2 select-tertanggung">
+                                            <?php foreach ($tertanggung as $tg): ?>
+                                            <option value="<?php echo $tg->id; ?>" <?php echo $tg->id==$item->tertanggung?'selected':''; ?>><?php echo $tg->nama_lengkap; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-success btn-sm" title="Tambah tertanggung"><span class="fa fa-plus"></span></button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label>Persetujuan</label>
-                                        <select name="persetujuan" class="form-control">
-                                            <?php foreach ($persetujuan as $key => $value): ?>
-                                            <option value="<?php echo $key; ?>" <?php echo $item->persetujuan==$key ? 'selected':''; ?>><?php echo $value; ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
+                                <div class="form-group">
+                                    <label>Okupasi</label>
+                                    <input type="text" name="okupasi" class="form-control" value="<?php echo $item->okupasi; ?>" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Jenis Asuransi</label>
+                                    <select id="seelct-jenis-asuransi" name="jenis_asuransi" class="select2 select-jenis-asuransi">
+                                        <?php foreach ($jenis_asuransi as $ja): ?>
+                                        <option value="<?php echo $ja->id; ?>" <?php echo $ja->id==$item->jenis_asuransi?'selected':''; ?>><?php echo $ja->nama; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>Periode</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                <input type="text" readonly="true" id="datepicker" class="form-control datepicker text-primary" name="periode_mulai" value="<?php echo $item->periode_mulai; ?>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>S/d</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                <input type="text" readonly="true" id="datepicker" class="form-control datepicker text-primary" name="periode_akhir" value="<?php echo $item->periode_akhir; ?>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>Persetujuan</label>
+                                            <select name="persetujuan" class="form-control">
+                                                <?php foreach ($persetujuan as $key => $value): ?>
+                                                <option value="<?php echo $key; ?>" <?php echo $item->persetujuan==$key ? 'selected':''; ?>><?php echo $value; ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-1">
-                                    <div class="form-group">
-                                        <label>Mata uang</label>
-                                        <select class="form-control" name="matauang_komisi_kembali">
-                                            <?php foreach ($mata_uang as $mu): ?>
-                                            <option value="<?php echo $mu->id; ?>" title="<?php echo $mu->nama; ?>" <?php echo $item->matauang_komisi_kembali==$mu->id ? 'selected':''; ?>>
-                                                <?php echo $mu->id;?>
-                                            </option>
-                                            <?php endforeach; ?>
-                                        </select>
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <div class="form-group">
+                                            <label>Currency</label>
+                                            <select class="form-control matauang-komisi-kembali" name="matauang_komisi_kembali">
+                                                <?php foreach ($mata_uang as $mu): ?>
+                                                <option value="<?php echo $mu->id; ?>" title="<?php echo $mu->nama; ?>" <?php echo $item->matauang_komisi_kembali==$mu->id ? 'selected':''; ?>>
+                                                    <?php echo $mu->id;?>
+                                                </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>Komisi kembali</label>
-                                        <input type="text" class="form-control text-right number" name="komisi_kembali" value="<?php echo $item->komisi_kembali; ?>" />
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label>Komisi kembali</label>
+                                            <input type="text" class="form-control text-right komisi-kembali number" name="komisi_kembali" value="<?php echo $item->komisi_kembali; ?>" />
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-8">
-                                    <div class="form-group">
-                                        <label>Sales / AO</label>
-                                        <select class="form-control selectpicker show-tick" name="sales" data-live-search="true" data-size="5">
-                                            <?php foreach ($sales as $sa): ?>
-                                            <option value="<?php echo $sa->id; ?>" <?php echo $item->sales==$sa->id ? 'selected':''; ?>>
-                                                <?php echo $sa->nama;?>
-                                            </option>
-                                            <?php endforeach; ?>
-                                        </select>
+                                    <div class="col-lg-8">
+                                        <div class="form-group">
+                                            <label>Sales / AO</label>
+                                            <select class="select2 select-sales" name="sales">
+                                                <?php foreach ($sales as $sa): ?>
+                                                <option value="<?php echo $sa->id; ?>" <?php echo $item->sales==$sa->id ? 'selected':''; ?>>
+                                                    <?php echo $sa->nama;?>
+                                                </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -132,10 +134,16 @@
                         <div class="tab-pane fade" id="tab-pertanggungan">
                             <legend>Objek Pertanggungan</legend>
                             <div id="container-objek-pertanggungan" class="container-input-appendable">
+                                <div class="row hidden-xs">
+                                    <div class="col-lg-5"><div class="form-group"><label>Objek pertanggungan</label></div></div>
+                                    <div class="col-lg-1"><div class="form-group"><label>Currency</label></div></div>
+                                    <div class="col-lg-3"><div class="form-group"><label>Nilai objek</label></div></div>
+                                    <div class="col-lg-3"><div class="form-group"><label>Nilai (IDR)</span></label></div></div>
+                                </div>
                                 <div class="row row-objek">
                                     <div class="col-lg-5">
                                         <div class="form-group">
-                                            <input type="text" class="form-control objek-nama" name="objek_nama[]" value="" placeholder="Nama objek pertanggungan" maxlength="50">
+                                            <input type="text" class="form-control objek-nama" name="objek_nama[]" value="" maxlength="50">
                                         </div>
                                     </div>
                                     <div class="col-lg-1">
@@ -149,7 +157,7 @@
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="form-group">
-                                            <input type="text" class="form-control text-right objek-nilai number" name="objek_nilai[]" placeholder="Nilai pertanggungan">
+                                            <input type="text" class="form-control text-right objek-nilai number" name="objek_nilai[]" placeholder="0.00">
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
@@ -158,7 +166,7 @@
                                                 <div class="input-group-addon">
                                                     <span>IDR</span>
                                                 </div>
-                                                <input type="text" class="form-control text-right objek-nilai-idr number" placeholder="Nilai pertanggungan (IDR)">
+                                                <input type="text" disabled="true" class="form-control text-right objek-nilai-idr number disabled" placeholder="0.00">
                                                 <div class="input-group-btn">
                                                     <button type="button" class="btn btn-success btn-objek-tambah" title="Tambah objek pertanggungan"><span class="fa fa-plus"></span></button>
                                                 </div>
@@ -185,6 +193,13 @@
                         <div class="tab-pane fade" id="tab-premi">
                             <legend>Suku Premi</legend>
                             <div id="container-premi" class="container-input-appendable">
+                                <div class="row hidden-xs">
+                                    <div class="col-lg-4"><div class="form-group"><label>Nama objek</label></div></div>
+                                    <div class="col-lg-1"><div class="form-group"><label>Tipe</label></div></div>
+                                    <div class="col-lg-1"><div class="form-group"><label>Rate</label></div></div>
+                                    <div class="col-lg-3"><div class="form-group"><label>Premi</label></div></div>
+                                    <div class="col-lg-3"><div class="form-group"><label>Premi IDR</label></div></div>
+                                </div>
                                 <div class="row row-premi">
                                     <div class="col-lg-4">
                                         <div class="form-group">
@@ -244,7 +259,7 @@
                         <div class="tab-pane fade" id="tab-biayalain">
                             <legend>Biaya Lain</legend>
                             <div id="container-biayalain" class="container-input-appendable">
-                                <div class="row">
+                                <div class="row hidden-xs">
                                     <div class="col-lg-5"><div class="form-group"><label>Komponen biaya lain</label></div></div>
                                     <div class="col-lg-1"><div class="form-group"><label>Kurs</label></div></div>
                                     <div class="col-lg-3"><div class="form-group"><label>Besar biaya</label></div></div>
@@ -305,9 +320,13 @@
                             <div id="container-asuradur" class="container-input-appendable">
                                 <div class="row">
                                     <input type="hidden" name="asuradur_total_premi" class="asuradur-total-premi" />
-                                    <div class="col-lg-12"><div class="form-group"><p class="form-control-static">Total premi (gross + biaya lain) = IDR. <span class="asuradur-total-premi text-primary number"></span> </p></div></div>
+                                    <div class="col-lg-12">
+                                        <div class="alert alert-info">
+                                            <strong>Total premi (gross + biaya lain) = IDR.<span class="asuradur-total-premi number">0.00</span></strong>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="row">
+                                <div class="row hidden-xs">
                                     <div class="col-lg-2"></div>
                                     <div class="col-lg-3"><div class="form-group"><label>Pilih asuradur</label></div></div>
                                     <div class="col-lg-2"><div class="form-group"><label>Share <span class="fa fa-percent"></span></label></div></div>
@@ -325,7 +344,7 @@
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="form-group">
-                                            <select name="asuradur[]" class="select2 select-asuradur">
+                                            <select id="select-asuradur-array" name="asuradur[]" class="select2 select-asuradur">
                                                 <?php foreach ($asuradurs as $as): ?>
                                                 <option value="<?php echo $as->id; ?>"><?php echo $as->nama; ?></option>
                                                 <?php endforeach; ?>
@@ -381,9 +400,26 @@
                             <div id="container-broker" class="container-input-appendable">
                                 <div class="row">
                                     <input type="hidden" name="broker_total_komisi" class="broker-total-komisi" />
-                                    <div class="col-lg-12"><div class="form-group"><p class="form-control-static">Total komisi broker = IDR. <span class="broker-total-komisi text-primary number"></span> </p></div></div>
+                                    <input type="hidden" name="broker_total_komisi_kembali" class="broker-total-komisi-kembali" />
+                                    <input type="hidden" name="broker_total_komisi_net" class="broker-total-komisi-net" />
+                                    <input type="hidden" name="broker_bsm_komisi_net" class="broker-bsm-komisi-net" />
+                                    <div class="col-lg-4">
+                                        <div class="alert alert-info">
+                                            <strong>Komisi Broker (gross) = IDR.<span class="broker-total-komisi number">0.00</span></strong>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="alert alert-warning">
+                                            <strong>Komisi kembali = IDR.<span class="broker-total-komisi-kembali number">0.00</span></strong>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="alert alert-success">
+                                            <strong>Komisi Broker (net) = IDR.<span class="broker-total-komisi-net number">0.00</span></strong>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="row">
+                                <div class="row hidden-xs">
                                     <div class="col-lg-2"></div>
                                     <div class="col-lg-5"><div class="form-group"><label>Pilih broker</label></div></div>
                                     <div class="col-lg-2"><div class="form-group"><label>Persentase</label></div></div>
@@ -400,7 +436,7 @@
                                     </div>
                                     <div class="col-lg-5">
                                         <div class="form-group">
-                                            <select name="broker[]" class="select2 select-broker">
+                                            <select id="select-broker-array" name="broker[]" class="select2 select-broker">
                                                 <?php foreach ($brokers as $brk): ?>
                                                 <option value="<?php echo $brk->id; ?>"><?php echo $brk->nama; ?></option>
                                                 <?php endforeach; ?>
@@ -446,52 +482,125 @@
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function(){
-        //number formatter
-        $('input.number').number(true,2);
-        $('span.number').number(true,2);
-        
-        $('form.form-validation').validate({
-            ignore: [],
-            rules: {
-                sumber_bisnis: {
-                    required: true
-                },
-                nomor_polis: {
-                    minlength: 2,
-                    required: true
-                },
-                'broker[]': {
-                    required: true
-                },
-            },
-            highlight: function(element) {
-                $(element).closest('.form-group').addClass('has-error');
-            },
-            unhighlight: function(element) {
-                $(element).closest('.form-group').removeClass('has-error');
-            }
-        });
-        
-        /* OBJEK PAERTANGGUNGAN */
-        $('#container-objek-pertanggungan').on('change', 'select', function (){
-            $(this).parents('.row-objek').find('input.objek-nilai').trigger('change');
-            $('#container-premi span.premi-matauang').eq($(this).index()).html($(this).val());
-        });
-        $('#container-objek-pertanggungan').on('change', 'input.objek-nilai', function(){
-            var matauang = $(this).parents('.row-objek').find('select').val();
-            var target = $(this).parents('.row-objek').find('input.objek-nilai-idr');
+    var PolisManagement = {
+        _BSM_Broker_Id: 0,
+        get BSM_Broker_Id(){
+            return this._BSM_Broker_Id;
+        },
+        set BSM_Broker_Id(x){
+            this._BSM_Broker_Id = x;
+        },
+        _totalPremiNet: 0,
+        get totalPremiNet(){
+            return this._totalPremiNet;
+        },
+        set totalPremiNet(x){
+            this._totalPremiNet = x ? parseFloat(x) : 0;
+        },
+        _totalKomisiIdr: 0,
+        get totalKomisiIdr(){
+            return this._totalKomisiIdr;
+        },
+        set totalKomisiIdr(x){
+            this._totalKomisiIdr = x ? parseFloat(x) : 0;
+        },
+        _komisiKembaliIdr: 0,
+        get komisiKembaliIdr(){
+            return this._komisiKembaliIdr;
+        },
+        set komisiKembaliIdr(x){
+            this._komisiKembaliIdr = x ? parseFloat(x) : 0;
+        },
+        _totalKomisiBrokerIdr: 0,
+        get totalKomisiBrokerIdr(){
+            return this._totalKomisiBrokerIdr;
+        },
+        set totalKomisiBrokerIdr(x){
+            this._totalKomisiBrokerIdr = x ? parseFloat(x) : 0;
+        },
+        _BSM_komisi_net: 0,
+        get BSM_komisi_net(){
+            return this._BSM_komisi_net;
+        },
+        set BSM_komisi_net(x){
+            this._BSM_komisi_net = x ? parseFloat(x) : 0;
+        },
+        init: function(){
+            //number formatter
+            $('input.number').number(true,2);
+            $('span.number').number(true,2);
             
-            KonversiMataUang.konversi(matauang, $(this), $(target));
+            //set form validation
+            $('form.form-validation').validate({
+                ignore: [],
+                rules: {
+                    sumber_bisnis: {
+                        required: true
+                    },
+                    nomor_polis: {
+                        minlength: 2,
+                        required: true
+                    },
+                    'broker[]': {
+                        required: true
+                    },
+                },
+                highlight: function(element) {
+                    $(element).closest('.form-group').addClass('has-error');
+                },
+                unhighlight: function(element) {
+                    $(element).closest('.form-group').removeClass('has-error');
+                }
+            });
             
-            totalNilai('#container-objek-pertanggungan', 'input.objek-nilai-idr', '#total-pertanggungan-idr');
-            setTotalPremi();
-        });
-        $('#container-objek-pertanggungan').on('keyup', 'input.objek-nilai', function(){
-            $(this).trigger('change');
-        });
-        $('#container-objek-pertanggungan').on('click','button.btn-objek-tambah', function(){
-            var $row = $(this).parents('.row-objek');
+            //get totalPremiNet and totalKomisiNet
+            this.totalPremiNet = $('#container-asuradur').find('input.asuradur-total-premi').val();
+            this.totalKomisiIdr = $('#container-asuradur').find('input#total-asuradur-komisi-idr').val();
+            this.komisiKembaliIdr = $('#container-asuradur').find('input.total-asuradur-komisi-idr').val();
+            this.totalKomisiBrokerIdr = $('#container-broker').find('input.broker-total-komisi-net').val();
+            this.BSM_Broker_Id = 1;
+            this.BSM_komisi_net = $('#container-broker').find('input.broker-bsm-komisi-net').val();
+        },
+        getTotalNilai: function(parent_container, selector){
+            var total = 0;
+            $(parent_container +' '+ selector).each(function (){
+                total += parseFloat($(this).val());
+            });
+
+            return total;
+        },
+        updateKomisiKembali: function(){
+            //get nilai komisi kembali di tab basic
+            var curr_kembali = $('#container-basic').find('select.matauang-komisi-kembali').val();
+            var nilai_kembali = $('#container-basic').find('input.komisi-kembali').val() ? parseFloat($('#container-basic').find('input.komisi-kembali').val()) : 0;
+            var kembali_idr = KonversiMataUang.getConvert(curr_kembali, nilai_kembali);
+            
+            this._komisiKembaliIdr = kembali_idr;
+            
+            this.brokerUpdateTotalKomisiNet();
+        },
+        updateObjekPertanggunganSingle: function(index){
+            //get row
+            var $row = $('#container-objek-pertanggungan').find('.row-objek').eq(index);
+            var matauang = $row.find('select.objek-matauang').val();
+            var nilai = $row.find('input.objek-nilai').val() ? parseFloat($row.find('input.objek-nilai').val()) : 0;
+            var nilai_idr = KonversiMataUang.getConvert(matauang, nilai);
+            
+            console.log('objek nilai:'+nilai,' idr:'+nilai_idr);
+            //set nilai objek
+            $row.find('input.objek-nilai-idr').val(nilai_idr);
+            
+            //update nilai premi for this objek
+            this.premiSingleUpdate(index);
+            
+            //update total nilai objek pertanggungan
+            this.updateObjekPertanggunganAll();
+        },
+        updateObjekPertanggunganAll: function(){
+            this.objekCalculateTotal();
+        },
+        objekTambah: function(index){
+            var $row = $('#container-objek-pertanggungan').find('.row-objek').eq(index);
             var $new = $row.clone(true);
             
             //change attribute of new
@@ -500,7 +609,8 @@
             $new.find('input.objek-nilai-idr').val('');
             
             //change attribute of button current row
-            $(this).removeClass('btn-success').addClass('btn-danger').addClass('btn-objek-hapus')
+            var $button = $row.find('button');
+            $button.removeClass('btn-success').addClass('btn-danger').addClass('btn-objek-hapus')
                     .removeClass('btn-objek-tambah').attr('title','Hapus objek pertanggungan')
                     .find('span').removeClass('fa-plus').addClass('fa-minus');
             
@@ -519,64 +629,114 @@
             $new_premi.find('input.premi-nilai-idr').val(0);
             
             $new_premi.insertBefore($row_premi);
-        });
-        $('#container-objek-pertanggungan').on('click','button.btn-objek-hapus', function(){
-            var $row = $(this).parents('.row-objek');
-            var index = $row.index();
-            $row.remove();
+        },
+        objekRemove: function(index){
+            var $row_objek = $('#container-objek-pertanggungan').find('.row-objek').eq(index);
+            $row_objek.remove();
             
-            totalNilai('#container-objek-pertanggungan', 'input.objek-nilai-idr', '#total-pertanggungan-idr');
+            //remove also premi row
+            this.premiRemove(index);
             
-            //update premi
-            $('#container-premi .row-premi').eq(index).remove();
-            totalNilai('#container-premi','input.premi-nilai-idr','#total-premi-idr');
-        });
-        $('#container-objek-pertanggungan').on('click','.btn-objek-hitung', function(){
-            totalNilai('#container-objek-pertanggungan', 'input.objek-nilai-idr', '#total-pertanggungan-idr');
-        });
-        $('#container-objek-pertanggungan').on('keyup', 'input.objek-nama', function(){
-            //var nama = $(this).val();
-            var objek_row_index = $(this).index();
-            $('#container-premi input.objek-nama').eq(objek_row_index).val($(this).val());
-        });
-        /* PREMI PERTANGGUNGAN */
-        $('#container-premi').on('keyup','input.premi-rate', function(){
-            $(this).trigger('change');
-        });
-        $('#container-premi').on('change','input.premi-rate',function(){
-            var row_index = $(this).parents('.row-premi').index();
-            var $row = $(this).parents('.row-premi');
-            var tipe_premi = $row.find('select.premi-tipe').val();
-            var rate = parseFloat($(this).val());
+            //update total objek
+            this.updateObjekPertanggunganAll();
+        },
+        objekCalculateTotal: function(){
+            var total = this.getTotalNilai('#container-objek-pertanggungan', 'input.objek-nilai-idr');
+            console.log('Total pertanggungan idr:'+total);
+            $('#container-objek-pertanggungan').find('#total-pertanggungan-idr').val(total);
+        },
+        objekNamaUpdate:function (index){
+            this.premiNamaObjek(index);
+        },
+        premiNamaObjek: function(index){
+            var $row = $('#container-premi').find('.row-premi').eq(index);
+            var $row_objek = $('#container-objek-pertanggungan').find('.row-objek').eq(index);
+            //update nama objek di premi
+            var nama_objek = $row_objek.find('input.objek-nama').val();
+            $row.find('input.objek-nama').val(nama_objek);
+        },
+        premiSingleUpdate: function(index){
+            var $row = $('#container-premi').find('.row-premi').eq(index);
             
-            var $row_src = $('#container-objek-pertanggungan').find('.row-objek').eq(row_index);
-            var nilai_objek = parseFloat($row_src.find('input.objek-nilai').val());
-            var nilai_objek_idr = parseFloat($row_src.find('input.objek-nilai-idr').val());
+            var $row_objek = $('#container-objek-pertanggungan').find('.row-objek').eq(index);
+            var objek_nilai = $row_objek.find('input.objek-nilai').val() ? parseFloat($row_objek.find('input.objek-nilai').val()) : 0;
+            //update mata uang from selected in objek pertanggungan
+            var matauang = $row_objek.find('select.objek-matauang').val();
+            $row.find('span.premi-matauang').text(matauang);
             
-            var nilai_premi = hitungPremi(tipe_premi,rate,nilai_objek);
-            var nilai_premi_idr = hitungPremi(tipe_premi,rate, nilai_objek_idr);
+            //update nilai premi berdasarkan mata uang dan rate
+            var tipe_rate = $row.find('select.premi-tipe').val();
+            var premi_rate = $row.find('input.premi-rate').val() ? parseFloat($row.find('input.premi-rate').val()) : 0;
+            var premi = this.premiCalculate(tipe_rate, premi_rate, objek_nilai);
+            $row.find('input.premi-nilai').val(premi);
             
-            //set nilai premi
-            $row.find('input.premi-nilai').val(nilai_premi.toFixed(2));
-            //set nilai premi idr
-            $row.find('input.premi-nilai-idr').val(nilai_premi_idr.toFixed(2));
+            var premi_idr = KonversiMataUang.getConvert(matauang, premi);
+            $row.find('input.premi-nilai-idr').val(premi_idr);
             
-            //hitung total nilai IDR
-            //get total gross-premi
-//            var gross = totalNilai('#container-premi','input.premi-nilai-idr');
-//            
-//            $('#total-premi-idr').val(gross.toFixed(3));
-            totalNilai('#container-premi','input.premi-nilai-idr','#total-premi-idr');
+            //update nilai premi keseluruhan
+            this.premiUpdateAll();
+        },
+        premiUpdateAll: function(){
+            this.premiCalculateTotal();
             
-            setTotalPremi();
-        });
-        $('#container-premi').on('change','select.premi-tipe',function(){
-            $(this).parents('.row-premi').find('input.premi-rate').trigger('change');
-        });
+            this.premiSetTotalNet();
+        },
+        premiRemove: function(index){
+            var $row_premi = $('#container-premi').find('.row-premi').eq(index);
+            $row_premi.remove();
+            
+            this.premiUpdateAll();
+        },
+        premiCalculate: function(tipe,rate,pertanggungan){
+            var tipe_multiplier;
         
-        /* BIAYA LAIN */
-        $('#container-biayalain').on('click','button.btn-biayalain-tambah', function(){
-            var $row = $(this).parents('.row-biayalain');
+            if (tipe==='promil'){
+                tipe_multiplier = 0.001;
+            }else{
+                tipe_multiplier = 0.01;
+            }
+
+            var nilai_premi = rate * tipe_multiplier * pertanggungan;
+
+            return nilai_premi;
+        },
+        premiCalculateTotal: function(){
+            var total_premi_idr = this.getTotalNilai('#container-premi', 'input.premi-nilai-idr');
+            console.log('Total premi idr:'+total_premi_idr);
+            
+            $('#container-premi').find('#total-premi-idr').val(total_premi_idr);
+        },
+        premiSetTotalNet:function(){
+            var premi_gross = $('#container-premi').find('input#total-premi-idr').val() ? parseFloat($('#container-premi').find('input#total-premi-idr').val()) : 0;
+            var biaya_lain = $('#container-biayalain').find('input#total-biayalain-idr').val() ? parseFloat($('#container-biayalain').find('input#total-biayalain-idr').val()) : 0;
+            var total_premi_net = premi_gross + biaya_lain;
+            
+            this.totalPremiNet = total_premi_net;
+            
+            console.log('premi:'+premi_gross+', biayalain:'+biaya_lain+', total premi:'+total_premi_net);
+            $('#container-asuradur').find('span.asuradur-total-premi').text(total_premi_net).number(true,2);
+            $('#container-asuradur').find('input.asuradur-total-premi').val(total_premi_net);
+            
+            this.asuradurUpdateAll();
+        },
+        biayaLainUpdate: function(index){
+            var $row = $('#container-biayalain').find('.row-biayalain').eq(index);
+            var matauang = $row.find('select').val();
+            var nilai = $row.find('input.biayalain-nilai').val() ? parseFloat($row.find('input.biayalain-nilai').val()) : 0;
+            var nilai_idr = KonversiMataUang.getConvert(matauang, nilai);
+            console.log('Biaya lain idr:'+nilai_idr);
+            
+            $row.find('input.biayalain-nilai-idr').val(nilai_idr);
+            
+            this.biayaLainUpdateAll();
+        },
+        biayaLainUpdateAll: function(){
+            this.biayaLainCalculateTotal();
+            
+            this.premiSetTotalNet();
+        },
+        biayaLainTambah: function(index){
+            var $row = $('#container-biayalain').find('.row-biayalain').eq(index);
             var $new = $row.clone(true);
             
             //change attribute of new
@@ -585,44 +745,30 @@
             $new.find('input.biayalain-nilai-idr').val('');
             
             //change attribute of button current row
-            $(this).removeClass('btn-success').addClass('btn-danger').addClass('btn-biayalain-hapus')
+            var $button = $row.find('button');
+            $button.removeClass('btn-success').addClass('btn-danger').addClass('btn-biayalain-hapus')
                     .removeClass('btn-biayalain-tambah').attr('title','Hapus biaya lain')
                     .find('span').removeClass('fa-plus').addClass('fa-minus');
             
             //put new row to the last
             $new.insertBefore($row);
-        });
-        $('#container-biayalain').on('click','button.btn-biayalain-hapus', function(){
-            var $row = $(this).parents('.row-biayalain');
+        },
+        biayaLainHapus: function(index){
+            var $row = $('#container-biayalain').find('.row-biayalain').eq(index);
             $row.remove();
             
-            totalNilai('#container-biayalain', 'input.biayalain-nilai-idr', '#total-biayalain-idr');
-        });
-        $('#container-biayalain').on('keyup', 'input.biayalain-nilai', function(){
-            $(this).trigger('change');
-        });
-        $('#container-biayalain').on('change', 'select.biayalain-matauang', function (){
-            $(this).parents('.row-biayalain').find('input.biayalain-nilai').trigger('change');
-        });
-        $('#container-biayalain').on('change', 'input.biayalain-nilai', function(){
-            var matauang = $(this).parents('.row-biayalain').find('select').val();
-            var target = $(this).parents('.row-biayalain').find('input.biayalain-nilai-idr');
+            this.biayaLainUpdateAll();
+        },
+        biayaLainCalculateTotal: function(){
+            var total_biaya_lain = this.getTotalNilai('#container-biayalain', 'input.biayalain-nilai-idr');
+            console.log('Biaya lain idr total:'+total_biaya_lain);
+            $('#container-biayalain').find('#total-biayalain-idr').val(total_biaya_lain);
+        },
+        asuradurTambah: function(index){
+            //destroy select2 component before clone
+            $('#container-asuradur select.select2').select2('destroy');
             
-            KonversiMataUang.konversi(matauang, $(this), $(target));
-            totalNilai('#container-biayalain', 'input.biayalain-nilai-idr', '#total-biayalain-idr');
-            
-            setTotalPremi();
-        });
-        $('#container-biayalain').on('click','.btn-biayalain-hitung', function(){
-            totalNilai('#container-biayalain', 'input.biayalain-nilai-idr', '#total-biayalain-idr');
-        });
-        
-        /* ASURADUR */
-        $('#container-asuradur').on('click','button.btn-asuradur-tambah', function(){
-            //destroy select2 componenet before clone
-            $('#container-asuradur .select2').select2('destroy');
-            
-            var $row = $(this).parents('.row-asuradur');
+            var $row = $('#container-asuradur').find('.row-asuradur').eq(index);
             var $new = $row.clone(true);
             
             //change attribute of new
@@ -633,32 +779,28 @@
             $new.find('input.asuradur-komisi-idr').val(0);
 
             //change attribute of button current row
-            $(this).removeClass('btn-success').addClass('btn-danger').addClass('btn-asuradur-hapus')
+            var $button = $row.find('button');
+            $button.removeClass('btn-success').addClass('btn-danger').addClass('btn-asuradur-hapus')
                     .removeClass('btn-asuradur-tambah').attr('title','Hapus asuradur')
                     .find('span').removeClass('fa-plus').addClass('fa-minus');
             
             //put new row to the last
             $new.insertBefore($row);
             
-            $('#container-asuradur .select2').select2();
-        });
-        $('#container-asuradur').on('click','button.btn-asuradur-hapus', function(){
-            if ($('#container-asuradur .row-asuradur').length==1){
-                alert('Minimal harus ada satu asuradur penanggung');
-                return false;
-            }
-            
-            var $row = $(this).parents('.row-asuradur');
-            var change_leader = false;
+            //init select to select2 plugin
+            $('#container-asuradur select.select2').select2();
+        },
+        asuradurHapus: function(index){
+            var $row = $('#container-asuradur').find('.row-asuradur').eq(index);
             var persen = parseFloat($row.find('input.asuradur-persen').val());
             
             //check if is a leader
-            if ($row.find('input.asuradur-leader').prop('checked')){
+            var is_leader = $row.find('input.asuradur-leader').prop('checked');
+            if (is_leader){
                 //remove the row
                 $row.remove();
                 //set first row became leader
                 $('#container-asuradur input.asuradur-leader').eq(0).prop('checked', true).next('span.asuradur-leader-label').html('<i></i> Leader');
-                //$(this).next('span.asuradur-leader-label').html('<i></i> Leader');
                 var $persen_input = $('#container-asuradur input.asuradur-persen').eq(0);
                 var new_persen = parseFloat($persen_input.val())+persen;
                 $persen_input.val(new_persen).prop('disabled', true);
@@ -673,22 +815,14 @@
                 //remove the row
                 $row.remove();
             }
-        });
-        $('#container-asuradur').on('click', '.asuradur-leader', function(){
-            if ($(this).prop('checked')){
-                //change label
-                $('#container-asuradur').find('span.asuradur-leader-label').html('<i></i> Member');
-                $(this).next('span.asuradur-leader-label').html('<i></i> Leader');
-                //set enable for member persentase
-                $('#container-asuradur').find('input.asuradur-persen').prop('disabled', false);
-                //set disable for persentase leader
-                $(this).parents('.row-asuradur').find('input.asuradur-persen').prop('disabled',true);
-            }
-        });
-        $('#container-asuradur').on('keyup', 'input.asuradur-persen', function(){
-            $(this).trigger('change');
-        });
-        $('#container-asuradur').on('change', 'input.asuradur-persen', function(){
+            
+            //$row.remove();
+            
+            this.asuradurUpdateAll();
+        },
+        asuradurUpdateShare: function(index){
+            var $row = $('#container-asuradur').find('.row-asuradur').eq(index);
+            
             //get leader 
             var $leader;
             var member = 0;
@@ -703,36 +837,81 @@
             $leader.val(persentaseLeader);
             if(persentaseLeader <= 0){
                 alert('Persentase leader telah mencapai kurang atau sama dengan nol. Silahkan ganti persentase member');
+                
+                //normalize share
+                member = 0;
+                $row.find('input.asuradur-persen').val(member);
+                this.asuradurUpdateShare(index);
+                
                 return false;
             }
             
-            $(this).parents('.row-asuradur').find('input.asuradur-komisi-persen').trigger('change');
-        });
-        $('#container-asuradur').on('change','input.asuradur-komisi-persen', function (){
-            //count komisi for this row
-            var totalPremi = $('#container-asuradur').find('input.asuradur-total-premi').val() ? parseFloat($('#container-asuradur').find('input.asuradur-total-premi').val()) : 0;
-            var $row = $(this).parents('.row-asuradur');
-            var persen_asuradur = $row.find('input.asuradur-persen').val() ? parseFloat($row.find('input.asuradur-persen').val()) : 0;
-            var persen_komisi = $row.find('input.asuradur-komisi-persen').val() ? parseFloat($row.find('input.asuradur-komisi-persen').val()) : 0;
-            var komisi = (persen_asuradur / 100) * totalPremi * (persen_komisi / 100) ;
-            $row.find('input.asuradur-komisi-idr').val(komisi);
+            this.asuradurUpdateKomisi(index);
+            this.asuradurUpdateKomisiLeader();
+        },
+        asuradurUpdateKomisi: function(index){
+            var totalPremi = this.totalPremiNet;
             
-            //show total premi komisi idr
-            totalNilai('#container-asuradur', 'input.asuradur-komisi-idr', '#total-asuradur-komisi-idr');
+            //count komisi for this row
+            var $row = $('#container-asuradur').find('.row-asuradur').eq(index);
+            var persen_asuradur_share = $row.find('input.asuradur-persen').val() ? parseFloat($row.find('input.asuradur-persen').val()) : 0;
+            var persen_komisi_broker = $row.find('input.asuradur-komisi-persen').val() ? parseFloat($row.find('input.asuradur-komisi-persen').val()) : 0;
+            var komisi_broker_idr = (persen_asuradur_share / 100) * totalPremi * (persen_komisi_broker / 100) ;
+            $row.find('input.asuradur-komisi-idr').val(komisi_broker_idr);
+            
             
             //update in broker view
-            setBrokerTotalKomisi();
-        });
-        $('#container-asuradur').on('keyup','input.asuradur-komisi-persen', function (){
-            $(this).trigger('change');
-        });
-        
-        /* BROKER */
-        $('#container-broker').on('click','button.btn-broker-tambah', function(){
-            //destroy select2 componenet before clone
-            $('#container-broker .select2').select2('destroy');
+            this.asuradurCalculateKomisiTotal();
+        },
+        asuradurUpdateKomisiLeader: function(){
+            var index_leader = 0;
+            $('#container-asuradur .asuradur-leader').each(function(index){
+                if ($(this).prop('checked')){
+                    index_leader = index;
+                }
+            });
             
-            var $row = $(this).parents('.row-broker');
+            this.asuradurUpdateKomisi(index_leader);
+        },
+        asuradurUpdateAll: function(){
+            //update asuradur komisi based on premi change also
+            var _this = this;
+            $('#container-asuradur').find('.row-asuradur').each(function(index){
+                _this.asuradurUpdateKomisi(index);
+            });
+            //this.asuradurCalculateKomisiTotal();
+        },
+        asuradurSetLeader: function(index){
+            var $row = $('#container-asuradur').find('.row-asuradur').eq(index);
+            
+            if ($row.find('input.asuradur-leader').prop('checked')){
+                //change all label to member
+                $('#container-asuradur').find('span.asuradur-leader-label').html('<i></i> Member');
+                
+                //change label this row to leader
+                $row.find('span.asuradur-leader-label').html('<i></i> Leader');
+                
+                //set enable for member persentase
+                $('#container-asuradur').find('input.asuradur-persen').prop('disabled', false);
+                
+                //set disable for persentase leader
+                $row.find('input.asuradur-persen').prop('disabled',true);
+            }
+        },
+        asuradurCalculateKomisiTotal: function(){
+            var total = this.getTotalNilai('#container-asuradur', 'input.asuradur-komisi-idr');
+            console.log('Total asuradur komisi IDR:'+total);
+            $('#container-asuradur').find('#total-asuradur-komisi-idr').val(total);
+            
+            this.totalKomisiIdr = total;
+            
+            this.brokerUpdateTotalKomisiNet();
+        },
+        brokerTambah: function(index){
+            //destroy select2 componenet before clone
+            $('#container-broker select.select2').select2('destroy');
+            
+            var $row = $('#container-broker').find('.row-broker').eq(index);
             var $new = $row.clone(true);
             
             //change attribute of new
@@ -741,27 +920,24 @@
             $new.find('span.broker-leader-label').html('<i></i> Member');
 
             //change attribute of button current row
-            $(this).removeClass('btn-success').addClass('btn-danger').addClass('btn-broker-hapus')
+            var $button = $row.find('button');
+            $button.removeClass('btn-success').addClass('btn-danger').addClass('btn-broker-hapus')
                     .removeClass('btn-broker-tambah').attr('title','Hapus broker')
                     .find('span').removeClass('fa-plus').addClass('fa-minus');
             
             //put new row to the last
             $new.insertBefore($row);
             
-            $('#container-broker .select2').select2();
-        });
-        $('#container-broker').on('click','button.btn-broker-hapus', function(){
-            if ($('#container-broker .row-broker').length==1){
-                alert('Minimal harus ada satu broker');
-                return false;
-            }
-            
-            var $row = $(this).parents('.row-broker');
+            $('#container-broker select.select2').select2();
+        },
+        brokerHapus: function(index){
+            var $row = $('#container-broker').find('.row-broker').eq(index);
             var change_leader = false;
             var persen = parseFloat($row.find('input.broker-persen').val());
             
             //check if is a leader
-            if ($row.find('input.broker-leader').prop('checked')){
+            var is_leader = $row.find('input.broker-leader').prop('checked');
+            if (is_leader){
                 //remove the row
                 $row.remove();
                 //set first row became leader
@@ -781,6 +957,178 @@
                 //remove the row
                 $row.remove();
             }
+            
+            //is it BSM ?
+            var broker_id = $row.find('select.select-broker').val();
+            if (broker_id == this.BSM_Broker_Id){
+                this.brokerBSM(0);
+            }
+        },
+        brokerUpdateTotalKomisiNet: function(){
+            //update komisi premi
+            var komisi_premi = this.totalKomisiIdr;
+            $('#container-broker').find('input.broker-total-komisi').val(komisi_kembali_idr);
+            $('#container-broker').find('span.broker-total-komisi').text(komisi_kembali_idr).number(true,2);
+            
+            //update nilai komisi kembali di tab broker
+            var komisi_kembali_idr = this.komisiKembaliIdr;
+            $('#container-broker').find('input.broker-total-komisi-kembali').val(komisi_kembali_idr);
+            $('#container-broker').find('span.broker-total-komisi-kembali').text(komisi_kembali_idr).number(true,2);
+            
+            //get nilai komisi idr
+            var komisi_net = komisi_premi - komisi_kembali_idr;
+            this.totalKomisiBrokerIdr = komisi_net;
+            //change total komisi (net)
+            $('#container-broker').find('input.broker-total-komisi-net').val(komisi_net);
+            $('#container-broker').find('span.broker-total-komisi-net').text(komisi_net).number(true,2);
+            
+            console.log('komisi_premi:'+komisi_premi+', kembali:'+komisi_kembali_idr+', net:'+komisi_net);
+            
+            this.brokerUpdateAll();
+        },
+        brokerUpdate: function(index){
+            var totalKomisiBroker = this.totalKomisiBrokerIdr;
+            
+            //count komisi broker for this row
+            var $row = $('#container-broker').find('.row-broker').eq(index);
+            var persen_broker_share = $row.find('input.broker-persen').val() ? parseFloat($row.find('input.broker-persen').val()) : 0;
+            var komisi_broker_idr = totalKomisiBroker * (persen_broker_share / 100);
+            $row.find('input.broker-idr').val(komisi_broker_idr);
+            
+            //is it BSM ?
+            var broker_id = $row.find('select.select-broker').val();
+            if (broker_id == this.BSM_Broker_Id){
+                this.brokerBSM(komisi_broker_idr);
+            }
+        },
+        brokerUpdateAll: function(){
+            //update komisi broker based on komisi change on asuradur
+            var _this = this;
+            $('#container-broker').find('.row-broker').each(function(index){
+                _this.brokerUpdate(index);
+            });
+        },
+        brokerBSM: function(komisi_idr){
+            this.BSM_komisi_net = komisi_idr;
+            $('#container-broker').find('input.broker-bsm-komisi-net').val(komisi_idr);
+        }
+    };
+    $(document).ready(function(){
+        PolisManagement.init();
+        
+        
+        /* BASIC */
+        $('#container-basic').on('change','input.komisi-kembali', function(){
+            PolisManagement.updateKomisiKembali();
+        });
+        $('#container-basic').on('keyup','input.komisi-kembali', function(){
+            PolisManagement.updateKomisiKembali();
+        });
+        $('#container-basic').on('change','select.matauang-komisi-kembali', function(){
+            PolisManagement.updateKomisiKembali();
+        });
+        /* OBJEK PERTANGGUNGAN */
+        $('#container-objek-pertanggungan').on('change', 'input.objek-nilai', function(){
+            //get index
+            var index = $('.row-objek').index($(this).parents('.row-objek'));
+            PolisManagement.updateObjekPertanggunganSingle(index);
+        });
+        $('#container-objek-pertanggungan').on('change', 'select', function (){
+            $(this).parents('.row-objek').find('input.objek-nilai').trigger('change');
+        });
+        $('#container-objek-pertanggungan').on('keyup', 'input.objek-nilai', function(){
+            $(this).trigger('change');
+        });
+        $('#container-objek-pertanggungan').on('click','button.btn-objek-tambah', function(){
+            var index = $('.row-objek').index($(this).parents('.row-objek'));
+            PolisManagement.objekTambah(index);
+        });
+        $('#container-objek-pertanggungan').on('click','button.btn-objek-hapus', function(){
+            var index = $('.row-objek').index($(this).parents('.row-objek'));
+            PolisManagement.objekRemove(index);
+        });
+        $('#container-objek-pertanggungan').on('click','.btn-objek-hitung', function(){
+            PolisManagement.objekCalculateTotal();
+        });
+        $('#container-objek-pertanggungan').on('keyup', 'input.objek-nama', function(){
+            var index = $('.row-objek').index($(this).parents('.row-objek'));
+            PolisManagement.objekNamaUpdate(index);
+        });
+        /* PREMI */
+        $('#container-premi').on('change','input.premi-rate',function(){
+            var index = $('.row-premi').index($(this).parents('.row-premi'));
+            PolisManagement.premiSingleUpdate(index);
+        });
+        $('#container-premi').on('keyup','input.premi-rate', function(){
+            $(this).trigger('change');
+        });
+        $('#container-premi').on('change','select.premi-tipe',function(){
+            $(this).parents('.row-premi').find('input.premi-rate').trigger('change');
+        });
+        
+        /* BIAYA LAIN */
+        $('#container-biayalain').on('click','button.btn-biayalain-tambah', function(){
+            var index = $('.row-biayalain').index($(this).parents('.row-biayalain'));
+            PolisManagement.biayaLainTambah(index);
+        });
+        $('#container-biayalain').on('click','button.btn-biayalain-hapus', function(){
+            var index = $('.row-biayalain').index($(this).parents('.row-biayalain'));
+            PolisManagement.biayaLainHapus(index);
+        });
+        $('#container-biayalain').on('change', 'input.biayalain-nilai', function(){
+            var index = $('.row-biayalain').index($(this).parents('.row-biayalain'));
+            PolisManagement.biayaLainUpdate(index);
+        });
+        $('#container-biayalain').on('keyup', 'input.biayalain-nilai', function(){
+            $(this).trigger('change');
+        });
+        $('#container-biayalain').on('change', 'select.biayalain-matauang', function (){
+            $(this).parents('.row-biayalain').find('input.biayalain-nilai').trigger('change');
+        });
+        $('#container-biayalain').on('click','.btn-biayalain-hitung', function(){
+            PolisManagement.biayaLainCalculate();
+        });
+        
+        /* ASURADUR */
+        $('#container-asuradur').on('click','button.btn-asuradur-tambah', function(){
+            var index = $('.row-asuradur').index($(this).parents('.row-asuradur'));
+            PolisManagement.asuradurTambah(index);
+        });
+        $('#container-asuradur').on('click','button.btn-asuradur-hapus', function(){
+            var index = $('.row-asuradur').index($(this).parents('.row-asuradur'));
+            PolisManagement.asuradurHapus(index);
+            
+        });
+        $('#container-asuradur').on('click', '.asuradur-leader', function(){
+            var index = $('.row-asuradur').index($(this).parents('.row-asuradur'));
+            PolisManagement.asuradurSetLeader(index);
+        });
+        $('#container-asuradur').on('change', 'input.asuradur-persen', function(){
+            var index = $('.row-asuradur').index($(this).parents('.row-asuradur'));
+            PolisManagement.asuradurUpdateShare(index);
+        });
+        $('#container-asuradur').on('keyup', 'input.asuradur-persen', function(){
+            $(this).trigger('change');
+        });
+        $('#container-asuradur').on('change','input.asuradur-komisi-persen', function (){
+            var index = $('.row-asuradur').index($(this).parents('.row-asuradur'));
+            PolisManagement.asuradurUpdateKomisi(index);
+        });
+        $('#container-asuradur').on('keyup','input.asuradur-komisi-persen', function (){
+            $(this).trigger('change');
+        });
+        $('#container-asuradur').on('click','.btn-premi-komisi-hitung', function(){
+            PolisManagement.asuradurCalculateKomisiTotal();
+        });
+        
+        /* BROKER */
+        $('#container-broker').on('click','button.btn-broker-tambah', function(){
+            var index = $('.row-broker').index($(this).parents('.row-broker'));
+            PolisManagement.brokerTambah(index);
+        });
+        $('#container-broker').on('click','button.btn-broker-hapus', function(){
+            var index = $('.row-broker').index($(this).parents('.row-broker'));
+            PolisManagement.brokerHapus(index);
         });
         $('#container-broker').on('click', '.broker-leader', function(){
             if ($(this).prop('checked')){
@@ -863,7 +1211,7 @@
             if ($(this).is('input')){
                 $(this).val(totalPremi);
             }else{
-                $(this).text(totalPremi);
+                $(this).text(totalPremi).number(true,2);
             }
         });
     }
@@ -875,7 +1223,7 @@
             if ($(this).is('input')){
                 $(this).val(totalKomisi);
             }else{
-                $(this).text(totalKomisi);
+                $(this).text(totalKomisi).number(true,2);
             }
         });
     }

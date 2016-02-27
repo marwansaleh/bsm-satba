@@ -40,6 +40,7 @@
         
         <script src="<?php echo get_asset_url('js/jquery/jquery-2.1.0.min.js') ?>"></script>
         <script src="<?php echo get_asset_url('js/satba-main.js') ?>"></script>
+        <?php echo isset($currency_rates) ? $currency_rates : '' ;?>
     </head>
 
     <body class="dashboard2">

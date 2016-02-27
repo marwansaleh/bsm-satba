@@ -67,6 +67,7 @@ class Admin_Controller extends MY_Controller {
         $this->data['breadcumb'] = array();
         //set mainmenu
         $this->data['mainmenus'] = $this->get_user_menu();
+        $this->data['currency_rates'] = $this->get_currency_rate_js();
     }
     
     protected function get_active_module_by_url(){
@@ -204,6 +205,32 @@ class Admin_Controller extends MY_Controller {
         }
         
         return $menulist;
+    }
+    
+    protected function get_currency_rate_js(){
+        $js_object = '<script>';
+        $rates = $this->get_currency_rate();
+        if ($rates){
+            $tmp = array();
+            foreach ($rates as $r){
+                $tmp [] = '"'.$r->matauang_id.'":'.$r->kurs;
+            }
+            $js_object .= 'var basis_kurs= {' .  implode(',', $tmp). '};';
+        }
+        $js_object.='</script>';
+        
+        return $js_object;
+    }
+    protected function get_currency_rate(){
+        $month = 2;
+        $year = 2016;
+        
+        if (!isset($this->rel_kurs_m)){
+            $this->load->model('rel_kurs_m');
+        }
+        
+        $kurs = $this->rel_kurs_m->get_select_where('matauang_id,kurs',array('bulan'=>$month, 'tahun'=>$year));
+        return $kurs;
     }
 }
 

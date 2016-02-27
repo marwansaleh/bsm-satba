@@ -129,14 +129,6 @@ class Migration_add_master_asuradur extends MY_Migration {
                 'created_by'    => 1,
                 'modified'      => time(),
                 'modified_by'   => 1
-            ),
-            array(
-                'nama'          => 'Wahana Tata',
-                'sort'          => 5,
-                'created'       => time(),
-                'created_by'    => 1,
-                'modified'      => time(),
-                'modified_by'   => 1
             )
        ));
     }

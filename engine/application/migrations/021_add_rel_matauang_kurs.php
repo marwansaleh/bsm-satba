@@ -16,15 +16,6 @@ class Migration_add_rel_matauang_kurs extends MY_Migration {
             'unsigned' => TRUE,
             'auto_increment' => TRUE
         ),
-        'tanggal'    => array(
-            'type' => 'DATE',
-            'null' => FALSE
-        ),
-        'hari'    => array(
-            'type' => 'INT',
-            'constraint' => 2,
-            'null' => FALSE
-        ),
         'bulan'    => array(
             'type' => 'INT',
             'constraint' => 2,
@@ -71,6 +62,92 @@ class Migration_add_rel_matauang_kurs extends MY_Migration {
         )
     );
     
+    public function up(){
+        parent::up();
+        //Need seeding ?
+        $this->_seed(array(
+            array(
+                'bulan'         => date('m'),
+                'tahun'         => date('Y'),
+                'matauang_id'   => 'USD',
+                'kurs'          => 13500,
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
+            ),
+            array(
+                'bulan'         => date('m'),
+                'tahun'         => date('Y'),
+                'matauang_id'   => 'AUD',
+                'kurs'          => 9633.42,
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
+            ),
+            array(
+                'bulan'         => date('m'),
+                'tahun'         => date('Y'),
+                'matauang_id'   => 'CNY',
+                'kurs'          => 2126.71,
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
+            ),
+            array(
+                'bulan'         => date('m'),
+                'tahun'         => date('Y'),
+                'matauang_id'   => 'EUR',
+                'kurs'          => 15021.21,
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
+            ),
+            array(
+                'bulan'         => date('m'),
+                'tahun'         => date('Y'),
+                'matauang_id'   => 'GBP',
+                'kurs'          => 19364.99,
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
+            ),
+            array(
+                'bulan'         => date('m'),
+                'tahun'         => date('Y'),
+                'matauang_id'   => 'HKD',
+                'kurs'          => 1750.73,
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
+            ),
+            array(
+                'bulan'         => date('m'),
+                'tahun'         => date('Y'),
+                'matauang_id'   => 'JPY',
+                'kurs'          => 121.19,
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
+            ),
+            array(
+                'bulan'         => date('m'),
+                'tahun'         => date('Y'),
+                'matauang_id'   => 'SGD',
+                'kurs'          => 9605.97,
+                'created'       => time(),
+                'created_by'    => 1,
+                'modified'      => time(),
+                'modified_by'   => 1
+            ),
+        ));
+    }
 }
 
 /*
