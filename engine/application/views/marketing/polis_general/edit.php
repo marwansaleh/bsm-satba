@@ -929,6 +929,7 @@
             $new.insertBefore($row);
             
             $('#container-broker select.select2').select2();
+            this.brokerUpdateAll();
         },
         brokerHapus: function(index){
             var $row = $('#container-broker').find('.row-broker').eq(index);
@@ -967,8 +968,8 @@
         brokerUpdateTotalKomisiNet: function(){
             //update komisi premi
             var komisi_premi = this.totalKomisiIdr;
-            $('#container-broker').find('input.broker-total-komisi').val(komisi_kembali_idr);
-            $('#container-broker').find('span.broker-total-komisi').text(komisi_kembali_idr).number(true,2);
+            $('#container-broker').find('input.broker-total-komisi').val(komisi_premi);
+            $('#container-broker').find('span.broker-total-komisi').text(komisi_premi).number(true,2);
             
             //update nilai komisi kembali di tab broker
             var komisi_kembali_idr = this.komisiKembaliIdr;
@@ -1000,6 +1001,7 @@
             if (broker_id == this.BSM_Broker_Id){
                 this.brokerBSM(komisi_broker_idr);
             }
+            //this.brokerUpdatePersenKomisiLeader();
         },
         brokerUpdateAll: function(){
             //update komisi broker based on komisi change on asuradur
@@ -1008,12 +1010,67 @@
                 _this.brokerUpdate(index);
             });
         },
+        brokerUpdatePersenKomisi: function(index){
+            var $row = $('#container-broker').find('.row-broker').eq(index);
+            
+            //get leader 
+            var $leader;
+            var member = 0;
+            $('#container-broker .broker-leader').each(function(){
+                if ($(this).prop('checked')){
+                    $leader = $(this).parents('.row-broker').find('input.broker-persen');
+                }else{
+                    member += parseFloat($(this).parents('.row-broker').find('input.broker-persen').val());
+                }
+            });
+            var persentaseLeader = 100 - member;
+            $leader.val(persentaseLeader);
+            if(persentaseLeader <= 0){
+                alert('Persentase leader telah mencapai kurang atau sama dengan nol. Silahkan ganti persentase member');
+                
+                //normalize share
+                member = 0;
+                $row.find('input.broker-persen').val(member);
+                this.brokerUpdate(index);
+                
+                return false;
+            }
+            
+            this.brokerUpdateAll();
+            //this.brokerUpdatePersenKomisiLeader();
+        },
+        brokerSetLeader: function(index){
+            var $row = $('#container-broker').find('.row-broker').eq(index);
+            var is_leader = $row.find('input.broker-leader').prop('checked');
+            if (is_leader){
+                //change all label to member
+                $('#container-broker').find('span.broker-leader-label').html('<i></i> Member');
+                //change this to leader
+                $row.find('span.broker-leader-label').html('<i></i> Leader');
+                //set enable for member persentase
+                $('#container-broker').find('input.broker-persen').prop('disabled', false);
+                //set disable for persentase leader
+                $row.find('input.broker-persen').prop('disabled',true);
+            }
+        },
+        brokerUpdatePersenKomisiLeader: function(){
+            var index_leader = 0;
+            $('#container-broker .asuradur-broker').each(function(index){
+                if ($(this).prop('checked')){
+                    index_leader = index;
+                }
+            });
+            
+            this.brokerUpdate(index_leader);
+        },
         brokerBSM: function(komisi_idr){
             this.BSM_komisi_net = komisi_idr;
             $('#container-broker').find('input.broker-bsm-komisi-net').val(komisi_idr);
         }
     };
     $(document).ready(function(){
+        //make space wider by hidding left menu side bar
+        $('.js-toggle-minified').trigger('click');
         PolisManagement.init();
         
         
@@ -1131,100 +1188,16 @@
             PolisManagement.brokerHapus(index);
         });
         $('#container-broker').on('click', '.broker-leader', function(){
-            if ($(this).prop('checked')){
-                //change label
-                $('#container-broker').find('span.broker-leader-label').html('<i></i> Member');
-                $(this).next('span.broker-leader-label').html('<i></i> Leader');
-                //set enable for member persentase
-                $('#container-broker').find('input.broker-persen').prop('disabled', false);
-                //set disable for persentase leader
-                $(this).parents('.row-broker').find('input.broker-persen').prop('disabled',true);
-            }
+            var index = $('.row-broker').index($(this).parents('.row-broker'));
+            PolisManagement.brokerSetLeader(index);
         });
         $('#container-broker').on('keyup', 'input.broker-persen', function(){
             $(this).trigger('change');
         });
         $('#container-broker').on('change', 'input.broker-persen', function(){
-            var totalKomisiBroker = $('#container-broker').find('input.broker-total-komisi').val() ? parseFloat($('#container-broker').find('input.broker-total-komisi').val()) : 0;
-            //get leader 
-            var $leader;
-            var member = 0;
-            $('#container-broker .broker-leader').each(function(){
-                if ($(this).prop('checked')){
-                    $leader = $(this).parents('.row-broker');
-                }else{
-                    member += parseFloat($(this).parents('.row-broker').find('input.broker-persen').val());
-                }
-            });
-            var persentaseLeader = 100 - member;
-            $leader.find('input.broker-persen').val(persentaseLeader);
-            $leader.find('input.broker-idr').val(parseFloat((persentaseLeader/100) * totalKomisiBroker));
-            if(persentaseLeader <= 0){
-                alert('Persentase leader telah mencapai kurang atau sama dengan nol. Silahkan ganti persentase member');
-                return false;
-            }
-            
-            var persenShare = $(this).parents('.row-broker').find('input.broker-persen').val() ? parseFloat($(this).parents('.row-broker').find('input.broker-persen').val()) : 0;
-            var shareKomisi = totalKomisiBroker * (persenShare / 100);
-            $(this).parents('.row-broker').find('input.broker-idr').val(shareKomisi);
+            var index = $('.row-broker').index($(this).parents('.row-broker'));
+            PolisManagement.brokerUpdatePersenKomisi(index);
         });
     });
     
-    function totalNilai(parent, selector, target){
-        var total = 0.00;
-        $(parent +' '+ selector).each(function (){
-            total += parseFloat($(this).val());
-        });
-        
-        if (target){
-            $(target).val(total);
-        }else{
-            return total;
-        }
-    }
-    
-    function persentase_asuradur_check(parent, selector){
-        //get leader row
-        //$(parent)
-    }
-    
-    function hitungPremi(tipe,rate,pertanggungan){
-        var tipe_multiplier;
-        
-        if (tipe==='promil'){
-            tipe_multiplier = 0.001;
-        }else{
-            tipe_multiplier = 0.01;
-        }
-        
-        var nilai_premi = rate * tipe_multiplier * pertanggungan;
-        
-        return nilai_premi;
-    }
-    
-    function setTotalPremi(){
-        var biayaLain = $('#total-biayalain-idr').val() ? parseFloat($('#total-biayalain-idr').val()) : 0;
-        var gross = $('#total-premi-idr').val() ? parseFloat($('#total-premi-idr').val()) : 0;
-
-        var totalPremi = gross + biayaLain;
-        $('#container-asuradur').find('.asuradur-total-premi').each(function(){
-            if ($(this).is('input')){
-                $(this).val(totalPremi);
-            }else{
-                $(this).text(totalPremi).number(true,2);
-            }
-        });
-    }
-    
-    function setBrokerTotalKomisi(){
-        var totalKomisi = $('#total-asuradur-komisi-idr').val() ? parseFloat($('#total-asuradur-komisi-idr').val()) : 0;
-        
-        $('#container-broker').find('.broker-total-komisi').each(function(){
-            if ($(this).is('input')){
-                $(this).val(totalKomisi);
-            }else{
-                $(this).text(totalKomisi).number(true,2);
-            }
-        });
-    }
 </script>
