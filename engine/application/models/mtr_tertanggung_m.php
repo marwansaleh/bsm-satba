@@ -31,6 +31,17 @@ class Mtr_tertanggung_m extends MY_Model {
         )
     ); 
     
+    public function save($data, $id = NULL) {
+        $nama_lengkap = (isset($data['nama_depan']) ? $data['nama_depan'] : '') 
+            . (isset($data['nama_tengah']) ? ' ' .$data['nama_tengah'] : '')
+            . (isset($data['nama_belakang']) ? ' ' .$data['nama_belakang'] : '');
+        
+        if (strlen($nama_lengkap)>0){
+            $data['nama_lengkap'] = $nama_lengkap;
+        }
+        
+        return parent::save($data, $id);
+    }
 }
 
 /*

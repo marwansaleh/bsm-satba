@@ -20,11 +20,6 @@ class Migration_add_rel_marketing_polis_penanggung extends MY_Migration {
             'constraint' => 11,
             'null' => FALSE
         ),
-        'objek'    => array (
-            'type'  => 'INT',
-            'constraint' => 11,
-            'null' => FALSE
-        ),
         'asuradur'    => array (
             'type'  => 'INT',
             'constraint' => 11,
@@ -35,39 +30,20 @@ class Migration_add_rel_marketing_polis_penanggung extends MY_Migration {
             'constraint' => 1,
             'default' => 0
         ),
-        'persentase'    => array (
+        'persentase_share'    => array (
             'type'  => 'NUMERIC',
             'constraint' => '6,3',
             'default' => 0.000
         ),
-        'premi' => array (
+        'persentase_komisi' => array (
+            'type'  => 'NUMERIC',
+            'constraint' => '6,3',
+            'default' => 0.00
+        ),
+        'komisi_idr' => array (
             'type'  => 'NUMERIC',
             'constraint' => '15,2',
             'default' => 0.00
-        ),
-        'created'   => array(
-            'type'  => 'INT',
-            'constraint' => 11,
-            'unsigned' => TRUE,
-            'default' => 0
-        ),
-        'created_by'   => array(
-            'type'  => 'INT',
-            'constraint' => 11,
-            'unsigned' => TRUE,
-            'default' => 0
-        ),
-        'modified'   => array(
-            'type'  => 'INT',
-            'constraint' => 11,
-            'unsigned' => TRUE,
-            'default' => 0
-        ),
-        'modified_by'   => array(
-            'type'  => 'INT',
-            'constraint' => 11,
-            'unsigned' => TRUE,
-            'default' => 0
         )
     );
     

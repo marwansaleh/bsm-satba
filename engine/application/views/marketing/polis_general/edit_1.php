@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Sumber Bisnis</label>
-                                    <select id="select-sumber-bisnis" name="sumber_bisnis" class="form-control selectpicker select-sumber-bisnis" data-live-search="true">
+                                    <select id="select-sumber-bisnis" name="sumber_bisnis" class="select2 select-sumber-bisnis">
                                         <?php foreach ($sumber_bisnis as $sb): ?>
                                         <option value="<?php echo $sb->id; ?>" <?php echo $sb->id==$item->sumber_bisnis?'selected':''; ?>><?php echo $sb->kode .' - '. $sb->nama; ?></option>
                                         <?php endforeach; ?>
@@ -66,13 +66,11 @@
                                 <div class="form-group">
                                     <label>Tertanggung</label>
                                     <div class="input-group">
-                                        <select id="select-tertanggung" name="tertanggung" class="form-control selectpicker select-tertanggung" data-live-search="true">
-                                            <?php foreach ($tertanggung as $tt): ?>
-                                            <option value="<?php echo $tt->id; ?>"><?php echo $tt->nama_lengkap; ?></option>
-                                            <?php endforeach; ?>
+                                        <select id="select-tertanggung" name="tertanggung" class="select-tertanggung">
+                                            
                                         </select>
                                         <div class="input-group-btn">
-                                            <button type="button" id="btn-tertanggung-tambah" class="btn btn-success" title="Tambah tertanggung"><span class="fa fa-plus"></span></button>
+                                            <button type="button" id="btn-tertanggung-tambah" class="btn btn-success btn-sm" title="Tambah tertanggung"><span class="fa fa-plus"></span></button>
                                         </div>
                                     </div>
                                 </div>
@@ -82,7 +80,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Jenis Asuransi</label>
-                                    <select id="seelct-jenis-asuransi" name="jenis_asuransi" class="form-control selectpicker select-jenis-asuransi" data-live-search="true">
+                                    <select id="seelct-jenis-asuransi" name="jenis_asuransi" class="select2 select-jenis-asuransi">
                                         <?php foreach ($jenis_asuransi as $ja): ?>
                                         <option value="<?php echo $ja->id; ?>" <?php echo $ja->id==$item->jenis_asuransi?'selected':''; ?>><?php echo $ja->nama; ?></option>
                                         <?php endforeach; ?>
@@ -140,7 +138,7 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label>Sales / AO</label>
-                                            <select class="form-control selectpicker select-sales" name="sales" data-live-search="true">
+                                            <select class="select2 select-sales" name="sales">
                                                 <?php foreach ($sales as $sa): ?>
                                                 <option value="<?php echo $sa->id; ?>" <?php echo $item->sales==$sa->id ? 'selected':''; ?>>
                                                     <?php echo $sa->nama;?>
@@ -197,7 +195,7 @@
                                                 <div class="input-group-addon">
                                                     <span>IDR</span>
                                                 </div>
-                                                <input type="text" disabled="true" class="form-control text-right objek-nilai-idr number disabled" name="objek_nilai_idr[]" placeholder="0.00">
+                                                <input type="text" disabled="true" class="form-control text-right objek-nilai-idr number disabled" placeholder="0.00">
                                                 <div class="input-group-btn">
                                                     <button type="button" class="btn btn-success btn-objek-tambah" title="Tambah objek pertanggungan"><span class="fa fa-plus"></span></button>
                                                 </div>
@@ -375,7 +373,7 @@
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="form-group">
-                                            <select name="asuradur[]" class="form-control selectpicker select-asuradur" data-live-search="true">
+                                            <select id="select-asuradur-array" name="asuradur[]" class="select2 select-asuradur">
                                                 <?php foreach ($asuradurs as $as): ?>
                                                 <option value="<?php echo $as->id; ?>"><?php echo $as->nama; ?></option>
                                                 <?php endforeach; ?>
@@ -467,7 +465,7 @@
                                     </div>
                                     <div class="col-lg-5">
                                         <div class="form-group">
-                                            <select id="select-broker-array" name="broker[]" class="form-control selectpicker select-broker" data-live-search="true">
+                                            <select id="select-broker-array" name="broker[]" class="select2 select-broker">
                                                 <?php foreach ($brokers as $brk): ?>
                                                 <option value="<?php echo $brk->id; ?>"><?php echo $brk->nama; ?></option>
                                                 <?php endforeach; ?>
@@ -673,9 +671,6 @@
                     'broker[]': {
                         required: true
                     },
-                    'asuradur[]': {
-                        
-                    }
                 },
                 highlight: function(element) {
                     $(element).closest('.form-group').addClass('has-error');
@@ -705,7 +700,7 @@
             });
             
             //select tertanggung to select2
-            //this.tertanggungLoadData();
+            this.tertanggungLoadData();
             
             //get totalPremiNet and totalKomisiNet
             this.totalPremiNet = $('#container-asuradur').find('input.asuradur-total-premi').val();
@@ -744,13 +739,15 @@
         },
         tertanggungLoadData: function(){
             var $select = $('#container-basic').find('select.select-tertanggung');
+            $select.select2('destroy');
             $.getJSON('<?php echo get_action_url('master/tertanggung/get_json'); ?>',function(data){
                 $select.empty();
+                
                 for(var i in data){
                     $select.append('<option value="'+data[i].id+'">'+data[i].text+'</option>');
                 }
                 
-                $select.selectpicker('refresh');
+                $select.select2();
             });
         },
         getTotalNilai: function(parent_container, selector){
@@ -957,6 +954,9 @@
             $('#container-biayalain').find('#total-biayalain-idr').val(total_biaya_lain);
         },
         asuradurTambah: function(index){
+            //destroy select2 component before clone
+            $('#container-asuradur select.select2').select2('destroy');
+            
             var $row = $('#container-asuradur').find('.row-asuradur').eq(index);
             var $new = $row.clone(true);
             
@@ -969,19 +969,16 @@
             $new.find('input.asuradur-komisi-idr').val(0);
 
             //change attribute of button current row
-            var $button = $row.find('button.btn-asuradur-tambah');
+            var $button = $row.find('button');
             $button.removeClass('btn-success').addClass('btn-danger').addClass('btn-asuradur-hapus')
                     .removeClass('btn-asuradur-tambah').attr('title','Hapus asuradur')
                     .find('span').removeClass('fa-plus').addClass('fa-minus');
             
-            //re init selectpicker
-            var $selectPickers = $new.find('.selectpicker');
-            $selectPickers.data('selectpicker', null);
-            $new.find('.bootstrap-select').remove();
-            $selectPickers.selectpicker();
-            
             //put new row to the last
             $new.insertBefore($row);
+            
+            //init select to select2 plugin
+            $('#container-asuradur select.select2').select2();
         },
         asuradurHapus: function(index){
             var $row = $('#container-asuradur').find('.row-asuradur').eq(index);
@@ -1103,37 +1100,33 @@
         },
         asuradurSelectAsuradurId: function (index){
             var $row = $('#container-asuradur').find('.row-asuradur').eq(index);
-            var asuradur_id = $row.find('select.select-asuradur option:selected').val();
+            var asuradur_id = $row.find('select.select-asuradur').select2('data').id;
             
             //set value of radio to this auradur
             $row.find('input.asuradur-leader').val(asuradur_id);
-            console.log(asuradur_id);
         },
         brokerTambah: function(index){
+            //destroy select2 componenet before clone
+            $('#container-broker select.select2').select2('destroy');
+            
             var $row = $('#container-broker').find('.row-broker').eq(index);
             var $new = $row.clone(true);
             
-            var broker_id = $new.find('select.select-broker').val();
-            
             //change attribute of new
             $new.find('input.broker-persen').val(0).prop('disabled',false);
-            $new.find('input.broker-leader').prop('checked', false).val(broker_id);
+            $new.find('input.broker-leader').prop('checked', false);
             $new.find('span.broker-leader-label').html('<i></i> Member');
 
             //change attribute of button current row
-            var $button = $row.find('button.btn-broker-tambah');
+            var $button = $row.find('button');
             $button.removeClass('btn-success').addClass('btn-danger').addClass('btn-broker-hapus')
                     .removeClass('btn-broker-tambah').attr('title','Hapus broker')
                     .find('span').removeClass('fa-plus').addClass('fa-minus');
             
-            //re init selectpicker
-            var $selectPickers = $new.find('.selectpicker');
-            $selectPickers.data('selectpicker', null);
-            $new.find('.bootstrap-select').remove();
-            $selectPickers.selectpicker();
-            
             //put new row to the last
             $new.insertBefore($row);
+            
+            $('#container-broker select.select2').select2();
             this.brokerUpdateAll();
         },
         brokerHapus: function(index){
@@ -1274,11 +1267,11 @@
         },
         brokerSelectBrokerId: function (index){
             var $row = $('#container-broker').find('.row-broker').eq(index);
-            var broker_id = $row.find('select.select-broker').val();
+            var broker_id = $row.find('select.select-broker').select2('id');
             
             //set value of radio to this auradur
             $row.find('input.broker-leader').val(broker_id);
-            console.log(broker_id);
+            console.log(JSON.stringify(broker_id));
         }
     };
     $(document).ready(function(){
@@ -1288,9 +1281,6 @@
         
         
         /* BASIC */
-        $('#container-basic').on('change','select.select-tertanggung', function(){
-            alert($(this).val());
-        });
         $('#container-basic').on('click','#btn-tertanggung-tambah', function(){
             PolisManagement.tertanggungOpenWindow();
         });
@@ -1402,7 +1392,7 @@
         });
         $('#container-asuradur').on('change','select.select-asuradur', function(){
             var index = $('.row-asuradur').index($(this).parents('.row-asuradur'));
-            PolisManagement.asuradurSelectAsuradurId(index);
+            PolisManagement.asuradurSelectAsuradurId();
         });
         
         /* BROKER */
@@ -1427,7 +1417,7 @@
         });
         $('#container-broker').on('change','select.select-broker', function(){
             var index = $('.row-broker').index($(this).parents('.row-broker'));
-            PolisManagement.brokerSelectBrokerId(index);
+            PolisManagement.brokerSelectBrokerId();
         });
     });
     

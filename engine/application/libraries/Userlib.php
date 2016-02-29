@@ -128,8 +128,13 @@ class Userlib extends Library {
      * @return boolean
      */
     public function has_access($role_id){
-        $role_session = $this->ci->session->userdata($this->_role_session);
-        return isset($role_session[$role_id]) ? $role_session[$role_id] : FALSE;
+        //which group is requesting
+        if ($this->is_admin()){
+            return TRUE;
+        }else{
+            $role_session = $this->ci->session->userdata($this->_role_session);
+            return isset($role_session[$role_id]) ? $role_session[$role_id] : FALSE;
+        }
     }
     
     /**
@@ -139,10 +144,10 @@ class Userlib extends Library {
      */
     public function is_admin($group_id=NULL){
         if (!$group_id){
-            return ($this->ci->session->userdata($this->_prefix_session_access.'group_id')==CT_USERTYPE_ROOT);
-        }else{
-            return ($group_id == CT_USERTYPE_ROOT);
+            $group_id = $this->ci->session->userdata($this->_prefix_session_access.'group_id');
         }
+        
+        return ($group_id == CT_USERTYPE_ROOT);
     }
     
     /**

@@ -1,13 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * Description of Mkt_polis_biayalain_m
+ * Description of Mkt_polis_asuradur_m
  *
  * @author Marwan
  * @email amazzura.biz@gmail.com
  */
-class Mkt_polis_biayalain_m extends MY_Model {
-    protected $_table_name = 'rel_marketing_polis_biayalain';
+class Mkt_polis_asuradur_m extends MY_Model {
+    protected $_table_name = 'rel_marketing_polis_penanggung';
     protected $_primary_key = 'id';
     protected $_primary_filter = 'intval';
     protected $_order_by = 'id';
@@ -33,5 +33,5 @@ class Mkt_polis_biayalain_m extends MY_Model {
 }
 
 /*
- * file location: /application/models/mkt_polis_biayalain_m.php
+ * file location: /application/models/mkt_polis_asuradur_m.php
  */

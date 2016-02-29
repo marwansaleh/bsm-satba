@@ -94,6 +94,36 @@ class Migration_add_rel_marketing_polis extends MY_Migration {
             'constraint' => '15,2',
             'default' => 0.00
         ),
+        'broker_total_komisi_kembali' => array(
+            'type' => 'NUMERIC',
+            'constraint' => '15,2',
+            'default' => 0.00
+        ),
+        'broker_total_komisi' => array(
+            'type' => 'NUMERIC',
+            'constraint' => '15,2',
+            'default' => 0.00
+        ),
+        'broker_total_komisi_net' => array(
+            'type' => 'NUMERIC',
+            'constraint' => '15,2',
+            'default' => 0.00
+        ),
+        'broker_bsm_komisi_net' => array(
+            'type' => 'NUMERIC',
+            'constraint' => '15,2',
+            'default' => 0.00
+        ),
+        'broker_leader' => array(
+            'type' => 'INT',
+            'constraint' => 11,
+            'null' => FALSE
+        ),
+        'asuradur_leader' => array(
+            'type' => 'INT',
+            'constraint' => 11,
+            'null' => FALSE
+        ),
         'sales' => array(
             'type' => 'INT',
             'constraint' => 11,

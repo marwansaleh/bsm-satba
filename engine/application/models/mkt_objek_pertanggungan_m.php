@@ -10,9 +10,8 @@ class Mkt_objek_pertanggungan_m extends MY_Model {
     protected $_table_name = 'rel_marketing_polis_objek';
     protected $_primary_key = 'id';
     protected $_primary_filter = 'intval';
-    protected $_order_by = 'polis, objek';
-    protected $_timestamps = TRUE;
-    protected $_timestamps_field = array('created','modified');
+    protected $_order_by = 'id';
+    protected $_timestamps = FALSE;
     
     public $rules = array(
         'create' => array(

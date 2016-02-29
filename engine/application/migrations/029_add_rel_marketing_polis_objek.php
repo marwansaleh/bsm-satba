@@ -42,30 +42,6 @@ class Migration_add_rel_marketing_polis_objek extends MY_Migration {
             'constraint' => '15,2',
             'default' => 0.00,
             'null' => FALSE
-        ),
-        'created'   => array(
-            'type'  => 'INT',
-            'constraint' => 11,
-            'unsigned' => TRUE,
-            'default' => 0
-        ),
-        'created_by'   => array(
-            'type'  => 'INT',
-            'constraint' => 11,
-            'unsigned' => TRUE,
-            'default' => 0
-        ),
-        'modified'   => array(
-            'type'  => 'INT',
-            'constraint' => 11,
-            'unsigned' => TRUE,
-            'default' => 0
-        ),
-        'modified_by'   => array(
-            'type'  => 'INT',
-            'constraint' => 11,
-            'unsigned' => TRUE,
-            'default' => 0
         )
     );
     

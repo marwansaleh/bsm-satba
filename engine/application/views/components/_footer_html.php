@@ -39,5 +39,7 @@
         <script src="<?php echo get_asset_url('js/jszip/jszip.min.js') ?>"></script>
         <script src="<?php echo get_asset_url('js/pdfmake/pdfmake.min.js') ?>"></script>
         <script src="<?php echo get_asset_url('js/vfs_fonts/vfs_fonts.js') ?>"></script>
+        
+        <script src="<?php echo get_asset_url('js/plugins/ajax-form/jquery.form.min.js'); ?>"></script>
     </body>
 </html>

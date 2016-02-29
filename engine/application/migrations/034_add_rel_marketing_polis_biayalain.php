@@ -40,30 +40,6 @@ class Migration_add_rel_marketing_polis_biayalain extends MY_Migration {
             'type'  => 'NUMERIC',
             'constraint' => '10,2',
             'default' => 0.00
-        ),
-        'created'   => array(
-            'type'  => 'INT',
-            'constraint' => 11,
-            'unsigned' => TRUE,
-            'default' => 0
-        ),
-        'created_by'   => array(
-            'type'  => 'INT',
-            'constraint' => 11,
-            'unsigned' => TRUE,
-            'default' => 0
-        ),
-        'modified'   => array(
-            'type'  => 'INT',
-            'constraint' => 11,
-            'unsigned' => TRUE,
-            'default' => 0
-        ),
-        'modified_by'   => array(
-            'type'  => 'INT',
-            'constraint' => 11,
-            'unsigned' => TRUE,
-            'default' => 0
         )
     );
     

@@ -6,8 +6,8 @@
  * @author Marwan
  * @email amazzura.biz@gmail.com
  */
-class Mkt_polis_biayalain_m extends MY_Model {
-    protected $_table_name = 'rel_marketing_polis_biayalain';
+class Mkt_polis_premi_m extends MY_Model {
+    protected $_table_name = 'rel_marketing_polis_premi';
     protected $_primary_key = 'id';
     protected $_primary_filter = 'intval';
     protected $_order_by = 'id';

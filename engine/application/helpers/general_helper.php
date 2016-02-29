@@ -73,6 +73,19 @@ if (!function_exists('create_alert_box')){
     }
 }
 
+if (!function_exists('get_list_month')){
+    function get_list_month($tipe='long'){
+        $short = array(1=>'Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nop', 'Des');
+        $long = array(1 => 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'Nopember', 'Desember');
+        
+        if ($tipe == 'long'){
+            return $long;
+        }else{
+            return $short;
+        }
+    }
+}
+
 if (!function_exists('get_asset_url')){
     function get_asset_url($filename=NULL){
         $base_assets = config_item('assets_path');

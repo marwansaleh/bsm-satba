@@ -41,7 +41,7 @@ class Migration_add_rel_marketing_tertanggung extends MY_Migration {
             'constraint' => 254,
             'null' => TRUE
         ),
-        'kota'    => array (
+        'kabupaten'    => array (
             'type'  => 'INT',
             'constraint' => 11,
             'default' => 0
