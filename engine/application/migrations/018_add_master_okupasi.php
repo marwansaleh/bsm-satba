@@ -1,12 +1,12 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Description of Migration_add_rel_group_privileges
+ * Description of Migration_add_master_okupasi
  *
  * @author marwansaleh
  */
-class Migration_add_rel_group_privileges extends MY_Migration {
-    protected $_table_name = 'rel_auth_group_privileges';
+class Migration_add_master_okupasi extends MY_Migration {
+    protected $_table_name = 'ref_okupasi';
     protected $_primary_key = 'id';
     protected $_fields = array(
         'id'    => array (
@@ -15,19 +15,18 @@ class Migration_add_rel_group_privileges extends MY_Migration {
             'unsigned' => TRUE,
             'auto_increment' => TRUE
         ),
-        'group_id'    => array(
-            'type' => 'INT',
-            'constraint' => 11,
+        'kode'    => array(
+            'type' => 'VARCHAR',
+            'constraint' => 7,
             'null' => FALSE
         ),
-        'role_id'    => array(
-            'type' => 'INT',
-            'constraint' => 11,
+        'deskripsi'   => array(
+            'type'  => 'TEXT',
             'null' => FALSE
         ),
-        'granted'    => array(
-            'type' => 'TINYINT',
-            'constraint' => 1,
+        'tarif' => array(
+            'type'  => 'NUMERIC',
+            'constraint' => '6,3',
             'default' => 0
         ),
         'created'   => array(
@@ -55,10 +54,24 @@ class Migration_add_rel_group_privileges extends MY_Migration {
             'default' => 0
         )
     );
-    
+
+//    public function up(){
+//        parent::up();
+//        //Need seeding ?
+//        $this->_seed(array(
+//            array(
+//                'kode'          => '',
+//                'deskripsi'     => '',
+//                'created'       => time(),
+//                'created_by'    => 1,
+//                'modified'      => time(),
+//                'modified_by'   => 1
+//            )
+//        ));
+//    }
 }
 
 /*
- * filename : 019_add_rel_group_privileges.php
- * location : /application/migrations/019_add_rel_group_privileges.php
+ * filename : 018_add_master_okupasi.php
+ * location : /application/migrations/018_add_master_okupasi.php
  */

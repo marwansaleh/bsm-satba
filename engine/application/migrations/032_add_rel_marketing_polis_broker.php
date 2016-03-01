@@ -8,7 +8,7 @@
 class Migration_add_rel_marketing_polis_broker extends MY_Migration {
     protected $_table_name = 'rel_marketing_polis_broker';
     protected $_primary_key = 'id';
-    protected $_index_keys = array('nomor_polis');
+    protected $_index_keys = array('polis');
     protected $_fields = array(
         'id'    => array (
             'type'  => 'INT',
@@ -16,9 +16,9 @@ class Migration_add_rel_marketing_polis_broker extends MY_Migration {
             'unsigned' => TRUE,
             'auto_increment' => TRUE
         ),
-        'nomor_polis'    => array (
-            'type'  => 'VARCHAR',
-            'constraint' => 15,
+        'polis'    => array (
+            'type'  => 'INT',
+            'constraint' => 11,
             'null' => FALSE
         ),
         'broker'    => array (
@@ -35,6 +35,11 @@ class Migration_add_rel_marketing_polis_broker extends MY_Migration {
             'type'  => 'NUMERIC',
             'constraint' => '6,3',
             'default' => 0.000
+        ),
+        'komisi' => array (
+            'type'  => 'NUMERIC',
+            'constraint' => '15,2',
+            'default' => 0.00
         )
     );
     

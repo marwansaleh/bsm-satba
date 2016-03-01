@@ -47,12 +47,12 @@ class Admin_Controller extends MY_Controller {
     function __construct() {
         parent::__construct();
         
-//        $class_name = $this->router->fetch_class();
-//        if (!$this->userlib->isLoggedin()){
-//            redirect(get_action_url('auth'));
-//        }else if ($class_name != 'error' && !$this->has_access($this->get_roleid_by_url())){
-//            redirect('error/unauthorize');
-//        }
+        $class_name = $this->router->fetch_class();
+        if (!$this->userlib->isLoggedin()){
+            redirect(get_action_url('auth'));
+        }else if ($class_name != 'error' && !$this->has_access($this->get_roleid_by_url())){
+            redirect('error/unauthorize');
+        }
         
         //load neccessary models
         $this->load->model(array('auth_user_m','mainmenu_m'));
@@ -222,7 +222,7 @@ class Admin_Controller extends MY_Controller {
         return $js_object;
     }
     protected function get_currency_rate(){
-        $month = 2;
+        $month = 3;
         $year = 2016;
         
         if (!isset($this->rel_kurs_m)){

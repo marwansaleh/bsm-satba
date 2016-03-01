@@ -15,10 +15,8 @@ class Migration_add_rel_matauang_update extends MY_Migration {
             'unsigned' => TRUE,
             'auto_increment' => TRUE
         ),
-        'lastupdate'    => array (
-            'type'  => 'DATE',
-            'constraint' => 11,
-            'default' => 0
+        'last_update'    => array (
+            'type'  => 'DATE'
         )
     );
     
@@ -34,6 +32,6 @@ class Migration_add_rel_matauang_update extends MY_Migration {
 }
 
 /*
- * filename : 036_add_rel_matauang_update.php
- * location : /application/migrations/036_add_rel_matauang_update.php
+ * filename : 035_add_rel_matauang_update.php
+ * location : /application/migrations/035_add_rel_matauang_update.php
  */

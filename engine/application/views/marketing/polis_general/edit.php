@@ -25,7 +25,7 @@
                                             <label>Bulan Laporan</label>
                                             <select name="bulan_laporan" class="form-control">
                                                 <?php foreach($daftar_bulan as $bulan => $nama): ?>
-                                                <option value="<?php echo $bulan; ?>"><?php echo $nama; ?></option>
+                                                <option value="<?php echo $bulan; ?>" <?php echo $bulan==$item->bulan_laporan?'selected':''; ?>><?php echo $nama; ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
@@ -35,7 +35,7 @@
                                             <label>Tahun Laporan</label>
                                             <select name="tahun_laporan" class="form-control">
                                                 <?php foreach($daftar_tahun as $tahun): ?>
-                                                <option value="<?php echo $tahun; ?>"><?php echo $tahun; ?></option>
+                                                <option value="<?php echo $tahun; ?>" <?php echo $bulan==$item->tahun_laporan?'selected':''; ?>><?php echo $tahun; ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Sumber Bisnis</label>
-                                    <select id="select-sumber-bisnis" name="sumber_bisnis" class="form-control selectpicker select-sumber-bisnis" data-live-search="true">
+                                    <select id="select-sumber-bisnis" name="sumber_bisnis" class="form-control selectpicker select-sumber-bisnis" data-live-search="true" data-size="8">
                                         <?php foreach ($sumber_bisnis as $sb): ?>
                                         <option value="<?php echo $sb->id; ?>" <?php echo $sb->id==$item->sumber_bisnis?'selected':''; ?>><?php echo $sb->kode .' - '. $sb->nama; ?></option>
                                         <?php endforeach; ?>
@@ -66,9 +66,9 @@
                                 <div class="form-group">
                                     <label>Tertanggung</label>
                                     <div class="input-group">
-                                        <select id="select-tertanggung" name="tertanggung" class="form-control selectpicker select-tertanggung" data-live-search="true">
+                                        <select id="select-tertanggung" name="tertanggung" class="form-control selectpicker select-tertanggung" data-live-search="true" data-size="8">
                                             <?php foreach ($tertanggung as $tt): ?>
-                                            <option value="<?php echo $tt->id; ?>"><?php echo $tt->nama_lengkap; ?></option>
+                                            <option value="<?php echo $tt->id; ?>" <?php echo $tt->id==$item->tertanggung?'selected':''; ?>><?php echo $tt->nama_lengkap; ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                         <div class="input-group-btn">
@@ -78,11 +78,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Okupasi</label>
-                                    <input type="text" name="okupasi" class="form-control" value="<?php echo $item->okupasi; ?>" />
+                                    <select id="select-okupasi" name="okupasi" class="form-control selectpicker select-okupasi" data-live-search="true" data-size="8">
+                                            <?php foreach ($okupasi as $okp): ?>
+                                            <option value="<?php echo $okp->id; ?>" <?php echo $okp->id==$item->okupasi?'selected':''; ?>><?php echo $okp->kode .' - ' . $okp->deskripsi; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
                                 </div>
                                 <div class="form-group">
                                     <label>Jenis Asuransi</label>
-                                    <select id="seelct-jenis-asuransi" name="jenis_asuransi" class="form-control selectpicker select-jenis-asuransi" data-live-search="true">
+                                    <select id="seelct-jenis-asuransi" name="jenis_asuransi" class="form-control selectpicker select-jenis-asuransi" data-live-search="true" data-size="8">
                                         <?php foreach ($jenis_asuransi as $ja): ?>
                                         <option value="<?php echo $ja->id; ?>" <?php echo $ja->id==$item->jenis_asuransi?'selected':''; ?>><?php echo $ja->nama; ?></option>
                                         <?php endforeach; ?>
@@ -140,11 +144,15 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label>Sales / AO</label>
-                                            <select class="form-control selectpicker select-sales" name="sales" data-live-search="true">
-                                                <?php foreach ($sales as $sa): ?>
-                                                <option value="<?php echo $sa->id; ?>" <?php echo $item->sales==$sa->id ? 'selected':''; ?>>
-                                                    <?php echo $sa->nama;?>
-                                                </option>
+                                            <select class="form-control selectpicker select-sales" name="sales" data-live-search="true" data-size="8">
+                                                <?php foreach ($sales_group as $sg): ?>
+                                                <optgroup label="<?php echo $sg->nama; ?>">
+                                                    <?php foreach ($sg->sales as $sa): ?>
+                                                    <option value="<?php echo $sa->id; ?>" <?php echo $item->sales==$sa->id ? 'selected':''; ?>>
+                                                        <?php echo $sa->nama;?>
+                                                    </option>
+                                                    <?php endforeach; ?>
+                                                </optgroup>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
@@ -521,7 +529,7 @@
             </div>
             <div class="modal-body">
                 <div id="container-tertanggung">
-                    <form method="post" id="formTertanggung" action="<?php echo site_url('master/tertanggung/ajax_save'); ?>">
+                    <form method="post" id="formTertanggung" action="<?php echo site_url('service/dt/mtr_tertanggung'); ?>">
                         <div class="row">
                             <div class="col-lg-4">
                                 <div class="form-group">
@@ -550,7 +558,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>Propinsi</label>
-                                    <select id="select_propinsi" name="propinsi" class="select2 select-propinsi">
+                                    <select id="select_propinsi" name="propinsi" class="form-control selectpicker select-propinsi" data-live-search="true">
                                         <?php foreach ($propinsi as $pv): ?>
                                         <option value="<?php echo $pv->id; ?>"><?php echo $pv->nama; ?></option>
                                         <?php endforeach; ?>
@@ -560,7 +568,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>Kabupaten / Kota</label>
-                                    <select id="select_kabupaten" name="kabupaten" class="select2 select-kabupaten">
+                                    <select id="select_kabupaten" name="kabupaten" class="form-control selectpicker select-kabupaten" data-live-search="true">
                                         <option></option>
                                     </select>
                                 </div>
@@ -670,6 +678,9 @@
                         minlength: 2,
                         required: true
                     },
+                    tertanggung: {
+                        require: true
+                    },
                     'broker[]': {
                         required: true
                     },
@@ -715,6 +726,7 @@
             this.BSM_Broker_Id = 1;
             this.BSM_komisi_net = $('#container-broker').find('input.broker-bsm-komisi-net').val();
             
+            //this.tertanggungLoadData();
             //modal tertanggung
             this.tertanggungLoadKabupaten($('#container-tertanggung').find('select.select-propinsi').val());
         },
@@ -726,14 +738,13 @@
         },
         tertanggungLoadKabupaten: function(propinsi){
             var $select = $('#container-tertanggung').find('select.select-kabupaten');
-            $select.select2('destroy');
             
-            $.getJSON("<?php echo site_url('master/kabupaten/by_province_json'); ?>/"+propinsi,function(data){
+            $.getJSON("<?php echo site_url('service/dt/mtr_kabupaten/byprovince'); ?>/"+propinsi,function(data){
                 $select.empty();
                 for (var i in data){
-                    $select.append('<option value="'+data[i].id+'">'+data[i].text+'</option>');
+                    $select.append('<option value="'+data[i].id+'">'+data[i].nama+'</option>');
                 }
-                $select.select2();
+                $select.selectpicker('refresh');
             });
         },
         tertanggungSaveSuccess: function(){
@@ -744,10 +755,13 @@
         },
         tertanggungLoadData: function(){
             var $select = $('#container-basic').find('select.select-tertanggung');
-            $.getJSON('<?php echo get_action_url('master/tertanggung/get_json'); ?>',function(data){
+            var selected_value = $select.val();
+            
+            $.getJSON('<?php echo get_action_url('service/dt/mtr_tertanggung/all'); ?>',function(data){
                 $select.empty();
                 for(var i in data){
-                    $select.append('<option value="'+data[i].id+'">'+data[i].text+'</option>');
+                    $select.append('<option value="'+data[i].id+'"'+(selected_value==data[i].id ? ' selected':'')+'>'+data[i].nama_lengkap+'</option>');
+                    console.log(data[i].nama_lengkap);
                 }
                 
                 $select.selectpicker('refresh');
@@ -956,11 +970,37 @@
             console.log('Biaya lain idr total:'+total_biaya_lain);
             $('#container-biayalain').find('#total-biayalain-idr').val(total_biaya_lain);
         },
+        asuradurGetAvailableId: function(){
+            var asuradurs = [];
+            var options = $('#container-asuradur').find('select.select-asuradur option');
+            var available_values = $.map(options ,function(option) {
+                return option.value;
+            });
+            
+            $('#container-asuradur select.select-asuradur').each(function(){
+                asuradurs.push($(this).val());
+            });
+            
+            for (var i=0; i<available_values.length; i++){
+                if (asuradurs.indexOf(available_values[i])<0){
+                    console.log(available_values[i]);
+                    return available_values[i];
+                    break;
+                }
+            }
+            
+            return false;
+        },
         asuradurTambah: function(index){
             var $row = $('#container-asuradur').find('.row-asuradur').eq(index);
             var $new = $row.clone(true);
             
-            var asuradur_id = $new.find('select.select-asuradur').val();
+            //set other asuradur selected
+            var asuradur_id = this.asuradurGetAvailableId();
+            if (asuradur_id){
+                $new.find('select.select-asuradur').val(asuradur_id);
+            }
+            
             //change attribute of new
             $new.find('input.asuradur-persen').val(0).prop('disabled',false);
             $new.find('input.asuradur-leader').prop('checked', false).val(asuradur_id);
@@ -982,6 +1022,8 @@
             
             //put new row to the last
             $new.insertBefore($row);
+            
+            
         },
         asuradurHapus: function(index){
             var $row = $('#container-asuradur').find('.row-asuradur').eq(index);
@@ -1103,17 +1145,76 @@
         },
         asuradurSelectAsuradurId: function (index){
             var $row = $('#container-asuradur').find('.row-asuradur').eq(index);
-            var asuradur_id = $row.find('select.select-asuradur option:selected').val();
+            var asuradur_id = $row.find('select.select-asuradur').val();
             
             //set value of radio to this auradur
             $row.find('input.asuradur-leader').val(asuradur_id);
-            console.log(asuradur_id);
+        },
+        asuradurSelectChange: function(index){
+            var $row = $('#container-asuradur').find('.row-asuradur').eq(index);
+            var asuradur_id = $row.find('select.select-asuradur').val();
+            var selected_asuradur_ids = [];
+            var found = 0;
+            
+            $('#container-asuradur').find('.row-asuradur').each(function(){
+                var id = $(this).find('select.select-asuradur').val();
+                selected_asuradur_ids.push(id);
+                if (id==asuradur_id){
+                    found++;
+                }
+            });
+            
+            if (found > 1){
+                alert('Tidak boleh ada dua asuradur yang sama');
+                
+                //re-iterate to get un-occupied ausradur
+                var available_values = $.map($row.find('select.select-asuradur option') ,function(option) {
+                    return option.value;
+                });
+                for (var i=0; i<available_values.length; i++){
+                    if (selected_asuradur_ids.indexOf(available_values[i])<0){
+                        $row.find('select.select-asuradur').val(available_values[i]).selectpicker('refresh');
+                        
+                        this.asuradurSelectAsuradurId(index);
+                        break;
+                    }
+                }
+            
+                return false;
+            }else{
+                this.asuradurSelectAsuradurId(index);
+            }
+        },
+        brokerGetAvailableId: function(){
+            var brokers = [];
+            var options = $('#container-broker').find('select.select-broker option');
+            var available_values = $.map(options ,function(option) {
+                return option.value;
+            });
+            
+            $('#container-broker select.select-broker').each(function(){
+                brokers.push($(this).val());
+            });
+            
+            for (var i=0; i<available_values.length; i++){
+                if (brokers.indexOf(available_values[i])<0){
+                    console.log(available_values[i]);
+                    return available_values[i];
+                    break;
+                }
+            }
+            
+            return false;
         },
         brokerTambah: function(index){
             var $row = $('#container-broker').find('.row-broker').eq(index);
             var $new = $row.clone(true);
             
-            var broker_id = $new.find('select.select-broker').val();
+            //set other asuradur selected
+            var broker_id = this.asuradurGetAvailableId();
+            if (broker_id){
+                $new.find('select.select-broker').val(broker_id);
+            }
             
             //change attribute of new
             $new.find('input.broker-persen').val(0).prop('disabled',false);
@@ -1279,7 +1380,42 @@
             //set value of radio to this auradur
             $row.find('input.broker-leader').val(broker_id);
             console.log(broker_id);
-        }
+        },
+        brokerSelectChange: function(index){
+            var $row = $('#container-broker').find('.row-broker').eq(index);
+            var asuradur_id = $row.find('select.select-broker').val();
+            var selected_asuradur_ids = [];
+            var found = 0;
+            
+            $('#container-broker').find('.row-broker').each(function(){
+                var id = $(this).find('select.select-broker').val();
+                selected_asuradur_ids.push(id);
+                if (id==asuradur_id){
+                    found++;
+                }
+            });
+            
+            if (found > 1){
+                alert('Tidak boleh ada dua broker yang sama');
+                
+                //re-iterate to get un-occupied ausradur
+                var available_values = $.map($row.find('select.select-broker option') ,function(option) {
+                    return option.value;
+                });
+                for (var i=0; i<available_values.length; i++){
+                    if (selected_asuradur_ids.indexOf(available_values[i])<0){
+                        $row.find('select.select-broker').val(available_values[i]).selectpicker('refresh');
+                        
+                        this.brokerSelectBrokerId(index);
+                        break;
+                    }
+                }
+            
+                return false;
+            }else{
+                this.brokerSelectBrokerId(index);
+            }
+        },
     };
     $(document).ready(function(){
         //make space wider by hidding left menu side bar
@@ -1288,9 +1424,6 @@
         
         
         /* BASIC */
-        $('#container-basic').on('change','select.select-tertanggung', function(){
-            alert($(this).val());
-        });
         $('#container-basic').on('click','#btn-tertanggung-tambah', function(){
             PolisManagement.tertanggungOpenWindow();
         });
@@ -1402,7 +1535,7 @@
         });
         $('#container-asuradur').on('change','select.select-asuradur', function(){
             var index = $('.row-asuradur').index($(this).parents('.row-asuradur'));
-            PolisManagement.asuradurSelectAsuradurId(index);
+            PolisManagement.asuradurSelectChange(index);
         });
         
         /* BROKER */
@@ -1427,7 +1560,7 @@
         });
         $('#container-broker').on('change','select.select-broker', function(){
             var index = $('.row-broker').index($(this).parents('.row-broker'));
-            PolisManagement.brokerSelectBrokerId(index);
+            PolisManagement.brokerSelectChange(index);
         });
     });
     

@@ -100,6 +100,6 @@ class Migration_add_master_manual_user extends MY_Migration {
 }
 
 /*
- * filename : 035_add_master_manual_user.php
- * location : /application/migrations/035_add_master_manual_user.php
+ * filename : 019_add_master_manual_user.php
+ * location : /application/migrations/019_add_master_manual_user.php
  */

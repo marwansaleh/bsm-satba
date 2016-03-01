@@ -26,30 +26,46 @@ class Polis extends Admin_Controller {
         
         //load model user if not loaded
         $this->load->model(array(
-            'mkt_polis_m','mtr_sumberbisnis_m','mtr_jenisasuransi_m','mkt_objek_pertanggungan_m',
-            'mtr_matauang_m','mtr_asuradur_m','mtr_broker_m','mtr_sales_m','mtr_tertanggung_m','mtr_propinsi_m'));
+            'mkt_polis_m','mtr_sumberbisnis_m','mtr_jenisasuransi_m','mkt_objek_pertanggungan_m','mkt_polis_premi_m',
+            'mkt_polis_biayalain_m','mkt_polis_asuradur_m','mkt_polis_broker_m','mkt_polis_attachment_m',
+            'mtr_matauang_m','mtr_asuradur_m','mtr_broker_m','mtr_sales_m','mtr_tertanggung_m','mtr_propinsi_m',
+            'mtr_okupasi_m'
+        ));
         
         if ($id){
             $item = $this->mkt_polis_m->get($id);
             $item->objek_pertanggungan = $this->mkt_objek_pertanggungan_m->get_by(array('polis'=>$item->id));
+            $item->premi = $this->mkt_polis_premi_m->get_by(array('polis'=>$item->id));
+            $item->biayalain = $this->mkt_polis_biayalain_m->get_by(array('polis'=>$item->id));
+            $item->asuradur = $this->mkt_polis_asuradur_m->get_by(array('polis'=>$item->id));
+            $item->biayalain = $this->mkt_polis_broker_m->get_by(array('polis'=>$item->id));
+            $item->attachment = $this->mkt_polis_attachment_m->get_by(array('polis'=>$item->id));
         }else{
             $item = $this->mkt_polis_m->get_new();
+            $item->bulan_laporan = date('m');
+            $item->tahun_laporan = date('Y');
             $item->persetujuan = 'pusat';
             $item->periode_mulai = date('Y-m-d');
             $item->periode_akhir = date('Y-m-d', strtotime('+1 year'));
             $item->mata_uang = 'IDR';
             $item->komisi_kembali = 0;
             $item->objek_pertanggungan = NULL;
+            $item->premi = NULL;
+            $item->biayalain = NULL;
+            $item->asuradur = NULL;
+            $item->broker = NULL;
+            $item->attachment = NULL;
         }
         $this->data['item'] = $item;
         
         //suported data
         $this->data['daftar_bulan'] = get_list_month('long');
         $this->data['daftar_tahun'] = array(2016);
+        $this->data['okupasi'] = $this->mtr_okupasi_m->get();
         $this->data['propinsi'] = $this->mtr_propinsi_m->get();
         $this->data['persetujuan'] = array('pusat'=>'Kantor Pusat', 'wilayah' => 'Kantor Wilayah', 'cabang'=>'Kantor Cabang');
         $this->data['tertanggung'] = $this->mtr_tertanggung_m->get();
-        $this->data['sales'] = $this->mtr_sales_m->get();
+        $this->data['sales_group'] = $this->mtr_sales_m->get_groupped();
         $this->data['sumber_bisnis'] = $this->mtr_sumberbisnis_m->get();
         $this->data['jenis_asuransi'] = $this->mtr_jenisasuransi_m->get();
         $this->data['mata_uang'] = $this->mtr_matauang_m->get();
@@ -72,7 +88,7 @@ class Polis extends Admin_Controller {
         if (!isset($this->mkt_polis_m)){
             $this->load->model(array('mkt_polis_m'));
         }
-        echo json_encode($this->input->post());exit;
+        //echo json_encode($this->input->post());exit;
         $rules = $id ? $this->mkt_polis_m->rules['edit'] : $this->mkt_polis_m->rules['create'];
         $this->form_validation->set_rules($rules);
         if ($this->form_validation->run() !== FALSE){
@@ -96,19 +112,27 @@ class Polis extends Admin_Controller {
                 $this->session->set_flashdata('message', 'Polis '.($id?'dengan id:'.$id:'baru').' berhasil disimpan di database');
                 $this->session->set_flashdata('message_type', 'success');
                 
+                //create log
+                $this->log_create(CT_MODULE_MARKETING, ($id?'Merubah':'Menambah').' record polis dengan nomor polis:'.$data['nomor_polis'], $id?CT_LOG_EDIT:CT_LOG_CREATE);
+                
                 //update objek pertanggungan
                 $saved_objek_ids = $this->_save_objek_pertanggungan($polis_id);
+                $this->log_create(CT_MODULE_MARKETING, 'Update objek pertanggungan untuk polis:'.$data['nomor_polis'].' dengan objek ids:'.json_encode($saved_objek_ids), CT_LOG_CREATE);
                 //Update premi
-                $save_premi_ids = $this->_save_premi($polis_id, $saved_objek_ids);
+                $saved_premi_ids = $this->_save_premi($polis_id, $saved_objek_ids);
+                $this->log_create(CT_MODULE_MARKETING, 'Update premi untuk polis:'.$data['nomor_polis'].' dengan premi ids:'.json_encode($saved_premi_ids), CT_LOG_CREATE);
                 //Save biaya lain
-                $save_biayalain_ids = $this->_save_biayalain($polis_id);
+                $saved_biayalain_ids = $this->_save_biayalain($polis_id);
+                $this->log_create(CT_MODULE_MARKETING, 'Update biaya lain untuk polis:'.$data['nomor_polis'].' dengan biayalain ids:'.json_encode($saved_biayalain_ids), CT_LOG_CREATE);
                 //save asuradur
-                $save_asuradurs = $this->_save_asuradur($polis_id, $data['asuradur_leader']);
+                $saved_asuradurs = $this->_save_asuradur($polis_id, $data['asuradur_leader']);
+                $this->log_create(CT_MODULE_MARKETING, 'Update asuradur untuk polis:'.$data['nomor_polis'].' dengan asuradur ids:'.json_encode($saved_asuradurs), CT_LOG_CREATE);
+                //save brokers
+                $saved_brokers = $this->_save_broker($polis_id, $data['broker_leader']);
+                $this->log_create(CT_MODULE_MARKETING, 'Update broker untuk polis:'.$data['nomor_polis'].' dengan broker ids:'.json_encode($saved_brokers), CT_LOG_CREATE);
                 
-                //create log
-                $this->log_create(CT_MODULE_SYSTEM, ($id?'Merubah':'Menambah').' record polis dengan nomor polis:'.$data['nomor_polis'], $id?CT_LOG_EDIT:CT_LOG_CREATE);
                 
-                redirect(get_action_url('marketing/polis/edit/'.$id));
+                redirect(get_action_url('marketing/polis/edit/'. ($polis_id ? $polis_id :'')));
             }else{
                 $this->session->set_flashdata('message', 'Gagal menyimpan data dengan pesan: '.$this->mkt_polis_m->get_last_message());
                 $this->session->set_flashdata('message_type', 'error');
@@ -159,7 +183,7 @@ class Polis extends Admin_Controller {
     
     private function _save_premi($polis_id, $objek_id_array){
         if (!isset($this->mkt_polis_premi_m)){
-            $this->load->model('mkt_objek_pertanggungan_m');
+            $this->load->model('mkt_polis_premi_m');
         }
         
         //remove old data
@@ -167,7 +191,7 @@ class Polis extends Admin_Controller {
         
         $premis = array(
             'suku_premi'        => $this->input->post('premi_rate'),
-            'tipe_premi'        => $this->input->post('premi_rate_tipe'),
+            'tipe_premi'        => $this->input->post('premi_rate_type'),
             'premi_dasar'       => $this->input->post('premi_nilai'),
             'premi_dasar_idr'   => $this->input->post('premi_nilai_idr')
         );
@@ -264,9 +288,42 @@ class Polis extends Admin_Controller {
         
         return $result;
     }
+    
+    private function _save_broker($polis_id, $leader){
+        if (!isset($this->mkt_polis_broker_m)){
+            $this->load->model('mkt_polis_broker_m');
+        }
+        
+        //remove old data
+        $this->mkt_polis_broker_m->delete_where(array('polis' => $polis_id));
+        
+        $brokers = array(
+            'broker'                => $this->input->post('broker'),
+            'persentase'            => $this->input->post('broker_persen'),
+            'komisi'                => $this->input->post('broker_idr')
+        );
+        
+        $result = array();
+        for ($i=0; $i<count($asuradurs['asuradur']); $i++){
+            $broker = array(
+                'polis'                 => $polis_id,
+                'broker'                => $brokers['broker'][$i],
+                'leader'                => $brokers['broker'][$i]==$leader ? 1 : 0,
+                'persentase'            => $brokers['persentase'][$i],
+                'komisi'                => $brokers['komisi'][$i]
+            );
+            
+            $id = $this->mkt_polis_broker_m->save($broker);
+            if ($id){
+                $result[] = $id;
+            }
+        }
+        
+        return $result;
+    }
 }
 
 /*
- * Filename: Menu.php
- * Location: application/controllers/system/Menu.php
+ * Filename: Polis.php
+ * Location: application/controllers/marketing/Polis.php
  */

@@ -37,9 +37,8 @@ class Migration_add_rel_marketing_polis extends MY_Migration {
             'null' => FALSE
         ),
         'nomor_polis_lama'    => array (
-            'type'  => 'INT',
-            'constraint' => 11,
-            'default' => 0,
+            'type'  => 'VARCHAR',
+            'constraint' => 15,
             'null' => TRUE
         ),
         'tertanggung'    => array (
@@ -48,8 +47,8 @@ class Migration_add_rel_marketing_polis extends MY_Migration {
             'null' => FALSE
         ),
         'okupasi'    => array (
-            'type'  => 'VARCHAR',
-            'constraint' => 30,
+            'type'  => 'INT',
+            'constraint' => 11,
             'null' => FALSE
         ),
         'jenis_asuransi'    => array (
@@ -75,7 +74,7 @@ class Migration_add_rel_marketing_polis extends MY_Migration {
             'constraint' => '15,2',
             'default' => 0.00
         ),
-        'total_biaya_lain_idr' => array (
+        'total_biayalain_idr' => array (
             'type'  => 'NUMERIC',
             'constraint' => '10,2',
             'default' => 0.00
@@ -163,6 +162,6 @@ class Migration_add_rel_marketing_polis extends MY_Migration {
 }
 
 /*
- * filename : 027_add_rel_marketing_polis.php
- * location : /application/migrations/027_add_rel_marketing_polis.php
+ * filename : 028_add_rel_marketing_polis.php
+ * location : /application/migrations/028_add_rel_marketing_polis.php
  */

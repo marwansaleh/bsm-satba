@@ -105,6 +105,6 @@ class Migration_add_rel_marketing_tertanggung extends MY_Migration {
 }
 
 /*
- * filename : 028_add_rel_marketing_tertanggung.php
- * location : /application/migrations/028_add_rel_marketing_tertanggung.php
+ * filename : 027_add_rel_marketing_tertanggung.php
+ * location : /application/migrations/027_add_rel_marketing_tertanggung.php
  */

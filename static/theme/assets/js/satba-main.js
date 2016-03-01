@@ -154,7 +154,9 @@ var KonversiMataUang = {
         if (typeof basis_kurs === 'undefined'){
             this.initiated = false;
             console.log('Rate bases is not defined');
-            return this.initiated;
+            //alert('Basis rate kurs belum didefinisikan. Perhitungan kurs tidak dapat dilakukan !');
+            
+            return false;
         }else{
             console.log('Rate bases is defined, ok!');
         }

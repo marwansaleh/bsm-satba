@@ -1,12 +1,12 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Description of Migration_add_master_module
+ * Description of Migration_add_user_privileges
  *
  * @author marwansaleh
  */
-class Migration_add_master_system_configuration extends MY_Migration {
-    protected $_table_name = 'ref_sys_configuration';
+class Migration_add_rel_user_privileges extends MY_Migration {
+    protected $_table_name = 'rel_auth_user_privileges';
     protected $_primary_key = 'id';
     protected $_fields = array(
         'id'    => array (
@@ -15,22 +15,18 @@ class Migration_add_master_system_configuration extends MY_Migration {
             'unsigned' => TRUE,
             'auto_increment' => TRUE
         ),
-        'var_name'    => array (
-            'type'  => 'VARCHAR',
-            'constraint' => 50,
-            'default' => 0
-        ),
-        'var_value'    => array (
-            'type'  => 'TEXT',
-            'null' => TRUE
-        ),
-        'var_type'    => array (
-            'type'  => 'ENUM("string", "integer", "float", "boolean")',
-            'default' => 'string',
+        'user_id'    => array(
+            'type' => 'INT',
+            'constraint' => 11,
             'null' => FALSE
         ),
-        'is_list'   => array(
-            'type'  => 'TINYINT',
+        'role_id'    => array(
+            'type' => 'INT',
+            'constraint' => 11,
+            'null' => FALSE
+        ),
+        'granted'    => array(
+            'type' => 'TINYINT',
             'constraint' => 1,
             'default' => 0
         ),
@@ -59,10 +55,10 @@ class Migration_add_master_system_configuration extends MY_Migration {
             'default' => 0
         )
     );
-    
+
 }
 
 /*
- * filename : 018_add_master_system_configuration.php
- * location : /application/migrations/018_add_master_system_configuration.php
+ * filename : 037_add_rel_user_privileges.php
+ * location : /application/migrations/037_add_rel_user_privileges.php
  */
